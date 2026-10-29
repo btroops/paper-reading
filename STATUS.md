@@ -8,12 +8,19 @@
 - 最近内容提交：`93f8f22 paper(2609.23986v1): 归档论文原文`（提交信息里的旧 id 是历史记录，不回改）
 - 已归档论文：1 篇（`jiang2026-jev-mem`，arXiv 2609.23986v1）
 - 已精读论文：1 篇（`jiang2026-jev-mem`）
-- 阅读模型：`WWH-v1`（`WWH.md`），笔记结构标准
+- 阅读模型：`WWH-v2`（`WWH.md`），含结构与表达标准
 - 命名规则：`<第一作者姓><年份>-<短标题>`，arXiv 编号只写在 front matter 与 README 索引
 - Python 环境：uv + Python 3.12，已装 `pymupdf`（`pyproject.toml` / `uv.lock` 已生成，未提交）
 - 进行中：无
 
 ## 最近会话
+
+### 2026-10-29 WWH 升到 v2：补表达标准
+
+- 起因：笔记的 Why 读两三遍仍看不懂，说明原文句式搬运和术语堆叠不合格。
+- `WWH.md` 新增第 8 节表达标准：每段首句为人话、术语延迟解释、抽象落到具体场景、数字给参照系、读两遍不懂即重写；附四组「罗列式 vs 讲清楚」改写示例。顺延编号至第 11 节，版本升为 `WWH-v2`。
+- `AGENTS.md` 第 5 节模板说明与第 7 节自检同步加入表达检查。
+- 笔记 `jiang2026-jev-mem.md` 按 v2 回填：Why 重写为「场景 → 成本账 → 旧路为何不行 → 可证伪判据」；What/How/Ideas/可复现各加首句人话；补解释 Noul、RRF、记忆表示；front matter 改为 `model: WWH-v2`。
 
 ### 2026-10-29 目录命名改为可读形式
 
@@ -47,7 +54,7 @@
 - [ ] 按第 8 节拆分提交：`build(deps)`（uv 环境与脚本）、`docs(model)`（WWH 模型）、`chore(repo)`（AGENTS 接入与命名规则）、`notes(jiang2026-jev-mem)`、`docs(index)`、`docs(status)`。
 - [ ] 核对代码仓库 <https://github.com/libingzheren/Jev-Mem> 是否公开、是否给出第二数据集与消融。
 - [ ] 若确认正文数字与表格冲突，追加 `fix(jiang2026-jev-mem)` 提交修正笔记措辞。
-- [ ] 下一篇论文起，按 `WWH.md` 第 3 节顺序阅读，front matter 填 `model: WWH-v1`。
+- [ ] 下一篇论文起，按 `WWH.md` 第 3 节顺序阅读，front matter 填 `model: WWH-v2`。
 
 ## 阻塞 / 待确认
 
