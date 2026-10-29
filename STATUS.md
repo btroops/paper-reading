@@ -8,12 +8,19 @@
 - 最近内容提交：`93f8f22 paper(2609.23986v1): 归档论文原文`（提交信息里的旧 id 是历史记录，不回改）
 - 已归档论文：1 篇（`jiang2026-jev-mem`，arXiv 2609.23986v1）
 - 已精读论文：1 篇（`jiang2026-jev-mem`）
-- 阅读模型：`WWH-v2`（`WWH.md`），含结构与表达标准
+- 阅读模型：`WWH-v3`（`WWH.md`），表达以“讲完整”优先
 - 命名规则：`<第一作者姓><年份>-<短标题>`，arXiv 编号只写在 front matter 与 README 索引
 - Python 环境：uv + Python 3.12，已装 `pymupdf`（`pyproject.toml` / `uv.lock` 已生成，未提交）
 - 进行中：无
 
 ## 最近会话
+
+### 2026-10-29 WWH 升到 v3：撤销压缩式要求
+
+- 起因：v2 的"每段首句一句人话"被执行成了压缩，一句话塞多个概念，读者读两三遍仍不知所云。
+- `WWH.md` 第 8 节改为"讲完整优先"：先解释后命名、一句只放一个意思、该留的句子必须留；新增"压缩式"失败案例，与抄论文、讲清楚并列对照；篇幅不再设上限（Why 通常 600–900 字）。
+- 产出契约与自检同步改为 v3 口径；`AGENTS.md` 模板与自检一并更新。
+- 笔记 `jiang2026-jev-mem.md` 按 v3 重写：Why 改为完整背景叙述，TL;DR 分为三步，结论清单去掉 write/read 侧等缩写，Table 1 前增加"这张表在比什么"，Ideas 与可复现开头展开为完整疑问。
 
 ### 2026-10-29 WWH 升到 v2：补表达标准
 
@@ -54,7 +61,7 @@
 - [ ] 按第 8 节拆分提交：`build(deps)`（uv 环境与脚本）、`docs(model)`（WWH 模型）、`chore(repo)`（AGENTS 接入与命名规则）、`notes(jiang2026-jev-mem)`、`docs(index)`、`docs(status)`。
 - [ ] 核对代码仓库 <https://github.com/libingzheren/Jev-Mem> 是否公开、是否给出第二数据集与消融。
 - [ ] 若确认正文数字与表格冲突，追加 `fix(jiang2026-jev-mem)` 提交修正笔记措辞。
-- [ ] 下一篇论文起，按 `WWH.md` 第 3 节顺序阅读，front matter 填 `model: WWH-v2`。
+- [ ] 下一篇论文起，按 `WWH.md` 第 3 节顺序阅读，front matter 填 `model: WWH-v3`。
 
 ## 阻塞 / 待确认
 
