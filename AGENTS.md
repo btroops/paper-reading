@@ -120,11 +120,18 @@ if __name__ == "__main__":
 ```markdown
 ---
 title: "<论文标题>"
-authors: ["<作者1>", "<作者2>"]
+authors:
+  - "<作者1>"
+  - "<作者2>"
 year: 2026
 venue: "<会议/期刊/arXiv>"
 arxiv: "https://arxiv.org/abs/<id>"   # 非 arXiv 论文留空
-tags: ["agent-memory", "retrieval"]
+tags:
+  - agent-memory
+  - retrieval
+aliases:
+  - "<中文名>"
+  - "<常用缩写>"
 status: reading   # reading | done | shelved
 model: WWH-v6     # 遵循的阅读模型版本，见 WWH.md
 ---
@@ -157,7 +164,7 @@ model: WWH-v6     # 遵循的阅读模型版本，见 WWH.md
 ```
 
 - **先把事讲完整，再谈简洁**：概念先解释后命名，一句话只放一个意思，宁可多写三句也不让读者回读；每个机制配一个具体场景；每个数字后面写清它意味着什么。表达标准与三种写法对照见 `WWH.md` 第 8 节。罗列论文内容、或为省字数压缩解释，都视为不合格。
-- `tags` 用英文小写 kebab-case，便于后续 `grep` 检索；不追求受控词表。
+- 元信息统一用块状列表：`tags` 每行一个，英文小写 kebab-case；`aliases` 每行一个，写中文名与常用缩写，便于按中文检索；不追求受控词表。
 - 笔记默认中文书写，术语、指标、方法名保留英文原文。
 - 论文页面引用格式：`§3.2`、`Fig. 4`、`Table 2`，不要写 PDF 页码路径。
 
