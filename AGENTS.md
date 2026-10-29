@@ -124,7 +124,7 @@ venue: "<会议/期刊/arXiv>"
 arxiv: "https://arxiv.org/abs/<id>"   # 非 arXiv 论文留空
 tags: ["agent-memory", "retrieval"]
 status: reading   # reading | done | shelved
-model: WWH-v1     # 遵循的阅读模型版本，见 WWH.md
+model: WWH-v2     # 遵循的阅读模型版本，见 WWH.md
 ---
 
 # <论文标题>
@@ -157,6 +157,7 @@ model: WWH-v1     # 遵循的阅读模型版本，见 WWH.md
 数据、算力、代码链接、关键超参。无法复现之处直接写明。
 ```
 
+- **每段第一句必须是不含术语的人话**；术语首次出现要一句话解释；每个机制配一个具体场景；数字给参照系。表达标准与改写示例见 `WWH.md` 第 8 节，罗列论文内容视为不合格。
 - `tags` 用英文小写 kebab-case，便于后续 `grep` 检索；不追求受控词表。
 - 笔记默认中文书写，术语、指标、方法名保留英文原文。
 - 论文页面引用格式：`§3.2`、`Fig. 4`、`Table 2`，不要写 PDF 页码路径。
@@ -178,6 +179,7 @@ model: WWH-v1     # 遵循的阅读模型版本，见 WWH.md
 - [ ] 笔记的 front matter 字段完整（含 `model`），链接可解析。
 - [ ] 四段齐全且顺序为 Why → What → How → Ideas；`What` 的结论标注了 `[宣称]` / `[已验证]`。
 - [ ] `Ideas` 每条四要素齐全，且能追溯到前面某条不足。
+- [ ] 每段首句是人话，没有未解释的术语与无参照系的数字（`WWH.md` 第 8 节）。
 - [ ] 所有图片路径为相对路径，且文件真实存在。
 - [ ] `README.md` 索引已包含该论文。
 - [ ] 仓库内没有绝对路径：
