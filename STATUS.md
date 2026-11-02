@@ -4,7 +4,8 @@
 
 ## 当前快照
 
-- 分支：`main`
+- 分支：`main`（跟踪 `origin/main`）
+- 远程：`origin` → `git@github.com:btroops/paper-reading.git`
 - 最近内容提交：`cafb484 fix(yeh2026-oat): 恢复并补全概念笔记引用`
 - 已归档论文：4 篇（`jiang2026-jev-mem`，arXiv 2609.23986v1；`he2026-memory-tax`，arXiv 2610.34073v1；`bao2026-raw-rag`，arXiv 2610.30755v1；`yeh2026-oat`，arXiv 2607.12747v2）
 - 已精读论文：4 篇（`jiang2026-jev-mem`、`he2026-memory-tax`、`bao2026-raw-rag`、`yeh2026-oat`）
@@ -14,6 +15,12 @@
 - 进行中：无
 
 ## 最近会话
+
+### 2026-11-02 推送至 GitHub
+
+- 配置 `origin` 为 `git@github.com:btroops/paper-reading.git`，SSH 认证通过。
+- 远端此前为空，直接推送 `main` 全量历史并建立 `origin/main` 跟踪，无历史冲突。
+- 未执行 GitHub 模板里的 `git init`、`first commit` 与追加 README 标题：仓库已有完整历史与索引，重复初始化会产生不符合第 8 节规范的提交。
 
 ### 2026-11-02 精读 OAT（智能体失败归因）
 
@@ -132,7 +139,6 @@
 
 ## 下一步
 
-- [ ] 按第 8 节拆分提交：`build(deps)`（uv 环境与脚本）、`docs(model)`（WWH 模型）、`chore(repo)`（AGENTS 接入与命名规则）、`notes(jiang2026-jev-mem)`、`docs(index)`、`docs(status)`。
 - [ ] 核对代码仓库 <https://github.com/libingzheren/Jev-Mem> 是否公开、是否给出第二数据集与消融。
 - [ ] 若确认正文数字与表格冲突，追加 `fix(jiang2026-jev-mem)` 提交修正笔记措辞。
 - [ ] 核对 <https://github.com/hexuan21/MemoryTax> 是否放出 tax 计算脚本，若放出则回填笔记中"公式为反推"的说明。
