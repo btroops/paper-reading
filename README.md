@@ -11,6 +11,9 @@
 | paper-id | 标题 | 年份 | arxiv | tags | status |
 | --- | --- | --- | --- | --- | --- |
 | [jiang2026-jev-mem](notes/jiang2026-jev-mem.md) | Jev-Mem: System-One-Controlled Agentic Memory for Efficient AI Agents | 2026 | [2609.23986](https://arxiv.org/abs/2609.23986) | agent-memory, memory-control, multi-relational-graph, adaptive-retrieval, efficiency, locomo | done |
+| [he2026-memory-tax](notes/he2026-memory-tax.md) | Memory Tax: Dissecting the Net Value of Agent Memory | 2026 | [2610.34073](https://arxiv.org/abs/2610.34073) | agent-memory, evaluation, benchmark, memory-tax, retrieval-augmented-generation, cost-analysis | done |
+
+概念说明不对应单篇论文，放在 `notes/concepts/`，不计入上表：[长期记忆：为什么要在模型外面挂一层](notes/concepts/agent-memory-basics.md)、[记忆流水线：五道工序与它们的代价](notes/concepts/memory-pipeline.md)。
 
 ## 工作流
 
