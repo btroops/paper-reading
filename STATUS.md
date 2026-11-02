@@ -5,7 +5,7 @@
 ## 当前快照
 
 - 分支：`main`
-- 最近内容提交：`d80f59f docs(index): 收录 bao2026-raw-rag`
+- 最近内容提交：`541035a fix(bao2026-raw-rag): 修正基线补测范围与噪声参照的表述`
 - 已归档论文：3 篇（`jiang2026-jev-mem`，arXiv 2609.23986v1；`he2026-memory-tax`，arXiv 2610.34073v1；`bao2026-raw-rag`，arXiv 2610.30755v1）
 - 已精读论文：3 篇（`jiang2026-jev-mem`、`he2026-memory-tax`、`bao2026-raw-rag`）
 - 阅读模型：`WWH-v6`（`WWH.md`），Why 只提问、What 不写机制、段落 3–6 句
