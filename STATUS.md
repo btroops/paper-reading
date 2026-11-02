@@ -5,15 +5,24 @@
 ## 当前快照
 
 - 分支：`main`
-- 最近内容提交：`5e41a04 fix(bao2026-raw-rag): 修正盈亏平衡公式的 KaTeX 渲染错误`
-- 已归档论文：3 篇（`jiang2026-jev-mem`，arXiv 2609.23986v1；`he2026-memory-tax`，arXiv 2610.34073v1；`bao2026-raw-rag`，arXiv 2610.30755v1）
-- 已精读论文：3 篇（`jiang2026-jev-mem`、`he2026-memory-tax`、`bao2026-raw-rag`）
+- 最近内容提交：`5a04728 docs(index): 收录 yeh2026-oat`
+- 已归档论文：4 篇（`jiang2026-jev-mem`，arXiv 2609.23986v1；`he2026-memory-tax`，arXiv 2610.34073v1；`bao2026-raw-rag`，arXiv 2610.30755v1；`yeh2026-oat`，arXiv 2607.12747v2）
+- 已精读论文：4 篇（`jiang2026-jev-mem`、`he2026-memory-tax`、`bao2026-raw-rag`、`yeh2026-oat`）
 - 阅读模型：`WWH-v6`（`WWH.md`），Why 只提问、What 不写机制、段落 3–6 句
 - 命名规则：`<第一作者姓><年份>-<短标题>`，arXiv 编号只写在 front matter 与 README 索引
 - Python 环境：uv + Python 3.12，已装 `pymupdf`（`pyproject.toml` / `uv.lock` 已生成，未提交）
 - 进行中：无
 
 ## 最近会话
+
+### 2026-11-02 精读 OAT（智能体失败归因）
+
+- 归档：`papers/2607.12747v2.pdf` → `papers/yeh2026-oat/paper.pdf`；`paper-id` 取第一作者姓 `yeh` + 年份 + 方法名 `oat`。提取全文（25 页），按 WWH-v6 产出 `notes/yeh2026-oat.md`（status: done）。
+- 判型：系统与算法类为主，附实证与基准类；核心贡献是把失败归因改写成"只用成功轨迹的单类异常检测"，并把轨迹当连续时间过程建模。
+- 主结果：MCP-Atlas 上 OAT（共形）F1 0.435，对 GPT-4o 0.212、GPT-5 0.181；Who&When 上 top-k F1 0.225，对 GPT-5 0.152；推理 0 输出 token、7–16 ms，基线 4.2–39.6 s（Table 1–3）。
+- 原文疑点（已写入 Ideas）：相对 Isolation Forest 只高 2.4 点 F1（0.435 对 0.411）；GPT-5 域内 F1 0.181 低于随机基线 0.255，提示基线可能未调；没有监督式方法对照；域外主数字用全测试集拟合 CORAL，五折只在 Fig. 12；步级标签由作者自标、无一致性统计；平均轨迹 7 步与"几十到几百步"的动机不符；200–5000× 不含隐状态提取（实际约 1000 ms/条）。
+- 交叉引用：与 `he2026-memory-tax`、`bao2026-raw-rag` 同属"如何度量 agent 系统可靠性"，但对象不同；仓库暂无同主题笔记。
+- 提交：`9aa57e4`（原文）、`e422096`（笔记）、`5a04728`（索引）、本文件随 `docs(status)`。
 
 ### 2026-11-02 修正 RAW-RAG 公式渲染
 
@@ -127,9 +136,11 @@
 - [ ] 若确认正文数字与表格冲突，追加 `fix(jiang2026-jev-mem)` 提交修正笔记措辞。
 - [ ] 核对 <https://github.com/hexuan21/MemoryTax> 是否放出 tax 计算脚本，若放出则回填笔记中"公式为反推"的说明。
 - [ ] 核对 <https://github.com/Litmeb/RAW-RAG> 是否放出 5k 重跑日志、完备存储导出与逐题置信区间；若放出，回填 `bao2026-raw-rag` 的"可复现"与 Ideas 第一条。
+- [ ] 核对 <https://github.com/deeplearning-wisc/OAT> 是否放出成功轨迹隐状态、标注工具与 CORAL 五折数字；若放出，回填 `yeh2026-oat` 的"可复现"与 Ideas 第三条。
 
 ## 阻塞 / 待确认
 
 - 历史提交 `93f8f22` 的信息仍使用旧编号 `2609.23986v1`。不回改已推送历史；若需要统一，另做一次说明性提交。
 - `bao2026-raw-rag` 主表沿用各基线原论文分数，未在同一次受控运行中重跑；要检验"0.13 分领先"这类结论，需等作者放出统一重跑或自行复现，笔记已按"主表无置信区间"记录，不据此改写结论。
 - `AGENTS.md` 第 1 节目录树未收录 `notes/concepts/`，是否写进规则待决定。
+- `yeh2026-oat` 的域外主结果使用全量 CORAL（含被评测轨迹的表示），五折版本只有图；引用 +7 点结论时需注明该口径。
