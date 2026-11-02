@@ -5,7 +5,7 @@
 ## 当前快照
 
 - 分支：`main`
-- 最近内容提交：`541035a fix(bao2026-raw-rag): 修正基线补测范围与噪声参照的表述`
+- 最近内容提交：`5e41a04 fix(bao2026-raw-rag): 修正盈亏平衡公式的 KaTeX 渲染错误`
 - 已归档论文：3 篇（`jiang2026-jev-mem`，arXiv 2609.23986v1；`he2026-memory-tax`，arXiv 2610.34073v1；`bao2026-raw-rag`，arXiv 2610.30755v1）
 - 已精读论文：3 篇（`jiang2026-jev-mem`、`he2026-memory-tax`、`bao2026-raw-rag`）
 - 阅读模型：`WWH-v6`（`WWH.md`），Why 只提问、What 不写机制、段落 3–6 句
@@ -14,6 +14,12 @@
 - 进行中：无
 
 ## 最近会话
+
+### 2026-11-02 修正 RAW-RAG 公式渲染
+
+- 现象：Ideas 创新点四的三处 `$N^\*$` 在预览中报 `KaTeX parse error: Undefined control sequence: \*`。
+- 原因：`\*` 不是 KaTeX 合法控制序列，上标星号应直接写 `^*`；改用 `$N^{*}$` 显式分组。全文检索确认仓库内无其他 `\*` 残留。
+- 提交：`5e41a04 fix(bao2026-raw-rag)`。
 
 ### 2026-11-02 精读 RAW-RAG
 
