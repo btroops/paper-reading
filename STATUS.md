@@ -5,15 +5,25 @@
 ## 当前快照
 
 - 分支：`main`
-- 最近内容提交：`93f8f22 paper(2609.23986v1): 归档论文原文`（提交信息里的旧 id 是历史记录，不回改）
-- 已归档论文：2 篇（`jiang2026-jev-mem`，arXiv 2609.23986v1；`he2026-memory-tax`，arXiv 2610.34073v1）
-- 已精读论文：2 篇（`jiang2026-jev-mem`、`he2026-memory-tax`）
+- 最近内容提交：`d80f59f docs(index): 收录 bao2026-raw-rag`
+- 已归档论文：3 篇（`jiang2026-jev-mem`，arXiv 2609.23986v1；`he2026-memory-tax`，arXiv 2610.34073v1；`bao2026-raw-rag`，arXiv 2610.30755v1）
+- 已精读论文：3 篇（`jiang2026-jev-mem`、`he2026-memory-tax`、`bao2026-raw-rag`）
 - 阅读模型：`WWH-v6`（`WWH.md`），Why 只提问、What 不写机制、段落 3–6 句
 - 命名规则：`<第一作者姓><年份>-<短标题>`，arXiv 编号只写在 front matter 与 README 索引
 - Python 环境：uv + Python 3.12，已装 `pymupdf`（`pyproject.toml` / `uv.lock` 已生成，未提交）
 - 进行中：无
 
 ## 最近会话
+
+### 2026-11-02 精读 RAW-RAG
+
+- 归档：`papers/2610.30755v1.pdf` → `papers/bao2026-raw-rag/paper.pdf`；`paper-id` 取第一作者姓 `bao` + 年份 + `raw-rag`。提取全文（62 页），按 WWH-v6 产出 `notes/bao2026-raw-rag.md`（status: done）。
+- 判型：实证与基准类为主，附少量系统与算法类；核心贡献是用一条配好的原始历史检索基线重设参照系，不是新记忆架构。
+- 主结果（可在 Table 3 / Table 4 复核）：RAW-RAG 在 7 个基准-模型设置里 6 个第一，领先 0.13–5.53；唯一败场是 MEME + DeepSeek-V4-Flash，落后 MemMachine 1.52；补测 PersonaMem-v2 排第三（49.62，低于 MemOS 50.72、EverMemOS 53.25），正文未强调。
+- 机制诊断：覆盖率跨度 26.22pp（MemoryAgentBench）/ 40.66pp（MEME），利用率只 9.71pp / 21.04pp；路径条件覆盖 RAW 62.34% 对 MemU 9.62%；完备存储的原始控制 61.60%，各系统低 4.06–30.54。
+- 原文疑点（已写入 Ideas）：主表无置信区间，而 0.13 / 0.95 的领先贴着重跑噪声（LoCoMo 1,499 道未变题贡献 +0.281 分）；5k 对照对 RAW 不截、对 EverMemOS / MemMachine 各截 2,011 / 2,030 题；变异审计只测 Mem0；原子事实消融与 TTL 演示格式耦合；C/R 同时改了选择、打包与读者策略。
+- 交叉引用：与 `he2026-memory-tax` 同题异路（一个造强 RAG，一个用收益/税账本），结论同向；`jiang2026-jev-mem` 的对比表缺 RAG，正是本文 Appendix E 批评的写法。
+- 提交：`aea1a79`（原文）、`67243c1`（笔记）、`d80f59f`（索引）、本文件随 `docs(status)`。
 
 ### 2026-11-02 精读 Memory Tax
 
@@ -110,9 +120,10 @@
 - [ ] 核对代码仓库 <https://github.com/libingzheren/Jev-Mem> 是否公开、是否给出第二数据集与消融。
 - [ ] 若确认正文数字与表格冲突，追加 `fix(jiang2026-jev-mem)` 提交修正笔记措辞。
 - [ ] 核对 <https://github.com/hexuan21/MemoryTax> 是否放出 tax 计算脚本，若放出则回填笔记中"公式为反推"的说明。
+- [ ] 核对 <https://github.com/Litmeb/RAW-RAG> 是否放出 5k 重跑日志、完备存储导出与逐题置信区间；若放出，回填 `bao2026-raw-rag` 的"可复现"与 Ideas 第一条。
 
 ## 阻塞 / 待确认
 
 - 历史提交 `93f8f22` 的信息仍使用旧编号 `2609.23986v1`。不回改已推送历史；若需要统一，另做一次说明性提交。
-- `papers/2610.30755v1.pdf`（《Is Complex Agentic Memory Always Needed? Naive RAG Is Stronger Than We Thought》，62 页，Zhengye Bao 等）在本次会话期间出现在 `papers/` 根目录，未归档、未精读、未提交。按第 2 节应先定 `paper-id` 并移到 `papers/<paper-id>/paper.pdf`；是否开始阅读待确认。它与 `he2026-memory-tax` 同主题（都在质疑记忆系统的净收益），读完可互为对照。
+- `bao2026-raw-rag` 主表沿用各基线原论文分数，未在同一次受控运行中重跑；要检验"0.13 分领先"这类结论，需等作者放出统一重跑或自行复现，笔记已按"主表无置信区间"记录，不据此改写结论。
 - `AGENTS.md` 第 1 节目录树未收录 `notes/concepts/`，是否写进规则待决定。
