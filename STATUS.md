@@ -6,14 +6,26 @@
 
 - 分支：`main`
 - 最近内容提交：`93f8f22 paper(2609.23986v1): 归档论文原文`（提交信息里的旧 id 是历史记录，不回改）
-- 已归档论文：1 篇（`jiang2026-jev-mem`，arXiv 2609.23986v1）
-- 已精读论文：1 篇（`jiang2026-jev-mem`）
+- 已归档论文：2 篇（`jiang2026-jev-mem`，arXiv 2609.23986v1；`he2026-memory-tax`，arXiv 2610.34073v1）
+- 已精读论文：2 篇（`jiang2026-jev-mem`、`he2026-memory-tax`）
 - 阅读模型：`WWH-v6`（`WWH.md`），Why 只提问、What 不写机制、段落 3–6 句
 - 命名规则：`<第一作者姓><年份>-<短标题>`，arXiv 编号只写在 front matter 与 README 索引
 - Python 环境：uv + Python 3.12，已装 `pymupdf`（`pyproject.toml` / `uv.lock` 已生成，未提交）
 - 进行中：无
 
 ## 最近会话
+
+### 2026-11-02 精读 Memory Tax
+
+- 新论文归档：PDF 原名为 `2610.34073v1.pdf`，误放在 `papers/jiang2026-jev-mem/` 下，已移至 `papers/he2026-memory-tax/paper.pdf`（未提交，untracked）。`paper-id` 取第一作者姓 `he` + 年份 + `memory-tax`。
+- 提取全文（36 页），按 WWH-v6 产出 `notes/he2026-memory-tax.md`（status: done）。
+- 判型：实证与基准类为主，附少量系统算法类；核心贡献是"benefit / tax"的成对测量与四维归因，而非新记忆系统。
+- 关键数字（均可在 Table 1 / Table 4 / Table 2 / Fig. 7 复核）：99 个系统-基准-主干格子里 90 个低于 RAG（2 轮），平均低 6.7 分，最大领先 +3.9、最大落后 −40.4；LongMemEval-s 上 SimpleMem / MemoryOS / Mem-T 的 tax 为 12.0 / 11.4 / 10.8；OpenViking 抽样事实只有 39.4% 完整保留、38.0% 无对应单元。
+- 原文疑点（已写入笔记 Ideas，未回改原文）：§4.1 未给 tax 公式，公式为按 Table 4 反推并三例验算；Table 4 与 Fig. 13 的 tax 数值不一致（SimpleMem 12.0 vs 15.0，MemoryOS 11.4 vs 12.8）；§6.2 称 recursive "validate its effectiveness"，但三例仅 +0.1 / +0.9 / +3.6，其中 SimpleMem 的 tax 反而升高；MINT-Eval 上 Retrieval Scope 从 5.93% 到 31.87%，未真正对齐。
+- 交叉引用：本文评测的 MAGMA 与仓库已有 `jiang2026-jev-mem` 同作者组，且是后者的主基线；后者的对比表中没有 RAG，正是本文 §B.2 批评的写法。
+- 新增概念笔记 `notes/concepts/agent-memory-basics.md`：解释"跨会话""外面挂一层记忆"这类被压缩的背景概念，含写入/读取流程图与三种记忆存放位置的对照表。论文笔记 Why 首句改为指向它，不再把解释压回正文。
+- 新增概念笔记 `notes/concepts/memory-pipeline.md`：逐条解释 Why 里的"五道工序"（抽事实、摘要、连图、分层、学习式策略），每道工序写清输入、产出、买到的收益、赔掉的代价，并用"花生过敏"的例子把五道工序串一遍；末尾给出"工序 → 损失形态 → 论文证据"的对应表（已注明是整理而非原文结论），以及四个评测分组与工序的关系。论文笔记 Why 第二句同步指向它。
+- 待确认：`AGENTS.md` 第 1 节目录树尚未收录 `notes/concepts/`。目前按"概念说明不计入论文索引"处理，`README.md` 只在索引下加了一行说明；是否把它写进 AGENTS.md 的目录规则，留待决定。
 
 ### 2026-10-29 修正记忆结构的表述
 
@@ -95,9 +107,10 @@
 ## 下一步
 
 - [ ] 按第 8 节拆分提交：`build(deps)`（uv 环境与脚本）、`docs(model)`（WWH 模型）、`chore(repo)`（AGENTS 接入与命名规则）、`notes(jiang2026-jev-mem)`、`docs(index)`、`docs(status)`。
+- [ ] 新增论文按第 8 节拆三个提交：`paper(he2026-memory-tax)`、`notes(he2026-memory-tax)`、`docs(index)`，再单独一次 `docs(status)`。当前三处改动均未提交。
 - [ ] 核对代码仓库 <https://github.com/libingzheren/Jev-Mem> 是否公开、是否给出第二数据集与消融。
 - [ ] 若确认正文数字与表格冲突，追加 `fix(jiang2026-jev-mem)` 提交修正笔记措辞。
-- [ ] 下一篇论文起，按 `WWH.md` 第 3 节顺序阅读，front matter 填 `model: WWH-v6`。
+- [ ] 核对 <https://github.com/hexuan21/MemoryTax> 是否放出 tax 计算脚本，若放出则回填笔记中"公式为反推"的说明。
 
 ## 阻塞 / 待确认
 
