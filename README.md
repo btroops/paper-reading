@@ -10,6 +10,7 @@
 
 | paper-id | 标题 | 年份 | arxiv | tags | status |
 | --- | --- | --- | --- | --- | --- |
+| [yeh2026-oat](notes/yeh2026-oat.md) | Tracing Agentic Failure from the Flow of Success | 2026 | [2607.12747](https://arxiv.org/abs/2607.12747) | agent-failure-attribution, anomaly-detection, one-class-learning, neural-cde, agent-debugging | done |
 | [jiang2026-jev-mem](notes/jiang2026-jev-mem.md) | Jev-Mem: System-One-Controlled Agentic Memory for Efficient AI Agents | 2026 | [2609.23986](https://arxiv.org/abs/2609.23986) | agent-memory, memory-control, multi-relational-graph, adaptive-retrieval, efficiency, locomo | done |
 | [he2026-memory-tax](notes/he2026-memory-tax.md) | Memory Tax: Dissecting the Net Value of Agent Memory | 2026 | [2610.34073](https://arxiv.org/abs/2610.34073) | agent-memory, evaluation, benchmark, memory-tax, retrieval-augmented-generation, cost-analysis | done |
 | [bao2026-raw-rag](notes/bao2026-raw-rag.md) | Is Complex Agentic Memory Always Needed? Naive RAG Is Stronger Than We Thought | 2026 | [2610.30755](https://arxiv.org/abs/2610.30755) | agent-memory, evaluation, retrieval-augmented-generation, long-term-memory, evidence-coverage, cost-analysis | done |
