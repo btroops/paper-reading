@@ -18,7 +18,7 @@
 | [he2026-memory-tax](notes/he2026-memory-tax.md) | Memory Tax: Dissecting the Net Value of Agent Memory | 2026 | [2610.34073](https://arxiv.org/abs/2610.34073) | agent-memory, evaluation, benchmark, memory-tax, retrieval-augmented-generation, cost-analysis | done |
 | [bao2026-raw-rag](notes/bao2026-raw-rag.md) | Is Complex Agentic Memory Always Needed? Naive RAG Is Stronger Than We Thought | 2026 | [2610.30755](https://arxiv.org/abs/2610.30755) | agent-memory, evaluation, retrieval-augmented-generation, long-term-memory, evidence-coverage, cost-analysis | done |
 
-概念说明不对应单篇论文，放在 `notes/concepts/`，不计入上表：[长期记忆：为什么要在模型外面挂一层](notes/concepts/agent-memory-basics.md)、[记忆流水线：五道工序与它们的代价](notes/concepts/memory-pipeline.md)、[失败归因：为什么最后一步看不到病因](notes/concepts/failure-attribution.md)。
+概念说明不对应单篇论文，放在 `notes/concepts/`，不计入上表：[长期记忆：为什么要在模型外面挂一层](notes/concepts/agent-memory-basics.md)、[记忆流水线：五道工序与它们的代价](notes/concepts/memory-pipeline.md)、[失败归因：为什么最后一步看不到病因](notes/concepts/failure-attribution.md)、[智能体进化：把执行反馈变成持久修改](notes/concepts/agent-evolution.md)。
 
 ## 工作流
 
