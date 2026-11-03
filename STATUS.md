@@ -6,13 +6,13 @@
 
 - 分支：`main`（跟踪 `origin/main`）
 - 远程：`origin` → `git@github.com:btroops/paper-reading.git`
-- 最近内容提交：`93f2d93 docs(index): 索引收录智能体进化概念笔记`
+- 最近内容提交：`89a6709 notes(li2026-oo-harness): 自检修正并补充描述路由说明`
 - 已归档论文：7 篇（`jiang2026-jev-mem`，arXiv 2609.23986v1；`he2026-memory-tax`，arXiv 2610.34073v1；`bao2026-raw-rag`，arXiv 2610.30755v1；`yeh2026-oat`，arXiv 2607.12747v2；`wan2026-decision-rag`，arXiv 2610.35868v1；`wang2026-rsi-hub`，arXiv 2610.32253v1；`li2026-oo-harness`，arXiv 2610.28380v1）
 - 已精读论文：7 篇（`jiang2026-jev-mem`、`he2026-memory-tax`、`bao2026-raw-rag`、`yeh2026-oat`、`wan2026-decision-rag`、`wang2026-rsi-hub`、`li2026-oo-harness`）
 - 阅读模型：`WWH-v7`（`WWH.md`），新增术语一次定义/全篇同名与反直译规则；Why 只提问、What 不写机制、段落 3–6 句
 - 命名规则：`<第一作者姓><年份>-<短标题>`，arXiv 编号只写在 front matter 与 README 索引
 - Python 环境：uv + Python 3.12，已装 `pymupdf`（`pyproject.toml` / `uv.lock` 已生成，未提交）
-- 进行中：无；`wan2026-decision-rag`、`wang2026-rsi-hub`、`li2026-oo-harness` 三篇的原文、笔记与索引已提交，规则改动随本文件一起收尾
+- 进行中：无；`li2026-oo-harness` 的自检与补充已提交
 
 ## 最近会话
 
@@ -21,7 +21,7 @@
 - 起因：读 DecisionRAG 与 OO-Harness 笔记时，出现"用写代码、跑测试、看反馈的方式来搜索""加入进化出来的记忆"这类直译；术语首次出现不定义、后面换同义词，读者对不上。
 - `WWH.md` 第 8 节新增规则 10（术语首次定义、之后全篇同名、缩写首现写全称）与规则 11（反直译：翻回英文若逐词对应就重写；动词要有宾语；名词堆叠要拆开），并补 8.4/8.5 的正反例；产出契约与自检同步。
 - `AGENTS.md` 模板改为 `model: WWH-v7`，第 7 节自检新增两条。
-- 旧笔记不强制回填；`wan2026-decision-rag` 与 `li2026-oo-harness` 已按新规则改过表述，`model` 字段暂留 v6，待回填时再改。
+- 旧笔记不强制回填；`wan2026-decision-rag` 仍为 v6，`li2026-oo-harness` 已在本次自检中改为 v7。
 - 提交：`86aa9b3`（模型）、`4c4e30a`（自检）、本文件随 `docs(status)`。
 
 ### 2026-11-03 精读 OO-Harness（面向对象的 harness 进化）
@@ -34,6 +34,7 @@
 - 原文疑点（已写入 Ideas）：OO 与 AAH 差继承、聚类依据、路由依据三件事，只拆了后两件，最大领先恰落在没拆的那维；Workspace 与 Toolathlon PASS 的领先在 1 点上下，小于执行器标准差，且三次重跑不覆盖搜索方差；Steps 排除基座 rollout 与路由调用，测试期成本无账本；§4.1 与 A.4.2 的路由模型口径冲突（Sonnet 5 vs Opus 4.8）；OOD 实验 49 题全选基座，OO 分数按构造等于基座；接受规则、接受节点数、簇规模、教训是否启用均未报告；每基准一套 harness，不跨基准迁移。
 - 交叉引用：`wang2026-rsi-hub`（装置 vs 策略，缺同一套可审计纪律）、`wan2026-decision-rag`（同为"候选集 + 证据选择"的控制器）、`yeh2026-oat`（路由教训是任务级失败归因，粒度更粗）、`he2026-memory-tax`（收益/税账本）、`bao2026-raw-rag`（强基线重设参照系）、`jiang2026-jev-mem`（同为控制层）。
 - 提交：`f1f3b6d`（原文）、`cf8538a`（笔记）、`8b50ac3`（索引）、本文件随 `docs(status)`。
+- 自检与补充：`89a6709`（笔记）——`model` 升到 v7，补“描述路由 vs 轨迹路由”说明；本文件随 `docs(status)`。
 
 ### 2026-11-03 精读 RSIHub（智能体进化框架）
 
