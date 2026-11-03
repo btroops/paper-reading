@@ -6,15 +6,56 @@
 
 - 分支：`main`（跟踪 `origin/main`）
 - 远程：`origin` → `git@github.com:btroops/paper-reading.git`
-- 最近内容提交：`cafb484 fix(yeh2026-oat): 恢复并补全概念笔记引用`
-- 已归档论文：4 篇（`jiang2026-jev-mem`，arXiv 2609.23986v1；`he2026-memory-tax`，arXiv 2610.34073v1；`bao2026-raw-rag`，arXiv 2610.30755v1；`yeh2026-oat`，arXiv 2607.12747v2）
-- 已精读论文：4 篇（`jiang2026-jev-mem`、`he2026-memory-tax`、`bao2026-raw-rag`、`yeh2026-oat`）
-- 阅读模型：`WWH-v6`（`WWH.md`），Why 只提问、What 不写机制、段落 3–6 句
+- 最近内容提交：`93f2d93 docs(index): 索引收录智能体进化概念笔记`
+- 已归档论文：7 篇（`jiang2026-jev-mem`，arXiv 2609.23986v1；`he2026-memory-tax`，arXiv 2610.34073v1；`bao2026-raw-rag`，arXiv 2610.30755v1；`yeh2026-oat`，arXiv 2607.12747v2；`wan2026-decision-rag`，arXiv 2610.35868v1；`wang2026-rsi-hub`，arXiv 2610.32253v1；`li2026-oo-harness`，arXiv 2610.28380v1）
+- 已精读论文：7 篇（`jiang2026-jev-mem`、`he2026-memory-tax`、`bao2026-raw-rag`、`yeh2026-oat`、`wan2026-decision-rag`、`wang2026-rsi-hub`、`li2026-oo-harness`）
+- 阅读模型：`WWH-v7`（`WWH.md`），新增术语一次定义/全篇同名与反直译规则；Why 只提问、What 不写机制、段落 3–6 句
 - 命名规则：`<第一作者姓><年份>-<短标题>`，arXiv 编号只写在 front matter 与 README 索引
 - Python 环境：uv + Python 3.12，已装 `pymupdf`（`pyproject.toml` / `uv.lock` 已生成，未提交）
-- 进行中：无
+- 进行中：无；`wan2026-decision-rag`、`wang2026-rsi-hub`、`li2026-oo-harness` 三篇的原文、笔记与索引已提交，规则改动随本文件一起收尾
 
 ## 最近会话
+
+### 2026-11-03 WWH 升到 v7：术语与反直译
+
+- 起因：读 DecisionRAG 与 OO-Harness 笔记时，出现"用写代码、跑测试、看反馈的方式来搜索""加入进化出来的记忆"这类直译；术语首次出现不定义、后面换同义词，读者对不上。
+- `WWH.md` 第 8 节新增规则 10（术语首次定义、之后全篇同名、缩写首现写全称）与规则 11（反直译：翻回英文若逐词对应就重写；动词要有宾语；名词堆叠要拆开），并补 8.4/8.5 的正反例；产出契约与自检同步。
+- `AGENTS.md` 模板改为 `model: WWH-v7`，第 7 节自检新增两条。
+- 旧笔记不强制回填；`wan2026-decision-rag` 与 `li2026-oo-harness` 已按新规则改过表述，`model` 字段暂留 v6，待回填时再改。
+- 提交：`86aa9b3`（模型）、`4c4e30a`（自检）、本文件随 `docs(status)`。
+
+### 2026-11-03 精读 OO-Harness（面向对象的 harness 进化）
+
+- 归档：根目录的 `2610.28380v1.pdf` → `papers/li2026-oo-harness/paper.pdf`；`paper-id` 取第一作者姓 `li` + 年份 + 方法名 `oo-harness`。提取全文（20 页），按 WWH-v6 产出 `notes/li2026-oo-harness.md`（status: done）。
+- 判型：系统与算法类为主（类层级表示、簇级搜索、路由函数、接受条件），附实证与基准类（三基准端到端 + 两组消融 + OOD）；无定理、无新数据集、不训练模型。
+- 核心贡献：把专家 harness 做成基座或已有专家的**子类**（继承 + 覆盖 + `super()`，单实例执行、祖先不是额外 rollout），并用"任务 + 基座轨迹 + 冻结路由教训"选择；训练只在目标簇上评估候选。
+- 主结果（Table 1）：Automation Mean 77.41 对基座 61.62（摘要的 +15.79 即是此差）、AAH 75.40；Workspace Mean 39.48 对 AAH 38.62、AHE 38.43；Toolathlon PASS 37.45 对 AHE 36.23、AAH 34.32。搜索时间 29.0 h 对 Meta-Harness 109.1 h（Fig. 4b）。
+- 机制诊断：路由输入加基座轨迹，Automation +12.64、Toolathlon +4.37、Workspace 仅 +0.53（Table 2），原因是 Workspace 的簇与 AAH 任务类型一一对应（Fig. 6b）；继承 ablation 29.39 / 35.60 / 40.56（Fig. 5，+4.96）；基座复用 134/300（44.7%）时基座均分 77.15 对 44.40（Table 3）。
+- 原文疑点（已写入 Ideas）：OO 与 AAH 差继承、聚类依据、路由依据三件事，只拆了后两件，最大领先恰落在没拆的那维；Workspace 与 Toolathlon PASS 的领先在 1 点上下，小于执行器标准差，且三次重跑不覆盖搜索方差；Steps 排除基座 rollout 与路由调用，测试期成本无账本；§4.1 与 A.4.2 的路由模型口径冲突（Sonnet 5 vs Opus 4.8）；OOD 实验 49 题全选基座，OO 分数按构造等于基座；接受规则、接受节点数、簇规模、教训是否启用均未报告；每基准一套 harness，不跨基准迁移。
+- 交叉引用：`wang2026-rsi-hub`（装置 vs 策略，缺同一套可审计纪律）、`wan2026-decision-rag`（同为"候选集 + 证据选择"的控制器）、`yeh2026-oat`（路由教训是任务级失败归因，粒度更粗）、`he2026-memory-tax`（收益/税账本）、`bao2026-raw-rag`（强基线重设参照系）、`jiang2026-jev-mem`（同为控制层）。
+- 提交：`f1f3b6d`（原文）、`cf8538a`（笔记）、`8b50ac3`（索引）、本文件随 `docs(status)`。
+
+### 2026-11-03 精读 RSIHub（智能体进化框架）
+
+- 归档：PDF 原先误放在 `notes/2610.32253v1.pdf`，已移至 `papers/wang2026-rsi-hub/paper.pdf`；`paper-id` 取第一作者姓 `wang` + 年份 + 方法名 `rsi-hub`（注意与 `wan2026-decision-rag` 的第一作者 Wan 不同人）。提取全文（19 页），按 WWH-v6 产出 `notes/wang2026-rsi-hub.md`（status: done）。
+- 判型：系统与算法类为主（协议、生命周期、认证记录、恢复语义），附实证与基准类（4 方法 × 2 agent × 2 基准的描述性对比）与实验方法学（故障注入、能力保持对照）。
+- 核心贡献：把"进化策略"与"执行装置"拆开。配方按七个阶段绑定九个算子（五必需：Select / Rollout / Mutate / Gate / Record；四可选：Analyze / Validate / Novelty / Reflect），声明可变面与运行配置；评测与存档在可变面之外，每次评测绑定候选 commit、父代、配方快照与三层指纹。
+- 主结果（Table 1 / 2 / 3 / 5 / 6）：Terminal Bench 2 + MiniSWE 从 56.2 到 69.7（+13.5），Codex 从 69.7 到 71.9（+2.2）；τ 3 Banking 上 A-Evolve 为 0.0、AHE（Codex）为 +9.3。能力保持 Avg@3 差 −2.7 / −2.6 / −2.6 / +3.4，逐题一致率 80.1–84.6%，直接执行彼此不一致 12.0–18.9%。故障注入 7 场景 × 2 基准 × 30 次 = 420 次全部通过。框架自身开销占一次生成时间 0.02%（TB2 中位）/ 0.019%（τ 3）。四个配方 47–61 行、0 个框架文件改动，方法特有算子 216–1087 行。
+- 关键换算（我自己做的，论文未给）：Table 1 每格是 $N_{\text{pass},s}/N_{\text{all}}$，乘回 89 / 97 均为整数，所以 Terminal Bench 2 一道题值 1.12 点、τ 3 Banking 一道题值 1.03 点；+1.1 就是一道题，13.5 点约 12 道题，正好落在 §4.4 测出的 11–18 题翻转带里。
+- 原文疑点（已写入 Ideas）：主表单次运行无区间，与自测翻转率同量级；无"同预算不演化"对照且不报成本（档案已记 costs、配方有 budget_usd: 150）；四个配方是本文重写而非原方法代码；§4.1 介绍的 hill_climb 基线未进 Table 1；headline 取自最弱 seed；agent-driven 模式零实验；完整性测试未覆盖"候选改自己的 Gate"（§3.2 明说 Gate 从 committed child 加载）；工程量无反事实；Table 5 两 campaign 的 init / snapshot 成本方向相反；Table 2 的 TB2/MiniSWE 写 −2.6 实际 −2.7；Table 1 用 "%" 表示 percentage points。
+- 交叉引用：`he2026-memory-tax`（收益/税账本，本文缺成本分母）、`bao2026-raw-rag`（强基线重设参照系，对应本文缺的同预算对照）、`yeh2026-oat`（可接成 Analyze 算子）、`jiang2026-jev-mem` 与 `wan2026-decision-rag`（都是换判断器，本文换装置，不同层）。
+- 新增概念笔记 `notes/concepts/agent-evolution.md`：解释进化改的是仓库文件而非权重、一轮进化的五道工序、四个代表方法改什么、三个易混概念（微调 / 提示优化 / 搜索），以及这类实验容易自欺的五条路径与读论文时的五问清单。论文笔记 Why 第一段已链接该文。
+- 提交：`bfe5d2a`（原文）、`2223d4d`（笔记）、`79db7ce`（概念）、`bea22bd`（索引）、本文件随 `docs(status)`。
+
+### 2026-11-03 精读 DecisionRAG（决策模型检索）
+
+- 归档：`papers/2610.35868v1.pdf` → `papers/wan2026-decision-rag/paper.pdf`；`paper-id` 取第一作者姓 `wan` + 年份 + 方法名 `decision-rag`。提取全文（21 页），按 WWH-v6 产出 `notes/wan2026-decision-rag.md`（status: done）。
+- 判型：系统与算法类为主，附实证与基准类；核心贡献是把层级检索每一层的"展开哪一支"从生成式 LLM 换成决策模型（Jev），并用共享上下文让逐候选判断可比，不是提出新的语料树结构。
+- 主结果（Table 2 / Table 3 / Table 5）：对"Dense top-100 + Qwen3-Reranker-8B"，MultiDoc2Dial R@1 47.4 对 33.6（+13.8），NQ Hit@1 65.4 对 48.0（+17.4）；单查询 0.68–1.76 s、0.22–2.33 美分。ConditionalQA 上 GPT-5 列表式重排 73.4 高于本文 69.7；MTRAG R@5 34.2 对最好基线 32.5（加稠密候选 36.6）。端到端 MTRAG 判对率 39.4%→44.1%（加稠密 47.3），NQ EM 52.4→54.2（gold 65.3）。
+- 原文疑点（已写入 Ideas）：§6.5 的"导航 vs 重排"同时改了候选集与呈现形式（整页阅读顺序），归因未单独验证；主表无置信区间；延迟对比混用实时 API、单卡本地与只算重排的 GPT-5，作者自注不是受控加速比；主实验绑死专有 Jev；NQ 设计题来源未写明；MTRAG 的 GPT-5 扩标池深（top-5）等于 R@5 指标深度；论文未给代码链接。
+- 交叉引用：与 `jiang2026-jev-mem` 同用 Jev、方向相反（记忆控制 vs 检索导航）；`bao2026-raw-rag` 的"稠密加交叉编码器"强基线正是本文拉开 13.8 / 17.4 点的那条线；`he2026-memory-tax` 的收益/税账本可补本文缺的建树成本。
+- 反馈修订：初版被指出"直译、看不懂"，按 WWH-v6 第 8 节重写全文。先给 Nolan 查询这个具体场景，再命名概念；R@k / Hit@k / nDCG 与 gold、决策模型、共享材料、池化、bootstrap、LoRA 都在首次出现时解释；长句拆短，How 把"走一遍"提到开头；事实、数字与锚点未改。
+- 提交：`4daea3b`（原文）、`354b403`（笔记）、`7f236a2`（索引）、本文件随 `docs(status)`。
 
 ### 2026-11-02 推送至 GitHub
 
@@ -144,6 +185,10 @@
 - [ ] 核对 <https://github.com/hexuan21/MemoryTax> 是否放出 tax 计算脚本，若放出则回填笔记中"公式为反推"的说明。
 - [ ] 核对 <https://github.com/Litmeb/RAW-RAG> 是否放出 5k 重跑日志、完备存储导出与逐题置信区间；若放出，回填 `bao2026-raw-rag` 的"可复现"与 Ideas 第一条。
 - [ ] 核对 <https://github.com/deeplearning-wisc/OAT> 是否放出成功轨迹隐状态、标注工具与 CORAL 五折数字；若放出，回填 `yeh2026-oat` 的"可复现"与 Ideas 第三条。
+- [ ] 核对 DecisionRAG 是否放出代码、Jev 之外的判断器权重与层级构建脚本；若放出，回填 `wan2026-decision-rag` 的"可复现"，并确认 NQ 设计题用的是哪个划分。
+- [ ] 核对 <https://github.com/simple-agent-lab/RSIHub> 是否放出 `archive.jsonl`、Table 1 的逐题结果与每格实际花费；若放出，回填 `wang2026-rsi-hub` 的"可复现"，并把同预算 best-of-$k$ 对照（Ideas 第二条）做成可复算。
+- [ ] 查 Hyperagents 配方里可变面是否包含 Gate 与 Select；若包含，`wang2026-rsi-hub` Ideas 第四条从推测升级为已存在，并补一条 `notes` 说明。
+- [ ] 向 OO-Harness 作者确认是否放出代码、三个基准的 discovery/held-out 划分种子、接受节点数与 acceptance checks；若放出，回填 `li2026-oo-harness` 的"可复现"与 Ideas 第六条。
 
 ## 阻塞 / 待确认
 
@@ -151,3 +196,4 @@
 - `bao2026-raw-rag` 主表沿用各基线原论文分数，未在同一次受控运行中重跑；要检验"0.13 分领先"这类结论，需等作者放出统一重跑或自行复现，笔记已按"主表无置信区间"记录，不据此改写结论。
 - `AGENTS.md` 第 1 节目录树未收录 `notes/concepts/`，是否写进规则待决定。
 - `yeh2026-oat` 的域外主结果使用全量 CORAL（含被评测轨迹的表示），五折版本只有图；引用 +7 点结论时需注明该口径。
+- `li2026-oo-harness` 的路由模型口径未定：主文 §4.1 写 Sonnet 5，附录 A.4.2 默认 selection 为 Opus 4.8，Table 3 案例两者都用 Opus 4.8；引用主表数字时需注明该冲突。
