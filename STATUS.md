@@ -38,15 +38,16 @@
 
 ### 2026-11-03 精读 RSIHub（智能体进化框架）
 
-- 归档：PDF 原先误放在 `notes/2610.32253v1.pdf`，已移至 `papers/wang2026-rsi-hub/paper.pdf`；`paper-id` 取第一作者姓 `wang` + 年份 + 方法名 `rsi-hub`（注意与 `wan2026-decision-rag` 的第一作者 Wan 不同人）。提取全文（19 页），按 WWH-v6 产出 `notes/wang2026-rsi-hub.md`（status: done）。
+- 归档：PDF 原先误放在 `notes/2610.32253v1.pdf`，已移至 `papers/wang2026-rsi-hub/paper.pdf`；`paper-id` 取第一作者姓 `wang` + 年份 + 方法名 `rsi-hub`（注意与 `wan2026-decision-rag` 的第一作者 Wan 不同人）。提取全文（19 页），按 WWH-v7 产出 `notes/wang2026-rsi-hub.md`（status: done）。
 - 判型：系统与算法类为主（协议、生命周期、认证记录、恢复语义），附实证与基准类（4 方法 × 2 agent × 2 基准的描述性对比）与实验方法学（故障注入、能力保持对照）。
 - 核心贡献：把"进化策略"与"执行装置"拆开。配方按七个阶段绑定九个算子（五必需：Select / Rollout / Mutate / Gate / Record；四可选：Analyze / Validate / Novelty / Reflect），声明可变面与运行配置；评测与存档在可变面之外，每次评测绑定候选 commit、父代、配方快照与三层指纹。
 - 主结果（Table 1 / 2 / 3 / 5 / 6）：Terminal Bench 2 + MiniSWE 从 56.2 到 69.7（+13.5），Codex 从 69.7 到 71.9（+2.2）；τ 3 Banking 上 A-Evolve 为 0.0、AHE（Codex）为 +9.3。能力保持 Avg@3 差 −2.7 / −2.6 / −2.6 / +3.4，逐题一致率 80.1–84.6%，直接执行彼此不一致 12.0–18.9%。故障注入 7 场景 × 2 基准 × 30 次 = 420 次全部通过。框架自身开销占一次生成时间 0.02%（TB2 中位）/ 0.019%（τ 3）。四个配方 47–61 行、0 个框架文件改动，方法特有算子 216–1087 行。
 - 关键换算（我自己做的，论文未给）：Table 1 每格是 $N_{\text{pass},s}/N_{\text{all}}$，乘回 89 / 97 均为整数，所以 Terminal Bench 2 一道题值 1.12 点、τ 3 Banking 一道题值 1.03 点；+1.1 就是一道题，13.5 点约 12 道题，正好落在 §4.4 测出的 11–18 题翻转带里。
-- 原文疑点（已写入 Ideas）：主表单次运行无区间，与自测翻转率同量级；无"同预算不演化"对照且不报成本（档案已记 costs、配方有 budget_usd: 150）；四个配方是本文重写而非原方法代码；§4.1 介绍的 hill_climb 基线未进 Table 1；headline 取自最弱 seed；agent-driven 模式零实验；完整性测试未覆盖"候选改自己的 Gate"（§3.2 明说 Gate 从 committed child 加载）；工程量无反事实；Table 5 两 campaign 的 init / snapshot 成本方向相反；Table 2 的 TB2/MiniSWE 写 −2.6 实际 −2.7；Table 1 用 "%" 表示 percentage points。
+- 原文疑点（已写入 Ideas）：主表单次运行无区间，与自测翻转率同量级；无"同预算不进化"对照且不报成本（档案已记成本、配方有 budget_usd: 150）；四个配方是本文重写而非原方法代码；§4.1 介绍的 hill_climb 基线未进 Table 1；headline 取自最弱 seed；agent-driven 模式零实验；完整性测试未覆盖"候选改自己的 Gate"（§3.2 明说 Gate 从 committed child 加载）；工程量无反事实；Table 5 两 campaign 的 init / snapshot 成本方向相反；Table 2 的 TB2/MiniSWE 写 −2.6 实际 −2.7；Table 1 用 "%" 表示 percentage points。
 - 交叉引用：`he2026-memory-tax`（收益/税账本，本文缺成本分母）、`bao2026-raw-rag`（强基线重设参照系，对应本文缺的同预算对照）、`yeh2026-oat`（可接成 Analyze 算子）、`jiang2026-jev-mem` 与 `wan2026-decision-rag`（都是换判断器，本文换装置，不同层）。
 - 新增概念笔记 `notes/concepts/agent-evolution.md`：解释进化改的是仓库文件而非权重、一轮进化的五道工序、四个代表方法改什么、三个易混概念（微调 / 提示优化 / 搜索），以及这类实验容易自欺的五条路径与读论文时的五问清单。论文笔记 Why 第一段已链接该文。
-- 提交：`bfe5d2a`（原文）、`2223d4d`（笔记）、`79db7ce`（概念）、`bea22bd`（索引）、本文件随 `docs(status)`。
+- 2026-11-03 按 WWH-v7 回填：`model` 升到 `WWH-v7`；全篇统一术语（进化、阶段、配方、算子、可变面、档案、准入、改写、检出、回执、契约、sealed），首次出现补定义与英文全称（AHE、GEPA、RQ、LOC、pass@1、Avg@3、best-of-$k$、bootstrap、genesis、anchor、coverage policy），并改写若干直译句；概念笔记同步统一术语。事实、数字与锚点未变。
+- 提交：`bfe5d2a`（原文）、`2223d4d`（笔记）、`79db7ce`（概念）、`bea22bd`（索引）、本文件随 `docs(status)`；v7 回填待单独提交 `notes(wang2026-rsi-hub): 按 WWH-v7 统一术语`。
 
 ### 2026-11-03 精读 DecisionRAG（决策模型检索）
 
