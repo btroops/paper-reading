@@ -108,6 +108,21 @@ $$
 
 训练输入是提示、查询和整份目录。目录里叶节点写成 `leaf 12.9 Step seven: design course structure and learning` 这样的形式，带 `leaf` 前缀和编号；非叶节点只写编号和标题。提示末尾写 `### Section: leaf`，模型续写叶标题（Table 2）。
 
+目录在书里是一棵树，喂给模型时压平成一串行。以 Table 3 例 1 为例：
+
+```text
+2 Chapter Two: Theorists and Theories of Development
+leaf 2.1 Theories of Development
+2.2 Psychosocial Theory
+leaf 2.2.1 Trust vs. Mistrust (Infancy)
+leaf 2.2.2 Autonomy vs. Shame/Doubt (Toddlerhood)
+leaf 2.2.3 Initiative vs. Guilt (Preschool Years)
+```
+
+`2.2.3` 是叶节点，因为它下面没有再分小节；`2.2` 不是，因为它还有 2.2.1 到 2.2.8。输入里只有这些标题，没有各节的正文；正文只在两处用到：造训练题时确定 gold 是哪一节，检索完成后再把选中那一节的文字取出来。
+
+训练和检索用的是同一个模板：`### Book`、`### Table of Contents`、`### Query`、`### Section: leaf`。训练时把查询和它的 gold 叶标题配成一对，让模型学会续写；检索时换一个查询，目录不变，让模型续写它认为最匹配的叶标题。目录在两个阶段都要输入，而且同一本书的所有查询共用一份目录（§4.2）。
+
 ```mermaid
 flowchart LR
   A[书 PDF] --> B[提取目录与正文]
