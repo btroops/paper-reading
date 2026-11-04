@@ -11,10 +11,17 @@
 - 已精读论文：9 篇（`jiang2026-jev-mem`、`he2026-memory-tax`、`bao2026-raw-rag`、`yeh2026-oat`、`wan2026-decision-rag`、`wang2026-rsi-hub`、`li2026-oo-harness`、`kumar2026-stair`、`ho2026-declarative-attention`）
 - 阅读模型：`WWH-v7`（`WWH.md`），新增术语一次定义/全篇同名与反直译规则；Why 只提问、What 不写机制、段落 3–6 句
 - 命名规则：`<第一作者姓><年份>-<短标题>`，arXiv 编号只写在 front matter 与 README 索引
-- Python 环境：uv + Python 3.12，已装 `pymupdf`（`pyproject.toml` / `uv.lock` 已生成，未提交）
+- Python 环境：uv + Python 3.12，已装 `pymupdf`（`pyproject.toml` / `uv.lock` 已提交）
+- 原文策略：PDF 仅本地保存，`papers/` 已被 `.gitignore` 排除，远程只保留笔记与索引
 - 进行中：无；`ho2026-declarative-attention` 已完成并提交
 
 ## 最近会话
+
+### 2026-11-04 论文原文改为仅本地保存
+
+- `papers/` 整目录加入 `.gitignore`，`git rm --cached` 停止跟踪 9 篇 PDF（约 28 MB），本地文件全部保留。
+- 规则同步：`AGENTS.md` 删除 `paper` 提交类型，一篇论文的提交降为 `notes` + `docs(index)` 两次；`README.md` 说明 clone 后按 arXiv 链接自行下载原文。
+- 未重写历史：已有提交中的 PDF 仍在，clone 全量历史时仍会拉取，是否清理待确认。
 
 ### 2026-11-04 精读 Declarative Attention（模型自控注意力）
 
@@ -230,6 +237,7 @@
 
 ## 阻塞 / 待确认
 
+- 已推送历史中含 9 个 PDF（约 28 MB），停止跟踪不会缩小 clone 体积；彻底清除需重写历史并强推，会使所有 commit hash 失效，暂未执行。
 - 历史提交 `93f8f22` 的信息仍使用旧编号 `2609.23986v1`。不回改已推送历史；若需要统一，另做一次说明性提交。
 - `bao2026-raw-rag` 主表沿用各基线原论文分数，未在同一次受控运行中重跑；要检验"0.13 分领先"这类结论，需等作者放出统一重跑或自行复现，笔记已按"主表无置信区间"记录，不据此改写结论。
 - `AGENTS.md` 第 1 节目录树未收录 `notes/concepts/`，是否写进规则待决定。
