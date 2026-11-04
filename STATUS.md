@@ -6,7 +6,7 @@
 
 - 分支：`main`（跟踪 `origin/main`）
 - 远程：`origin` → `git@github.com:btroops/paper-reading.git`
-- 最近内容提交：`9aab616 docs(index): 收录 kumar2026-stair`；`41aab28 notes(kumar2026-stair): 用目录叶节点做检索单位`
+- 最近内容提交：`adacf1a notes(li2026-oo-harness): 补任务定义`；`5c992e5 notes(jiang2026-jev-mem): 补任务定义`
 - 已归档论文：8 篇（`jiang2026-jev-mem`，arXiv 2609.23986v1；`he2026-memory-tax`，arXiv 2610.34073v1；`bao2026-raw-rag`，arXiv 2610.30755v1；`yeh2026-oat`，arXiv 2607.12747v2；`wan2026-decision-rag`，arXiv 2610.35868v1；`wang2026-rsi-hub`，arXiv 2610.32253v1；`li2026-oo-harness`，arXiv 2610.28380v1；`kumar2026-stair`，arXiv 2609.03874v2）
 - 已精读论文：8 篇（`jiang2026-jev-mem`、`he2026-memory-tax`、`bao2026-raw-rag`、`yeh2026-oat`、`wan2026-decision-rag`、`wang2026-rsi-hub`、`li2026-oo-harness`、`kumar2026-stair`）
 - 阅读模型：`WWH-v7`（`WWH.md`），新增术语一次定义/全篇同名与反直译规则；Why 只提问、What 不写机制、段落 3–6 句
@@ -15,6 +15,14 @@
 - 进行中：无；`kumar2026-stair` 已完成并提交
 
 ## 最近会话
+
+### 2026-11-04 统一各笔记的任务定义
+
+- 起因：STAIR 笔记被反馈"读完看不出任务是'问题 + 指定书的目录 → 叶标题'"，说明 What 开头只给答案、没有交代输入输出；检查其余 7 篇，问题相同，读者要靠 How 的形式化自己拼。
+- 改动：在每篇 What 开头补一段任务定义，写清输入、输出与边界，不改事实、数字、锚点与结论。
+- 逐篇口径：`jiang2026-jev-mem` 多会话历史 + 问题 → 答题模型写答案；`he2026-memory-tax` 有记忆 vs naive RAG 的逐题配对；`bao2026-raw-rag` 原始历史 + 问题 → 答案；`yeh2026-oat` 执行轨迹 → 步级异常分与疑似步骤集合；`wan2026-decision-rag` 查询 + 已建好的树 → 前 k 段；`wang2026-rsi-hub` 配方 + seed agent + 基准 → 候选 commit 与档案；`li2026-oo-harness` 任务 + 基座 harness + discovery → harness 树与路由。
+- 未改：`model` 字段保持原版本（这次只补任务定义，不做 v7 全篇回填）。
+- 提交：`5c992e5`、`f8dba92`、`ec2a307`、`912273a`、`feee36e`、`a570b51`、`adacf1a`，每篇一个；本文件随 `docs(status)`。
 
 ### 2026-11-04 精读 STAIR（目录检索）
 
