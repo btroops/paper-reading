@@ -6,15 +6,26 @@
 
 - 分支：`main`（跟踪 `origin/main`）
 - 远程：`origin` → `git@github.com:btroops/paper-reading.git`
-- 最近内容提交：`89a6709 notes(li2026-oo-harness): 自检修正并补充描述路由说明`
-- 已归档论文：7 篇（`jiang2026-jev-mem`，arXiv 2609.23986v1；`he2026-memory-tax`，arXiv 2610.34073v1；`bao2026-raw-rag`，arXiv 2610.30755v1；`yeh2026-oat`，arXiv 2607.12747v2；`wan2026-decision-rag`，arXiv 2610.35868v1；`wang2026-rsi-hub`，arXiv 2610.32253v1；`li2026-oo-harness`，arXiv 2610.28380v1）
-- 已精读论文：7 篇（`jiang2026-jev-mem`、`he2026-memory-tax`、`bao2026-raw-rag`、`yeh2026-oat`、`wan2026-decision-rag`、`wang2026-rsi-hub`、`li2026-oo-harness`）
+- 最近内容提交：`9aab616 docs(index): 收录 kumar2026-stair`；`41aab28 notes(kumar2026-stair): 用目录叶节点做检索单位`
+- 已归档论文：8 篇（`jiang2026-jev-mem`，arXiv 2609.23986v1；`he2026-memory-tax`，arXiv 2610.34073v1；`bao2026-raw-rag`，arXiv 2610.30755v1；`yeh2026-oat`，arXiv 2607.12747v2；`wan2026-decision-rag`，arXiv 2610.35868v1；`wang2026-rsi-hub`，arXiv 2610.32253v1；`li2026-oo-harness`，arXiv 2610.28380v1；`kumar2026-stair`，arXiv 2609.03874v2）
+- 已精读论文：8 篇（`jiang2026-jev-mem`、`he2026-memory-tax`、`bao2026-raw-rag`、`yeh2026-oat`、`wan2026-decision-rag`、`wang2026-rsi-hub`、`li2026-oo-harness`、`kumar2026-stair`）
 - 阅读模型：`WWH-v7`（`WWH.md`），新增术语一次定义/全篇同名与反直译规则；Why 只提问、What 不写机制、段落 3–6 句
 - 命名规则：`<第一作者姓><年份>-<短标题>`，arXiv 编号只写在 front matter 与 README 索引
 - Python 环境：uv + Python 3.12，已装 `pymupdf`（`pyproject.toml` / `uv.lock` 已生成，未提交）
-- 进行中：无；`li2026-oo-harness` 的自检与补充已提交
+- 进行中：无；`kumar2026-stair` 已完成并提交
 
 ## 最近会话
+
+### 2026-11-04 精读 STAIR（目录检索）
+
+- 归档：根目录的 `2609.03874v2.pdf` → `papers/kumar2026-stair/paper.pdf`；`paper-id` 取第一作者姓 `kumar` + 年份 + 方法名 `stair`。提取全文（11 页，正文 8 页 + 参考文献），按 WWH-v7 产出 `notes/kumar2026-stair.md`（status: done）。
+- 判型：系统与算法类为主（问题形式化、三阶段流水线、约束解码），附实证与基准类（自建 SearchTome、五个基线、两组按样本量分层的观察）；无定理、无新训练目标、不训练基座。
+- 核心贡献：把目录叶节点同时当作检索单位和文档标识符，微调 Mistral 7B 在"查询 + 整份目录"上直接输出叶标题，推理时把输出限制在合法叶标题上。
+- 主结果（Table 4）：Recall@1 82.6 对 DSI 76.9（+5.7 点；摘要的 +7.4% 是相对增益）、DPR 68.7、BM25 59.5、Haiku 4.5 为 45.6、未微调 Mistral 13.8；Recall@3 90.8、nDCG@3 87.5；6 个领域全部领先 DSI，差距 4.0–7.5 点。
+- 基准规模（我按 Table 1 加总）：18 本书、6 个领域、2,880 个叶、12,475 页、190,209 道题；train 32.8% / dev 12.9% / test 54.3%；每叶平均 21.7 道训练题、35.9 道测试题。
+- 原文疑点（已写入 Ideas）：目录在输入里，"知识入库"没有被隔离；缺"零样本 + 目录 + 约束解码"、标题向量检索、数字 docid DSI 三个基线；合成 gold 无人工校验，题目按段落聚集，随机化检验的独立样本假设不成立；0.05% 非叶输出与 Stage 3 约束解码冲突，Fig. 3 上 STAIR 也有 0.1–0.2% 的小峰；§4.1 叶节点公式按字面读把"叶"写反了；错误率与 Recall@1 的补数对不上（18.67 对 17.4、24.31 对 23.1）；Haiku 无设置、Mistral 输入未写、STAIR 是否每书微调未写；无延迟、算力、费用。
+- 交叉引用：`wan2026-decision-rag`（同为候选集内选分支，控制器不同）、`bao2026-raw-rag`（基线强度与参照系）、`he2026-memory-tax`（缺成本账本）。
+- 提交：`b2d0070`（原文）、`41aab28`（笔记）、`9aab616`（索引）、本文件随 `docs(status)`。
 
 ### 2026-11-03 WWH 升到 v7：术语与反直译
 
@@ -191,6 +202,8 @@
 - [ ] 核对 <https://github.com/simple-agent-lab/RSIHub> 是否放出 `archive.jsonl`、Table 1 的逐题结果与每格实际花费；若放出，回填 `wang2026-rsi-hub` 的"可复现"，并把同预算 best-of-$k$ 对照（Ideas 第二条）做成可复算。
 - [ ] 查 Hyperagents 配方里可变面是否包含 Gate 与 Select；若包含，`wang2026-rsi-hub` Ideas 第四条从推测升级为已存在，并补一条 `notes` 说明。
 - [ ] 向 OO-Harness 作者确认是否放出代码、三个基准的 discovery/held-out 划分种子、接受节点数与 acceptance checks；若放出，回填 `li2026-oo-harness` 的"可复现"与 Ideas 第六条。
+- [ ] 核对 <https://github.com/meghanadhpulivarthi/stair-clean> 是否放出微调权重、随机种子与"生成标题如何匹配 gold 叶"的代码；若放出，回填 `kumar2026-stair` 的"可复现"与 Ideas 第二条。
+- [ ] 向 STAIR 作者确认三件事：STAIR 是一套模型还是每本书一套；Mistral 与 Haiku 是否看到目录、是否用约束解码；0.05% 幻觉统计是否在约束解码下做的。确认后修正笔记 How 与 Ideas 第四条。
 
 ## 阻塞 / 待确认
 
@@ -199,3 +212,5 @@
 - `AGENTS.md` 第 1 节目录树未收录 `notes/concepts/`，是否写进规则待决定。
 - `yeh2026-oat` 的域外主结果使用全量 CORAL（含被评测轨迹的表示），五折版本只有图；引用 +7 点结论时需注明该口径。
 - `li2026-oo-harness` 的路由模型口径未定：主文 §4.1 写 Sonnet 5，附录 A.4.2 默认 selection 为 Opus 4.8，Table 3 案例两者都用 Opus 4.8；引用主表数字时需注明该冲突。
+- `kumar2026-stair` 的两个基线口径未定：正文只写 Mistral 用 beam search、Haiku 只出现在 Table 4 注里，都没写是否给目录、是否约束解码；Table 3 示例 1 的 Mistral 输出带完整编号，暗示它看到了目录，但无法确认。引用 13.8% 与 45.6% 时需注明。
+- `kumar2026-stair` 的 STAIR 训练范围未定（一套模型覆盖 18 本书 vs 每本书一套），这直接决定成本与"知识入库"的解释；笔记按两种可能并列写，不采信其中一种。
