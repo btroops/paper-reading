@@ -1,6 +1,6 @@
 # 论文精读
 
-论文原文归档在 `papers/<paper-id>/`，精读笔记在 `notes/<paper-id>.md`。分类信息写在笔记的 `tags` 里，不建分类目录。
+精读笔记在 `notes/<paper-id>.md`，分类信息写在笔记的 `tags` 里，不建分类目录。论文原文只保留在本地 `papers/<paper-id>/paper.pdf`，不入库；clone 后按下方索引里的 arXiv 链接自行下载。
 
 所有笔记遵循 [`WWH.md`](WWH.md) 阅读模型：**Why → What → How → Ideas**。每篇笔记的 front matter 用 `model:` 记录所依据的模型版本，方便日后按版本演进回填。
 
@@ -24,7 +24,7 @@
 
 ## 工作流
 
-见 `AGENTS.md`；当前进度见 `STATUS.md`。解析 PDF：
+见 `AGENTS.md`；当前进度见 `STATUS.md`。先把原文下载到 `papers/<paper-id>/paper.pdf`（仅本地），再解析：
 
 ```bash
 uv run tools/pdf_extract.py papers/<paper-id>/paper.pdf

@@ -3,13 +3,13 @@
 > **开工前必读**：`STATUS.md` 记录仓库当前进度与下一步。开工先读，收工更新，规则见第 9 节。
 > **笔记怎么写**：`WWH.md` 是阅读模型与笔记结构标准（Why → What → How → Ideas），第 5 节只给骨架。
 
-本仓库用于存放论文原文与精读笔记。论文种类繁多，**不按研究方向或论文类型划分目录**；分类信息写在笔记的 `tags` 里。
+本仓库用于存放论文索引与精读笔记；论文原文只保留在本地，不入库。论文种类繁多，**不按研究方向或论文类型划分目录**；分类信息写在笔记的 `tags` 里。
 
 ## 0. 硬性约束（优先于任何风格偏好）
 
 - **只在仓库内操作**：所有读取、写入、执行都在仓库根目录内完成。不读写仓库外的路径（家目录、系统临时目录、上级目录等），不 `cd` 出仓库，不修改 shell / git / 包管理器等全局配置。
 - **禁止绝对路径**：仓库内任何文件的内容——笔记、文档、脚本、配置、示例命令、图片链接——都不得出现本机绝对路径（以斜杠开头的用户目录、盘符路径等）。一律使用相对仓库根目录的路径，例如 `notes/jiang2026-jev-mem.md`、`notes/assets/<paper-id>/fig-1.png`。本仓库会发布到 GitHub，clone 者的路径必然不同。
-- **原文只读**：`papers/` 下的 PDF 与补充材料只读，不改名、不压缩、不覆盖、不删除。
+- **原文只读且不入库**：`papers/` 下的 PDF 与补充材料只读，不改名、不压缩、不覆盖、不删除；该目录被 `.gitignore` 排除，clone 后不存在，需按 `README.md` 的 arXiv 链接自行下载并放到 `papers/<paper-id>/paper.pdf`。
 - **不臆造**：论文没写的内容不要补。实验数字、作者、年份、venue 必须能在原文中找到；不确定就写 `TODO:` 或 `?`，并说明缺口在哪。
 - **来源外链用 URL**：引用论文、代码、数据集时用公开链接（如 `https://arxiv.org/abs/...`），不要写本地路径。
 - **Python 只用 uv**：任何解释器、依赖、脚本执行都遵守第 3 节，不走 `pip` / `conda` / 系统 Python。
@@ -25,10 +25,10 @@
 ├── pyproject.toml       # uv 项目定义（提交）
 ├── uv.lock              # 依赖锁（提交）
 ├── .python-version      # 固定 Python 版本（提交）
-├── papers/
+├── papers/              # 仅本地，不入库（.gitignore）
 │   └── <paper-id>/
 │       ├── paper.pdf
-│       └── paper.txt    # 本地生成，不提交
+│       └── paper.txt
 ├── notes/
 │   ├── <paper-id>.md    # 一篇论文一份笔记
 │   └── assets/
@@ -39,7 +39,7 @@
 - 论文与笔记一一对应，**不建立 `nlp/`、`cv/`、`survey/` 之类的分类目录**。
 - 仓库根目录若存在散落的 PDF（历史遗留），在首次精读时移动到 `papers/<paper-id>/paper.pdf`，不要复制。
 - 笔记内引用图片用相对路径：`![fig-1](assets/<paper-id>/fig-1.png)`。
-- **不提交**：`.venv/`、`__pycache__/`、`*.pyc`、`papers/*/paper.txt`，均已写入 `.gitignore`。
+- **不提交**：`papers/`（原文与派生文本）、`.venv/`、`__pycache__/`、`*.pyc`，均已写入 `.gitignore`。
 
 ## 2. 命名约定
 
@@ -106,7 +106,7 @@ if __name__ == "__main__":
 
 ## 4. 阅读工作流
 
-1. **定位论文**：确定 `paper-id`，确认 `papers/<paper-id>/paper.pdf` 存在；缺失时先补原文，不要凭记忆写笔记。
+1. **定位论文**：确定 `paper-id`，确认 `papers/<paper-id>/paper.pdf` 存在；缺失时按 arXiv 链接下载到该路径（仅本地），不要凭记忆写笔记。
 2. **提取内容**：运行 `uv run tools/pdf_extract.py papers/<paper-id>/paper.pdf` 生成 `paper.txt` 供分块阅读；重要图表按第 3 节方式截图。
 3. **写笔记**：按 `WWH.md` 的四段结构 + 第 5 节骨架输出到 `notes/<paper-id>.md`。阅读顺序为 Abstract → Conclusion → Introduction → 方法/实验 → Ideas；读不懂的段落如实标注，不要用常识填坑。
 4. **推 Ideas**：回到 Why/What/How 找缺口，按 `WWH.md` 第 7 节的三步推导写创新点，每条必须带最小验证与失败条件。
@@ -192,20 +192,20 @@ model: WWH-v7     # 遵循的阅读模型版本，见 WWH.md
 - [ ] `README.md` 索引已包含该论文。
 - [ ] 仓库内没有绝对路径：
       `grep -rnE '/(home|Users)' --include='*.md' .` 应无输出。
-- [ ] 未修改、未删除 `papers/` 下的原始 PDF。
+- [ ] 未修改、未删除本地 `papers/` 下的原始 PDF。
+- [ ] 未提交 `papers/` 下的 PDF 或 `paper.txt`。
 - [ ] 依赖有变动时，`pyproject.toml` 与 `uv.lock` 已同步提交。
-- [ ] 未提交 `.venv/`、`__pycache__/`、`*.pyc`、`paper.txt`。
-- [ ] 提交已按第 8 节拆分：原文、笔记、索引各自独立，无无关改动夹带。
+- [ ] 未提交 `.venv/`、`__pycache__/`、`*.pyc`。
+- [ ] 提交已按第 8 节拆分：笔记、索引各自独立，无无关改动夹带。
 - [ ] `STATUS.md` 已更新，并以 `docs(status): ...` 单独提交。
 
 ## 8. 提交规范
 
-格式：`<type>(<scope>): <简述>`。沿用 Conventional Commits，并增加 `paper`、`notes` 两个类型。
+格式：`<type>(<scope>): <简述>`。沿用 Conventional Commits，并增加 `notes` 类型。
 
 | type | 用途 | scope 示例 |
 | --- | --- | --- |
 | `chore` | 仓库脚手架、规则、忽略文件 | `repo` |
-| `paper` | 论文原文与补充材料归档 | `jiang2026-jev-mem` |
 | `notes` | 阅读笔记与图表资源 | `jiang2026-jev-mem` |
 | `docs` | README 索引、状态记录、说明文档 | `index` / `status` |
 | `build` | Python 环境与依赖 | `deps` |
@@ -213,10 +213,10 @@ model: WWH-v7     # 遵循的阅读模型版本，见 WWH.md
 
 **粒度：一个提交只做一件事。**
 
-- 一篇论文至少拆成三个提交，且按此顺序：
-  1. `paper(<paper-id>): 归档 <标题> 原文`
-  2. `notes(<paper-id>): <一句话结论>`
-  3. `docs(index): 收录 <paper-id>`
+- 一篇论文拆成两个提交，且按此顺序：
+  1. `notes(<paper-id>): <一句话结论>`
+  2. `docs(index): 收录 <paper-id>`
+- 原文只存本地，不产生 `paper` 提交，也不进入 git 历史。
 - 不同论文的改动不得混在同一提交。
 - 规则、依赖、内容三者分开：改 `AGENTS.md` 用 `chore`，改 `WWH.md` 用 `docs(model)`，改 `pyproject.toml` / `uv.lock` 用 `build`。
 - 增量修改单独提交：补充分析用 `notes(<id>): 补充 xxx`，纠错用 `fix(<id>): 修正 xxx`，不要追加到旧提交。

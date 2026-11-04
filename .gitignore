@@ -5,8 +5,8 @@ __pycache__/
 .pytest_cache/
 .ruff_cache/
 
-# 本地生成的派生文本
-papers/*/paper.txt
+# 论文原文与派生文本：仅本地保存，不入库
+papers/
 
 # 系统文件
 .DS_Store
