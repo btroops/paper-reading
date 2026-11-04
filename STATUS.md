@@ -6,15 +6,28 @@
 
 - 分支：`main`（跟踪 `origin/main`）
 - 远程：`origin` → `git@github.com:btroops/paper-reading.git`
-- 最近内容提交：`adacf1a notes(li2026-oo-harness): 补任务定义`；`5c992e5 notes(jiang2026-jev-mem): 补任务定义`
-- 已归档论文：8 篇（`jiang2026-jev-mem`，arXiv 2609.23986v1；`he2026-memory-tax`，arXiv 2610.34073v1；`bao2026-raw-rag`，arXiv 2610.30755v1；`yeh2026-oat`，arXiv 2607.12747v2；`wan2026-decision-rag`，arXiv 2610.35868v1；`wang2026-rsi-hub`，arXiv 2610.32253v1；`li2026-oo-harness`，arXiv 2610.28380v1；`kumar2026-stair`，arXiv 2609.03874v2）
-- 已精读论文：8 篇（`jiang2026-jev-mem`、`he2026-memory-tax`、`bao2026-raw-rag`、`yeh2026-oat`、`wan2026-decision-rag`、`wang2026-rsi-hub`、`li2026-oo-harness`、`kumar2026-stair`）
+- 最近内容提交：`1c533b8 notes(ho2026-declarative-attention): 零样本声明注意力省 46% token，代价 1.4pp`；`adacf1a notes(li2026-oo-harness): 补任务定义`；`5c992e5 notes(jiang2026-jev-mem): 补任务定义`
+- 已归档论文：9 篇（`jiang2026-jev-mem`，arXiv 2609.23986v1；`he2026-memory-tax`，arXiv 2610.34073v1；`bao2026-raw-rag`，arXiv 2610.30755v1；`yeh2026-oat`，arXiv 2607.12747v2；`wan2026-decision-rag`，arXiv 2610.35868v1；`wang2026-rsi-hub`，arXiv 2610.32253v1；`li2026-oo-harness`，arXiv 2610.28380v1；`kumar2026-stair`，arXiv 2609.03874v2；`ho2026-declarative-attention`，arXiv 2609.02737v2）
+- 已精读论文：9 篇（`jiang2026-jev-mem`、`he2026-memory-tax`、`bao2026-raw-rag`、`yeh2026-oat`、`wan2026-decision-rag`、`wang2026-rsi-hub`、`li2026-oo-harness`、`kumar2026-stair`、`ho2026-declarative-attention`）
 - 阅读模型：`WWH-v7`（`WWH.md`），新增术语一次定义/全篇同名与反直译规则；Why 只提问、What 不写机制、段落 3–6 句
 - 命名规则：`<第一作者姓><年份>-<短标题>`，arXiv 编号只写在 front matter 与 README 索引
 - Python 环境：uv + Python 3.12，已装 `pymupdf`（`pyproject.toml` / `uv.lock` 已生成，未提交）
-- 进行中：无；`kumar2026-stair` 已完成并提交
+- 进行中：无；`ho2026-declarative-attention` 已完成并提交
 
 ## 最近会话
+
+### 2026-11-04 精读 Declarative Attention（模型自控注意力）
+
+- 归档：`papers/2609.02737v2.pdf` → `papers/ho2026-declarative-attention/paper.pdf`；`paper-id` 取第一作者姓 `ho` + 年份 + 方法名 `declarative-attention`。提取全文（43 页，正文 14 页 + 附录），按 WWH-v7 产出 `notes/ho2026-declarative-attention.md`（status: done）。
+- 判型：系统与算法类为主（协议、状态机、vLLM 块表实现、屋顶线成本模型），附实证与基准类（15 源、6 模型、DAnm 对照、LLM judge）；无定理、无新训练目标、不训练模型。
+- 核心贡献：让现成模型在思维链里用 `<global>`、`<focus magic_chunks="K">`、`<local>` 三种标签声明注意力范围，引擎按标签改 KV 块表；零样本、一个固定提示词、15 个长上下文源、两个模型家族、最长 244K。
+- 主结果（Table 2）：Gemma-4-31B 的 attended tokens 13.84M→7.49M（-45.8%），准确率 86.49%→85.09%（-1.40pp）；Qwen-3.6-27B 22.34M→17.88M（-19.6%），84.92%→82.83%（-2.10pp）。DAnm（同提示词、全注意力）准确率 87.01/84.88、token 比 vanilla 高 50.2%/35.2%，说明节省来自掩码。
+- 效率：屋顶线 0.76×/0.87×（Table 3）；实测每步在掩码比例 >90% 的箱省 55%/31%，0–10% 箱慢 3.5%/3.9%（Table 11）；Gemma 的 SWA 局部读占 DA 注意力时间 39%，Qwen 的 GDN 只占 5%。
+- 规模与上下文：相对准确率随模型变大收敛（Gemma 29%→98%，Qwen 64%→98%）；attended tokens 占 vanilla 的比例不单调（Gemma 46.0/183/54.2，Qwen 50.3/67.7/80.4；换算成节省是 54.0/-83/45.8 与 49.7/32.3/19.6；12B 去掉 6% 非终止回答后是 98%）；绝对节省随上下文升到约 19M（Fig. 4）。
+- 失效边界：15 源是按"DA 有效"选出的，另 6 源掉准确率或不省 token（Table 12）；DSA 上每步扫描 0.46×，但步数 2.78×，总扫描 1.28×；thinking 模式不遵守协议，全部结果 non-thinking；E4B focus 成功率 58%。
+- 原文疑点（已写入 Ideas）：15 源选择偏差——我按每源等权估算全 21 源，Gemma 准确率 79.86→76.28（-3.58pp）、attended tokens 只省 11.6%；3 次运行只重采样生成、不重采样题目，judge 分歧率约 1.5% 与 1.40pp 同量级；只算 decode、不算 prefill 与端到端；没有和 Quest/H2O/DSA 同预算对比；掩码只限制全局 KV 读，prefill、SWA/GDN、已生成回复仍携带上下文，local 不是信息隔离；token 节省不随规模稳定；global 步仍占 80% 以上 attended tokens；两类结构性失效（切块破坏证据、输出随文档变长）的补救未实验；DSA 扫描数是重建的，非法 focus 回退未写，提示词开发集未报。
+- 交叉引用：`wan2026-decision-rag`（同为候选集内选一支，选择发生在生成前 vs 生成中）、`kumar2026-stair`（结构作为检索单位 vs 注意力单位）、`he2026-memory-tax`（收益/税账本，DA 只报了部分税）。
+- 提交：`03473a6`（paper）、`1c533b8`（notes）、`7c14f8b`（docs(index)）；本文件随 `docs(status)` 提交。
 
 ### 2026-11-04 统一各笔记的任务定义
 
@@ -213,6 +226,7 @@
 - [ ] 向 OO-Harness 作者确认是否放出代码、三个基准的 discovery/held-out 划分种子、接受节点数与 acceptance checks；若放出，回填 `li2026-oo-harness` 的"可复现"与 Ideas 第六条。
 - [ ] 核对 <https://github.com/meghanadhpulivarthi/stair-clean> 是否放出微调权重、随机种子与"生成标题如何匹配 gold 叶"的代码；若放出，回填 `kumar2026-stair` 的"可复现"与 Ideas 第二条。
 - [ ] 向 STAIR 作者确认三件事：STAIR 是一套模型还是每本书一套；Mistral 与 Haiku 是否看到目录、是否用约束解码；0.05% 幻觉统计是否在约束解码下做的。确认后修正笔记 How 与 Ideas 第四条。
+- [ ] 核对 <https://github.com/itsnamgyu/declarative-attention> 是否放出 21 个源的逐源题数、全 21 源宏平均、DSA 扫描插桩与非法 focus 回退；若放出，回填 `ho2026-declarative-attention` 的"可复现"与 Ideas 第一条。
 
 ## 阻塞 / 待确认
 
@@ -223,3 +237,5 @@
 - `li2026-oo-harness` 的路由模型口径未定：主文 §4.1 写 Sonnet 5，附录 A.4.2 默认 selection 为 Opus 4.8，Table 3 案例两者都用 Opus 4.8；引用主表数字时需注明该冲突。
 - `kumar2026-stair` 的两个基线口径未定：正文只写 Mistral 用 beam search、Haiku 只出现在 Table 4 注里，都没写是否给目录、是否约束解码；Table 3 示例 1 的 Mistral 输出带完整编号，暗示它看到了目录，但无法确认。引用 13.8% 与 45.6% 时需注明。
 - `kumar2026-stair` 的 STAIR 训练范围未定（一套模型覆盖 18 本书 vs 每本书一套），这直接决定成本与"知识入库"的解释；笔记按两种可能并列写，不采信其中一种。
+- `ho2026-declarative-attention` 的 45.8%/1.40pp 是 15 个选定源上的数；另 6 个失败源只有 Gemma-4-31B 单次运行。笔记的"全 21 源"估计（-3.58pp、省 11.6%）是按每源等权换算的估计，不是论文数，引用时需注明口径。
+- `ho2026-declarative-attention` 的非法 focus 回退策略、提示词开发集划分、每源过滤后题数均未写；DSA 的 indexer 扫描数是从生成结果重建的，不是插桩 kernel；这些缺口已写入笔记"可复现"，核对代码仓库后再补。
