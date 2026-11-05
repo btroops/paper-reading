@@ -10,6 +10,7 @@
 
 | paper-id | 标题 | 年份 | arxiv | tags | status |
 | --- | --- | --- | --- | --- | --- |
+| [li2026-dci](notes/li2026-dci.md) | Beyond Semantic Similarity: Rethinking Retrieval for Agentic Search via Direct Corpus Interaction | 2026 | [2605.05242](https://arxiv.org/abs/2605.05242) | retrieval, agentic-search, direct-corpus-interaction, terminal-tools, retrieval-interface, multi-hop-qa, information-retrieval | done |
 | [du2026-a-rag](notes/du2026-a-rag.md) | A-RAG: Scaling Agentic Retrieval-Augmented Generation via Hierarchical Retrieval Interfaces | 2026 | [2602.03442](https://arxiv.org/abs/2602.03442) | retrieval-augmented-generation, agentic-rag, tool-use, hierarchical-retrieval, multi-hop-qa, context-efficiency, test-time-scaling | done |
 | [ho2026-declarative-attention](notes/ho2026-declarative-attention.md) | Language Models Can Control Their Own Attention | 2026 | [2609.02737](https://arxiv.org/abs/2609.02737) | long-context, sparse-attention, kv-cache, decoding, chain-of-thought, inference-efficiency, prompt-protocol | done |
 | [kumar2026-stair](notes/kumar2026-stair.md) | STAIR (STructure Aware Information Retriever): A novel dataset and LLM based retriever for document structure augmentation | 2026 | [2609.03874](https://arxiv.org/abs/2609.03874) | retrieval, retrieval-augmented-generation, document-structure, table-of-contents, model-based-indexing, benchmark | done |
