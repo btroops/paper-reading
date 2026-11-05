@@ -10,6 +10,7 @@
 
 | paper-id | 标题 | 年份 | arxiv | tags | status |
 | --- | --- | --- | --- | --- | --- |
+| [du2026-a-rag](notes/du2026-a-rag.md) | A-RAG: Scaling Agentic Retrieval-Augmented Generation via Hierarchical Retrieval Interfaces | 2026 | [2602.03442](https://arxiv.org/abs/2602.03442) | retrieval-augmented-generation, agentic-rag, tool-use, hierarchical-retrieval, multi-hop-qa, context-efficiency, test-time-scaling | done |
 | [ho2026-declarative-attention](notes/ho2026-declarative-attention.md) | Language Models Can Control Their Own Attention | 2026 | [2609.02737](https://arxiv.org/abs/2609.02737) | long-context, sparse-attention, kv-cache, decoding, chain-of-thought, inference-efficiency, prompt-protocol | done |
 | [kumar2026-stair](notes/kumar2026-stair.md) | STAIR (STructure Aware Information Retriever): A novel dataset and LLM based retriever for document structure augmentation | 2026 | [2609.03874](https://arxiv.org/abs/2609.03874) | retrieval, retrieval-augmented-generation, document-structure, table-of-contents, model-based-indexing, benchmark | done |
 | [yeh2026-oat](notes/yeh2026-oat.md) | Tracing Agentic Failure from the Flow of Success | 2026 | [2607.12747](https://arxiv.org/abs/2607.12747) | agent-failure-attribution, anomaly-detection, one-class-learning, neural-cde, agent-debugging | done |
