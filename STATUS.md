@@ -9,13 +9,21 @@
 - 最近内容提交：`a34d09f notes(du2026-a-rag): 层次化检索接口在 GPT-5-mini 上五子集全胜`；`0f35440 notes(li2026-dci): 终端直读语料，准确率升 11 点、成本降 29%`；`3bd4782 notes(hu2026-sage): BM25 在 agent 检索上相对高约 29%`；`ed7a126 notes(concepts): 解释稠密检索的编码、训练与失效机制`
 - 已归档论文：12 篇（`jiang2026-jev-mem`，arXiv 2609.23986v1；`he2026-memory-tax`，arXiv 2610.34073v1；`bao2026-raw-rag`，arXiv 2610.30755v1；`yeh2026-oat`，arXiv 2607.12747v2；`wan2026-decision-rag`，arXiv 2610.35868v1；`wang2026-rsi-hub`，arXiv 2610.32253v1；`li2026-oo-harness`，arXiv 2610.28380v1；`kumar2026-stair`，arXiv 2609.03874v2；`ho2026-declarative-attention`，arXiv 2609.02737v2；`du2026-a-rag`，arXiv 2602.03442v1；`li2026-dci`，arXiv 2605.05242v1；`hu2026-sage`，arXiv 2602.05975v2）
 - 已精读论文：12 篇（`jiang2026-jev-mem`、`he2026-memory-tax`、`bao2026-raw-rag`、`yeh2026-oat`、`wan2026-decision-rag`、`wang2026-rsi-hub`、`li2026-oo-harness`、`kumar2026-stair`、`ho2026-declarative-attention`、`du2026-a-rag`、`li2026-dci`、`hu2026-sage`）
-- 阅读模型：`WWH-v7`（`WWH.md`），新增术语一次定义/全篇同名与反直译规则；Why 只提问、What 不写机制、段落 3–6 句
+- 阅读模型：`WWH-v8`（`WWH.md`），新增论证不跳步规则（结论前给前提、条件说明来路、禁止未定义标签）；v7 的术语一次定义/全篇同名与反直译规则继续有效；Why 只提问、What 不写机制、段落 3–6 句
 - 命名规则：`<第一作者姓><年份>-<短标题>`，arXiv 编号只写在 front matter 与 README 索引
 - Python 环境：uv + Python 3.12，已装 `pymupdf`（`pyproject.toml` / `uv.lock` 已提交）
 - 原文策略：PDF 仅本地保存，`papers/` 已被 `.gitignore` 排除，远程只保留笔记与索引
 - 进行中：无；`ho2026-declarative-attention` 已完成并提交
 
 ## 最近会话
+
+### 2026-11-05 WWH 升到 v8：论证不许跳步
+
+- 起因：SAGE 笔记 Why 里"这套做法在标准基准上更强，因为主要矛盾是语义匹配。但它有一个前提……"被指出前后对不上——"主要矛盾"是未定义标签，"前提"没有交代从哪条原因拆出，读者不知道转折的依据。
+- `WWH.md` 第 8 节新增规则 12：论证不许跳步。结论前先给前提；"但是/所以/前提是/条件是"之前必须交代依赖的事实；禁止"先给结论再补条件"；禁止用未定义标签（"主要矛盾""瓶颈""错配"）代替具体判断。补 8.2 正反例（BEIR/MTEB 那段）、8.3 两条自问、第 9 节产出契约与第 10 节自检。
+- `AGENTS.md` 模板改为 `model: WWH-v8`，第 7 节自检新增一条。
+- `notes/hu2026-sage.md` 的 Why 按新规则改写为三段（基准为什么强 → 同分布是条件 → agent 查询形式使条件不成立），`model` 升到 v8；A-RAG 与 DCI 保持 v7，不回填。
+- 提交：待提交。
 
 ### 2026-11-05 精读三篇 agentic RAG（A-RAG / DCI / SAGE）
 
