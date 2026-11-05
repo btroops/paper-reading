@@ -6,9 +6,9 @@
 
 - 分支：`main`（跟踪 `origin/main`）
 - 远程：`origin` → `git@github.com:btroops/paper-reading.git`
-- 最近内容提交：`1c533b8 notes(ho2026-declarative-attention): 零样本声明注意力省 46% token，代价 1.4pp`；`adacf1a notes(li2026-oo-harness): 补任务定义`；`5c992e5 notes(jiang2026-jev-mem): 补任务定义`
-- 已归档论文：9 篇（`jiang2026-jev-mem`，arXiv 2609.23986v1；`he2026-memory-tax`，arXiv 2610.34073v1；`bao2026-raw-rag`，arXiv 2610.30755v1；`yeh2026-oat`，arXiv 2607.12747v2；`wan2026-decision-rag`，arXiv 2610.35868v1；`wang2026-rsi-hub`，arXiv 2610.32253v1；`li2026-oo-harness`，arXiv 2610.28380v1；`kumar2026-stair`，arXiv 2609.03874v2；`ho2026-declarative-attention`，arXiv 2609.02737v2）
-- 已精读论文：9 篇（`jiang2026-jev-mem`、`he2026-memory-tax`、`bao2026-raw-rag`、`yeh2026-oat`、`wan2026-decision-rag`、`wang2026-rsi-hub`、`li2026-oo-harness`、`kumar2026-stair`、`ho2026-declarative-attention`）
+- 最近内容提交：`a34d09f notes(du2026-a-rag): 层次化检索接口在 GPT-5-mini 上五子集全胜`；`0f35440 notes(li2026-dci): 终端直读语料，准确率升 11 点、成本降 29%`；`3bd4782 notes(hu2026-sage): BM25 在 agent 检索上相对高约 29%`；`ed7a126 notes(concepts): 解释稠密检索的编码、训练与失效机制`
+- 已归档论文：12 篇（`jiang2026-jev-mem`，arXiv 2609.23986v1；`he2026-memory-tax`，arXiv 2610.34073v1；`bao2026-raw-rag`，arXiv 2610.30755v1；`yeh2026-oat`，arXiv 2607.12747v2；`wan2026-decision-rag`，arXiv 2610.35868v1；`wang2026-rsi-hub`，arXiv 2610.32253v1；`li2026-oo-harness`，arXiv 2610.28380v1；`kumar2026-stair`，arXiv 2609.03874v2；`ho2026-declarative-attention`，arXiv 2609.02737v2；`du2026-a-rag`，arXiv 2602.03442v1；`li2026-dci`，arXiv 2605.05242v1；`hu2026-sage`，arXiv 2602.05975v2）
+- 已精读论文：12 篇（`jiang2026-jev-mem`、`he2026-memory-tax`、`bao2026-raw-rag`、`yeh2026-oat`、`wan2026-decision-rag`、`wang2026-rsi-hub`、`li2026-oo-harness`、`kumar2026-stair`、`ho2026-declarative-attention`、`du2026-a-rag`、`li2026-dci`、`hu2026-sage`）
 - 阅读模型：`WWH-v7`（`WWH.md`），新增术语一次定义/全篇同名与反直译规则；Why 只提问、What 不写机制、段落 3–6 句
 - 命名规则：`<第一作者姓><年份>-<短标题>`，arXiv 编号只写在 front matter 与 README 索引
 - Python 环境：uv + Python 3.12，已装 `pymupdf`（`pyproject.toml` / `uv.lock` 已提交）
@@ -16,6 +16,18 @@
 - 进行中：无；`ho2026-declarative-attention` 已完成并提交
 
 ## 最近会话
+
+### 2026-11-05 精读三篇 agentic RAG（A-RAG / DCI / SAGE）
+
+- 归档与命名：`papers/ARAG.pdf` → `papers/du2026-a-rag/paper.pdf`（第一作者 Du，方法名 A-RAG）；`papers/DCI.pdf` → `papers/li2026-dci/paper.pdf`（第一作者 Zhuofeng Li，方法名 DCI，注意与 `li2026-oo-harness` 不同人）；`papers/SAGE.pdf` → `papers/hu2026-sage/paper.pdf`（第一作者 Hu，方法名 SAGE）。三篇均提取全文（18 / 51 / 16 页），按 WWH-v7 产出 `notes/du2026-a-rag.md`、`notes/li2026-dci.md`、`notes/hu2026-sage.md`（均 status: done）。
+- 处理顺序：先 A-RAG（把检索做成三层工具接口），再 DCI（去掉检索器、直接用终端读原始语料），最后 SAGE（固定语料上比较检索器，发现 BM25 强于 LLM-based retriever）。三篇互引，形成"接口分层 → 接口去掉 → 接口评测"的链条。
+- A-RAG 判型：系统与算法类为主（三层索引、三个工具、ReAct 循环、已读集合），附实证与基准类（4 数据集、2 backbone、8 基线、消融、扩展曲线、失败分析）。核心数字（Table 1）：GPT-5-mini 上 A-RAG Full 74.1/94.5/89.7/93.1/85.3（MuSiQue/HotpotQA/2Wiki/Med/Novel 的 LLM-Acc），全面第一；GPT-4o-mini 上 3/5 benchmark 第一（按子集是 4/5），2Wiki 输给 HippoRAG2 64.7 与 LinearRAG 62.9。检索 token（Table 3）：Full 5,663/2,737/2,930/7,678/6,087，Naive 版 56,360/27,455/45,406/23,657/22,391，Naive RAG 5,387/5,358/5,506/5,418/4,997。失败分析（Table 7/8）：A-RAG 82%/45% 错误是推理链错误，实体混淆 40%/71%。
+- DCI 判型：系统与算法类为主（接口定义、两个脚手架、上下文管理 L0–L4、覆盖率/定位度指标），附实证与基准类（BrowseComp-Plus 830 题、6 个 QA 数据集、6 个 IR 数据集）。核心数字：BrowseComp-Plus 上 CC 80.0 对 69.0（+11.0），成本 $1,016 对 $1,440（−29.4%）；QA 平均 83.0 对最强检索 agent 52.3（+30.7）；IR 平均 NDCG@10 68.5 对 ReasonRank 47.0（+21.5）。机制证据（Table 4）：100 题子集上 DCI-Lite 覆盖率 28.0 对 56.7、定位度 48.4 对 21.7、准确率 73.0 对 45.0；逐题配对 176 胜 / 76 负，176 个胜场里 142 个检索已找到至少一篇 gold 却答错（83 部分链、59 检索后失败）。
+- SAGE 判型：实证与基准类为主（1,200 题、4 域、20 万篇、两套指标），附系统与算法类（语料级增强流程、DR Tulu MCP 改造）。核心数字（Table 2）：短答案 top-10 上 BM25 81.2、gte-Qwen 63.0、ReasonIR 49.3；BM25 对 gte-Qwen 是相对 +28.9%（绝对 +18.2 点），摘要的"约 30%"指这个相对值；开放式上 gte-Qwen 33.0 略高于 BM25 30.7。语料级增强（Table 4）：BM25 短答案 75.80→83.98（+8.18 绝对点），开放式 25.52→27.25（+1.73）；稠密检索器提升 0.90–2.54 点。消融（Table 3）：网页搜索下 agent 最依赖图表细节，语料搜索下最依赖论文间关系。
+- 原文疑点（已写入各笔记 Ideas）：A-RAG 的 Full/Naive 同时改了提示词、w/o Chunk Read 不是单变量、关键词打分无 IDF、只报检索 token、§5.1 用 GPT-5 与 Limitations 冲突；DCI 的 CC 与检索基线 harness 不同、QA 基线模型代差大、IR 非同预算、定位度指标偏向细粒度接口、语料 20 万篇掉 13.6 点、答案泄漏防护只写了 CC；SAGE 的问题由 GPT-5-mini 生成无人工校验、EM/加权召回不惩罚多余文档、问题与语料同源、稠密检索只编码 32K token、摘要 30% 与 8%/2% 的口径、网页与语料搜索不可直接比。
+- 交叉引用：A-RAG 与 DCI 都反对固定 top-$k$，区别是保留还是去掉向量索引；SAGE 的"BM25 强于稠密"为前两篇的"词面接口"提供评测证据；三篇都与 `wan2026-decision-rag`（层级检索控制器）、`kumar2026-stair`（结构作为检索单位）、`bao2026-raw-rag`（强基线重设参照系）、`he2026-memory-tax`（成本账本）互引。
+- 补充：用户反馈 SAGE 的 Why 里"用大模型做稠密编码"看不懂，新增 `notes/concepts/dense-retrieval.md`（BM25 公式、token 向量与池化、InfoNCE 对比学习、取隐藏状态/指令微调/推理链扩展三种做法、agent 场景的四个失效机制、读论文检查清单），并改写 `hu2026-sage` 的 Why 前两段；Ideas 新增一条"gte/ReasonIR 是否加指令模板"的方法疑点（编号顺延为 18 条）。
+- 提交：`a34d09f`（A-RAG 笔记）、`62f140d`（A-RAG 索引）、`0f35440`（DCI 笔记）、`8657bcf`（DCI 索引）、`ed7a126`（稠密检索概念）、`3bd4782`（SAGE 笔记）、`df5d09c`（SAGE 索引）；本文件随 `docs(status)` 提交。
 
 ### 2026-11-04 论文原文改为仅本地保存
 
@@ -223,6 +235,9 @@
 
 ## 下一步
 
+- [ ] 核对 <https://github.com/Ayanami0730/arag> 是否给出最大迭代步数、语料规模与块数、逐题结果、判定器提示词；若放出，回填 `du2026-a-rag` 的"可复现"与 Ideas 第一条。
+- [ ] 核对 <https://github.com/DCI-Agent/DCI-Agent-Lite> 是否给出 CC 的 harness 配置、50 题采样种子、每题成本明细、L3/L4 的主结果口径与答案泄漏防护；若放出，回填 `li2026-dci` 的"可复现"与 Ideas 第四条。
+- [ ] 核对 <https://github.com/HughieHu/Sage> 是否放出 1,200 题、20 万篇语料、人工校验记录、关键词生成与索引构建的 GPU 小时/美元成本；若放出，回填 `hu2026-sage` 的"可复现"与 Ideas 第四条。
 - [ ] 核对代码仓库 <https://github.com/libingzheren/Jev-Mem> 是否公开、是否给出第二数据集与消融。
 - [ ] 若确认正文数字与表格冲突，追加 `fix(jiang2026-jev-mem)` 提交修正笔记措辞。
 - [ ] 核对 <https://github.com/hexuan21/MemoryTax> 是否放出 tax 计算脚本，若放出则回填笔记中"公式为反推"的说明。
@@ -238,8 +253,11 @@
 
 ## 阻塞 / 待确认
 
-- 已推送历史中含 9 个 PDF（约 28 MB），停止跟踪不会缩小 clone 体积；彻底清除需重写历史并强推，会使所有 commit hash 失效，暂未执行。
 - 历史已于 2026-11-04 重写以移除 PDF 并强推，旧 hash 全部失效；`backup/pre-pdf-rewrite` 仅存于本地，未推送。
+- `du2026-a-rag` 的"3/5 数据集最好"口径未定：按 benchmark 数是 3 个（MuSiQue、HotpotQA、GraphRAG-Bench），按五个子集数是 4 个；引用主表时需注明。
+- `du2026-a-rag` 的 §5.1 写 GPT-5 的扩展结果，Limitations 又说没有在 GPT-5 上验证；引用 +25% 时需注明该冲突。
+- `li2026-dci` 的 DCI-Agent-CC 与检索基线不是同一 harness，多跳 QA 的最强基线还是 14B 开源模型；+11.0 与 +30.7 不能全部归因于接口，同模型同预算对照未做。
+- `hu2026-sage` 的"BM25 高约 30%"是短答案、top-10、相对 gte-Qwen 的百分比（81.2 对 63.0）；开放式题 BM25 并不领先。稠密检索只编码前 32K token，BM25 索引全文，差距含覆盖率不对称。
 - `bao2026-raw-rag` 主表沿用各基线原论文分数，未在同一次受控运行中重跑；要检验"0.13 分领先"这类结论，需等作者放出统一重跑或自行复现，笔记已按"主表无置信区间"记录，不据此改写结论。
 - `AGENTS.md` 第 1 节目录树未收录 `notes/concepts/`，是否写进规则待决定。
 - `yeh2026-oat` 的域外主结果使用全量 CORAL（含被评测轨迹的表示），五折版本只有图；引用 +7 点结论时需注明该口径。
