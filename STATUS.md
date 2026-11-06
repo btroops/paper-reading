@@ -6,16 +6,27 @@
 
 - 分支：`main`（跟踪 `origin/main`）
 - 远程：`origin` → `git@github.com:btroops/paper-reading.git`
-- 最近内容提交：`a34d09f notes(du2026-a-rag): 层次化检索接口在 GPT-5-mini 上五子集全胜`；`0f35440 notes(li2026-dci): 终端直读语料，准确率升 11 点、成本降 29%`；`3bd4782 notes(hu2026-sage): BM25 在 agent 检索上相对高约 29%`；`ed7a126 notes(concepts): 解释稠密检索的编码、训练与失效机制`
-- 已归档论文：12 篇（`jiang2026-jev-mem`，arXiv 2609.23986v1；`he2026-memory-tax`，arXiv 2610.34073v1；`bao2026-raw-rag`，arXiv 2610.30755v1；`yeh2026-oat`，arXiv 2607.12747v2；`wan2026-decision-rag`，arXiv 2610.35868v1；`wang2026-rsi-hub`，arXiv 2610.32253v1；`li2026-oo-harness`，arXiv 2610.28380v1；`kumar2026-stair`，arXiv 2609.03874v2；`ho2026-declarative-attention`，arXiv 2609.02737v2；`du2026-a-rag`，arXiv 2602.03442v1；`li2026-dci`，arXiv 2605.05242v1；`hu2026-sage`，arXiv 2602.05975v2）
-- 已精读论文：12 篇（`jiang2026-jev-mem`、`he2026-memory-tax`、`bao2026-raw-rag`、`yeh2026-oat`、`wan2026-decision-rag`、`wang2026-rsi-hub`、`li2026-oo-harness`、`kumar2026-stair`、`ho2026-declarative-attention`、`du2026-a-rag`、`li2026-dci`、`hu2026-sage`）
+- 最近内容提交：`74188e8 notes(onerec2026-onereason): 四粒度感知与三段式 CoT 让思考模式转正`；`c7d3077 notes(liu2025-onerec-think): 先写理由再出 ID，公开三数据集全胜`；`d293070 notes(zhou2025-onerec): 单阶段生成把 MFU 提到 23.7%`；`a34d09f notes(du2026-a-rag): 层次化检索接口在 GPT-5-mini 上五子集全胜`
+- 已归档论文：15 篇（`zhou2025-onerec`，arXiv 2506.13695v4；`liu2025-onerec-think`，arXiv 2510.11639v2；`onerec2026-onereason`，arXiv 2606.06260v1；`jiang2026-jev-mem`，arXiv 2609.23986v1；`he2026-memory-tax`，arXiv 2610.34073v1；`bao2026-raw-rag`，arXiv 2610.30755v1；`yeh2026-oat`，arXiv 2607.12747v2；`wan2026-decision-rag`，arXiv 2610.35868v1；`wang2026-rsi-hub`，arXiv 2610.32253v1；`li2026-oo-harness`，arXiv 2610.28380v1；`kumar2026-stair`，arXiv 2609.03874v2；`ho2026-declarative-attention`，arXiv 2609.02737v2；`du2026-a-rag`，arXiv 2602.03442v1；`li2026-dci`，arXiv 2605.05242v1；`hu2026-sage`，arXiv 2602.05975v2）
+- 已精读论文：15 篇（`zhou2025-onerec`、`liu2025-onerec-think`、`onerec2026-onereason`、`jiang2026-jev-mem`、`he2026-memory-tax`、`bao2026-raw-rag`、`yeh2026-oat`、`wan2026-decision-rag`、`wang2026-rsi-hub`、`li2026-oo-harness`、`kumar2026-stair`、`ho2026-declarative-attention`、`du2026-a-rag`、`li2026-dci`、`hu2026-sage`）
 - 阅读模型：`WWH-v9`（`WWH.md`），新增不许偷懒省字规则（指代落地、比较写全两边、数字写清口径）；v8 的论证不跳步、v7 的术语与反直译规则继续有效；Why 只提问、What 不写机制、段落 3–6 句
 - 命名规则：`<第一作者姓><年份>-<短标题>`，arXiv 编号只写在 front matter 与 README 索引
 - Python 环境：uv + Python 3.12，已装 `pymupdf`（`pyproject.toml` / `uv.lock` 已提交）
 - 原文策略：PDF 仅本地保存，`papers/` 已被 `.gitignore` 排除，远程只保留笔记与索引
-- 进行中：无；`ho2026-declarative-attention` 已完成并提交
+- 进行中：无；OneRec 三部曲三篇已完成并提交（`d293070`、`c7d3077`、`74188e8`）
 
 ## 最近会话
+
+### 2026-11-06 精读 OneRec 三部曲（OneRec / OneRec-Think / OneReason）
+
+- 归档与命名：三篇均为快手 OneRec 团队的技术报告。`2506.13695`（v4，2025-09-16）→ `papers/zhou2025-onerec/`；`2510.11639`（v2，2025-11-11）→ `papers/liu2025-onerec-think/`；`2606.06260`（v1，2026-06-04）→ `papers/onerec2026-onereason/`。全文分别 39 / 17 / 108 页，已提取 `paper.txt`。
+- 判型：三篇都以系统与算法类为主，附实证与基准类。OneRec 是单阶段生成式推荐 + 工程效率；OneRec-Think 是"对齐 → 推理激活 → beam 奖励 RL"的三阶段 + Think-Ahead 部署；OneReason 是四粒度预训练 + 三段式 CoT + 专精后统一的推理基座，外加 R0–R3 分层基准。
+- 核心数字（OneRec）：训练/推理 MFU 23.7% / 28.8%（基线 4.6% / 11.2%），OPEX 10.6%；接管约 25% QPS，叠加奖励模型选择后 App Stay Time +0.54%（主站）/ +1.24%（极速版），LT7 +0.05% / +0.08%；本地生活 GMV +21.01%。纯 OneRec 的 Like / Follow / Comment 分别为 −2.00% / −2.88% / −1.56%，加选择后才转正。
+- 核心数字（OneRec-Think）：公开三数据集十二格全第一，Beauty R@5 0.0563 对 ReaRec 0.0450；消融 Base 0.0460 → +对齐 0.0532 → +推理 0.0563；线上 1.29% 流量、一周，App Stay Time +0.159%、Watch Time +0.169%。
+- 核心数字（OneReason）：578B token 三阶段预训练；R3 四个域全第一，Cross-Video Pass@64 2.41 对 LC-Rec-PT-SFT-8B 1.49、Cross-Live 21.10 对 19.32；R0–R2 上 RFT thinking 的 Item2Item 28.60、兴趣动作选择 42.42；通用能力在 thinking 模式基本追平 Qwen3-8B；线上 10 天 A/B 组合部署曝光 +10.332%、收入 +8.234%，ROI > 5，600 张 GPU/天服务 4 亿用户。
+- 原文疑点（已写入各笔记 Ideas）：OneRec 的 A/B 只替换降级（缓存）流量，+0.54% / +1.24% 不等于全量实时对比；纯 OneRec 交互指标为负；OPEX 未含 Pass@512 采样与奖励模型；MFU 28.8% 与结论 28.6% 不一致；scaling law 只有曲线无公式。OneRec-Think 公开基准用"人工类别 CoT"替代自生成理由，与正文方法不一致；Table 1 是否含 RL 未写明；消融非单变量；Think-Ahead 缺少随机前缀对照，T / m / 延迟未报。OneReason 的基准由团队自建并用于指导模型；"thinking 稳定更优"在 R0 grounding（1.35 对 5.24）与低 K（RFT Cross-Video R@8 0.05 对 0.06）上不成立；绝对数字极小且无置信区间；RL 超参缺失；教师理由逻辑均分只有 3.51/5。
+- 交叉引用：OneRec 与 `kumar2026-stair`（语义 ID vs 目录叶标题）、`du2026-a-rag` / `li2026-dci`（压成单模型 vs 拆成工具接口）、`ho2026-declarative-attention`（把算力集中到该用的地方）、`he2026-memory-tax`（收益/税账本）互引；OneRec-Think 与 `wan2026-decision-rag`（先判断再输出）、`ho2026-declarative-attention`（把隐式过程外化）互引；OneReason 与前三篇及 `hu2026-sage`（基准方法论）、`li2026-oo-harness` / `wang2026-rsi-hub`（先专精再统一）互引。
+- 提交：`d293070`（OneRec 笔记）、`364cff4`（OneRec 索引）、`c7d3077`（OneRec-Think 笔记）、`ca4fad3`（OneRec-Think 索引）、`74188e8`（OneReason 笔记）、`1e4ddd7`（OneReason 索引）；本文件随 `docs(status)` 提交。
 
 ### 2026-11-05 WWH 升到 v9：不许偷懒省字
 
@@ -251,6 +262,9 @@
 
 ## 下一步
 
+- [ ] 核对 OneRec 是否放出代码、奖励模型结构、Pass@512 采样的延迟与成本口径；若放出，回填 `zhou2025-onerec` 的"可复现"与 Ideas 第三条（收益/税账本）。
+- [ ] 核对 <https://github.com/wangshy31/OneRec-Think> 是否包含公开实验脚本、人工类别 CoT 模板、Think-Ahead 的 `T` / `m` 与延迟数据；若放出，回填 `liu2025-onerec-think` 的"可复现"与 Ideas 第一条、第五条。
+- [ ] 向 OneReason 作者确认 RL 超参（`N` / `K` / `β` / 分阶段裁剪范围）、OneReason-Bench 题目是否公开、OneReason-8B 与 0.8B 权重与许可；确认后回填 `onerec2026-onereason` 的"可复现"与 Ideas 第六条。
 - [ ] 核对 <https://github.com/Ayanami0730/arag> 是否给出最大迭代步数、语料规模与块数、逐题结果、判定器提示词；若放出，回填 `du2026-a-rag` 的"可复现"与 Ideas 第一条。
 - [ ] 核对 <https://github.com/DCI-Agent/DCI-Agent-Lite> 是否给出 CC 的 harness 配置、50 题采样种子、每题成本明细、L3/L4 的主结果口径与答案泄漏防护；若放出，回填 `li2026-dci` 的"可复现"与 Ideas 第四条。
 - [ ] 核对 <https://github.com/HughieHu/Sage> 是否放出 1,200 题、20 万篇语料、人工校验记录、关键词生成与索引构建的 GPU 小时/美元成本；若放出，回填 `hu2026-sage` 的"可复现"与 Ideas 第四条。
@@ -282,3 +296,7 @@
 - `kumar2026-stair` 的 STAIR 训练范围未定（一套模型覆盖 18 本书 vs 每本书一套），这直接决定成本与"知识入库"的解释；笔记按两种可能并列写，不采信其中一种。
 - `ho2026-declarative-attention` 的 45.8%/1.40pp 是 15 个选定源上的数；另 6 个失败源只有 Gemma-4-31B 单次运行。笔记的"全 21 源"估计（-3.58pp、省 11.6%）是按每源等权换算的估计，不是论文数，引用时需注明口径。
 - `ho2026-declarative-attention` 的非法 focus 回退策略、提示词开发集划分、每源过滤后题数均未写；DSA 的 indexer 扫描数是从生成结果重建的，不是插桩 kernel；这些缺口已写入笔记"可复现"，核对代码仓库后再补。
+- `onerec2026-onereason` 的 `paper-id` 未按"第一作者姓"命名：论文署名是 `OneRec Team`，作者表明确按名字字母序排列，没有第一作者；暂用团队名，待用户确认是否改成 `yang2026-onereason`（Biao Yang 是字母序第一位，但不是第一作者）。
+- `zhou2025-onerec` 的线上数字口径：A/B 的实验组是 5% 流量，OneRec 只替换该组内 25% 的降级（缓存）流量；引用 +0.54% / +1.24% 时必须注明"相对缓存结果"，不能写成"相对全量实时推荐"。
+- `liu2025-onerec-think` 的公开基准口径：§A.1 说明公开数据用人工构造的类别 CoT 当激活内容，不是 §4.2 的自生成理由；引用 Table 1 / Table 2 时需注明这是"对齐 + 人工 CoT + SFT"，Table 1 是否包含 RL 也未写明。
+- `onerec2026-onereason` 的"thinking 稳定优于非-thinking"只在 RFT 合并后的 R3 高 K 上成立：R0 的 token grounding 是 1.35 对 5.24，RFT 的 Cross-Video R@8 是 0.05 对 0.06；引用该结论时需带上条件。
