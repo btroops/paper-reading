@@ -10,6 +10,9 @@
 
 | paper-id | 标题 | 年份 | arxiv | tags | status |
 | --- | --- | --- | --- | --- | --- |
+| [ma2026-imperfective-paradox](notes/ma2026-imperfective-paradox.md) | The Imperfective Paradox in Large Language Models | 2026 | [2601.09373](https://arxiv.org/abs/2601.09373) | semantics, aspect, natural-language-inference, llm-reasoning, teleological-bias, diagnostic-dataset | done |
+| [wei2026-hysparse2](notes/wei2026-hysparse2.md) | HySparse2: Hybrid Sparse Attention with Two-Level KV Sharing | 2026 | [2609.26368](https://arxiv.org/abs/2609.26368) | long-context, sparse-attention, kv-cache, kv-sharing, prefill-efficiency, mixture-of-experts | done |
+| [xu2025-sra](notes/xu2025-sra.md) | Strategic resource allocation in memory encoding: An efficiency principle shaping language processing | 2025 | [2503.14728](https://arxiv.org/abs/2503.14728) | psycholinguistics, working-memory, resource-rational, dependency-locality, surprisal, cross-linguistic | done |
 | [fu2025-c2c](notes/fu2025-c2c.md) | Cache-to-Cache: Direct Semantic Communication Between Large Language Models | 2025 | [2510.03215](https://arxiv.org/abs/2510.03215) | multi-llm, kv-cache, cross-model-communication, latent-communication, inference-efficiency, model-fusion | done |
 | [guo2026-t-mem](notes/guo2026-t-mem.md) | T-Mem: Memory That Anticipates, Not Archives | 2026 | [2606.15405](https://arxiv.org/abs/2606.15405) | agent-memory, long-term-memory, associative-recall, retrieval, write-time-indexing, locomo, llm-as-judge | done |
 | [xia2026-rrsi](notes/xia2026-rrsi.md) | RRSI: Regularized Recursive Self-Improvement of Agent Harnesses | 2026 | [2609.24972](https://arxiv.org/abs/2609.24972) | agent-harness, self-improvement, recursive-self-improvement, overfitting, regularization, agent-evolution, benchmark-transfer | done |
