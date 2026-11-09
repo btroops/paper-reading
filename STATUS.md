@@ -6,16 +6,27 @@
 
 - 分支：`main`（跟踪 `origin/main`）
 - 远程：`origin` → `git@github.com:btroops/paper-reading.git`
-- 最近内容提交：`74188e8 notes(onerec2026-onereason): 四粒度感知与三段式 CoT 让思考模式转正`；`c7d3077 notes(liu2025-onerec-think): 先写理由再出 ID，公开三数据集全胜`；`d293070 notes(zhou2025-onerec): 单阶段生成把 MFU 提到 23.7%`；`a34d09f notes(du2026-a-rag): 层次化检索接口在 GPT-5-mini 上五子集全胜`
-- 已归档论文：15 篇（`zhou2025-onerec`，arXiv 2506.13695v4；`liu2025-onerec-think`，arXiv 2510.11639v2；`onerec2026-onereason`，arXiv 2606.06260v1；`jiang2026-jev-mem`，arXiv 2609.23986v1；`he2026-memory-tax`，arXiv 2610.34073v1；`bao2026-raw-rag`，arXiv 2610.30755v1；`yeh2026-oat`，arXiv 2607.12747v2；`wan2026-decision-rag`，arXiv 2610.35868v1；`wang2026-rsi-hub`，arXiv 2610.32253v1；`li2026-oo-harness`，arXiv 2610.28380v1；`kumar2026-stair`，arXiv 2609.03874v2；`ho2026-declarative-attention`，arXiv 2609.02737v2；`du2026-a-rag`，arXiv 2602.03442v1；`li2026-dci`，arXiv 2605.05242v1；`hu2026-sage`，arXiv 2602.05975v2）
-- 已精读论文：15 篇（`zhou2025-onerec`、`liu2025-onerec-think`、`onerec2026-onereason`、`jiang2026-jev-mem`、`he2026-memory-tax`、`bao2026-raw-rag`、`yeh2026-oat`、`wan2026-decision-rag`、`wang2026-rsi-hub`、`li2026-oo-harness`、`kumar2026-stair`、`ho2026-declarative-attention`、`du2026-a-rag`、`li2026-dci`、`hu2026-sage`）
+- 最近内容提交：`c87ced2 notes(xia2026-rrsi): 修正消融归因与成本口径`；`e14364e notes(fu2025-c2c): 澄清公式与加速比口径`；`06eb4db docs(index): 收录 C2C、T-Mem、RRSI 三篇`；`7530f04 notes(xia2026-rrsi): 用正则化约束 harness 进化的过拟合`；`74569cb notes(guo2026-t-mem): 写入时触发器补上联想召回`；`6750371 notes(fu2025-c2c): 把跨模型 KV-Cache 融合做成通信原语`
+- 已归档论文：18 篇（`fu2025-c2c`，arXiv 2510.03215v2；`guo2026-t-mem`，arXiv 2606.15405v2；`xia2026-rrsi`，arXiv 2609.24972v3；`zhou2025-onerec`，arXiv 2506.13695v4；`liu2025-onerec-think`，arXiv 2510.11639v2；`onerec2026-onereason`，arXiv 2606.06260v1；`jiang2026-jev-mem`，arXiv 2609.23986v1；`he2026-memory-tax`，arXiv 2610.34073v1；`bao2026-raw-rag`，arXiv 2610.30755v1；`yeh2026-oat`，arXiv 2607.12747v2；`wan2026-decision-rag`，arXiv 2610.35868v1；`wang2026-rsi-hub`，arXiv 2610.32253v1；`li2026-oo-harness`，arXiv 2610.28380v1；`kumar2026-stair`，arXiv 2609.03874v2；`ho2026-declarative-attention`，arXiv 2609.02737v2；`du2026-a-rag`，arXiv 2602.03442v1；`li2026-dci`，arXiv 2605.05242v1；`hu2026-sage`，arXiv 2602.05975v2）
+- 已精读论文：18 篇（`fu2025-c2c`、`guo2026-t-mem`、`xia2026-rrsi`、`zhou2025-onerec`、`liu2025-onerec-think`、`onerec2026-onereason`、`jiang2026-jev-mem`、`he2026-memory-tax`、`bao2026-raw-rag`、`yeh2026-oat`、`wan2026-decision-rag`、`wang2026-rsi-hub`、`li2026-oo-harness`、`kumar2026-stair`、`ho2026-declarative-attention`、`du2026-a-rag`、`li2026-dci`、`hu2026-sage`）
 - 阅读模型：`WWH-v9`（`WWH.md`），新增不许偷懒省字规则（指代落地、比较写全两边、数字写清口径）；v8 的论证不跳步、v7 的术语与反直译规则继续有效；Why 只提问、What 不写机制、段落 3–6 句
 - 命名规则：`<第一作者姓><年份>-<短标题>`，arXiv 编号只写在 front matter 与 README 索引
 - Python 环境：uv + Python 3.12，已装 `pymupdf`（`pyproject.toml` / `uv.lock` 已提交）
 - 原文策略：PDF 仅本地保存，`papers/` 已被 `.gitignore` 排除，远程只保留笔记与索引
-- 进行中：无；OneRec 三部曲三篇已完成并提交（`d293070`、`c7d3077`、`74188e8`）
+- 进行中：无；C2C / T-Mem / RRSI 三篇已完成并提交（`6750371`、`74569cb`、`7530f04`、`06eb4db`）
 
 ## 最近会话
+
+### 2026-11-09 精读 C2C / T-Mem / RRSI（通信、记忆、harness 三层）
+
+- 归档与命名：三篇 PDF 原在仓库根目录。`2510.03215v2.pdf` → `papers/fu2025-c2c/paper.pdf`（第一作者 Fu，2025，方法 C2C，ICLR 2026）；`2606.15405v2.pdf` → `papers/guo2026-t-mem/paper.pdf`（第一作者 Guo，2026，方法 T-Mem）；`2609.24972v3.pdf` → `papers/xia2026-rrsi/paper.pdf`（第一作者 Xia，2026，方法 RRSI）。全文 29 / 19 / 27 页，已提取 `paper.txt`，按 WWH-v9 产出 `notes/fu2025-c2c.md`、`notes/guo2026-t-mem.md`、`notes/xia2026-rrsi.md`（均 status: done）。
+- 判型：C2C 系统与算法类为主（缓存投影、融合、门控、对齐、训练），附实证与基准类（4 个多选题基准、LongBench、GSM8K）；T-Mem 系统与算法类为主（带类型记忆、四阶段构建、触发器索引、级联检索），附实证与基准类（LoCoMo、LoCoMo-Plus、8 组消融）；RRSI 系统与算法类为主（形式化、7 条约束、提议/选择算法），附实证与基准类（8 个基准、3 个领域、2 次独立重复）。
+- 核心数字（C2C）：Receiver 固定 Qwen3-0.6B，三组 Sharer 的四基准平均提升 11.00 / 9.64 / 11.88 个百分点；比 T2T 高 5.36 / 4.15 / 3.06 个百分点；加速 3.46× / 1.51× / 14.41×。Oracle：Direct 58.42、Few-shot 63.39、Oracle 62.34；消融四列平均：Single 41.52、Identical 46.41、C2C 47.95（我按 Table 6 计算），跨模型净贡献只有 +1.54；融合器约 478M 参数，T2T 解码 80 token / 1312 ms，C2C 融合 90 ms。
+- 核心数字（T-Mem）：LoCoMo 80.26（HyperMem 77.01）、LoCoMo-Plus 74.81（HyperMem 48.63），跨基准 gap 5.45（HyperMem 28.38、Mem0 49.14）；消融 w/o ST+HT 在 LoCoMo 只掉 0.40、在 LoCoMo-Plus 掉 22.19；w/o HT 是 −0.08 / −12.47；构建 9,689 次调用、15.60M token；匹配 HyperMem 管线时 T-Mem 93.70 对 HyperMem 92.73（+0.97）。
+- 核心数字（RRSI）：TB2.1 74.2→80.2（+6.0）、SWE 82.0→83.8（+1.8）、Harvey evolve 89.4→90.5（+1.1）/ID 86.9→89.2（+2.3）、JobBench 36.0→40.7（+4.7）、GDPval 48.8→52.3（+3.5）、APEX 34.2→37.9（+3.7）、EngDesign 50.0→54.9（+4.9）、Frontier 17.7→22.0（+4.3）；OOD 平均 39.7→43.6；未正则化 3.80M token/trial，RRSI 2.42M；Harvey 20 轮 32 个候选只接受 4 个编辑。
+- 原文疑点（已写入各笔记 Ideas）：C2C 摘要 2.5× 加速对不上 Table 4 的 3.46/1.51/14.41（算术平均 6.46×）；6.4–14.2% 与 §4.2 的 11.00/9.64/11.88 对不上；3.1–5.4% 与 3.06–5.36 对不上；T2T 基线只给一句提示、无训练，与 C2C 的 50 万条监督不可比；Table 12 的 300 步 44.30 高于最终 42.92。T-Mem 的 LoCoMo-Plus 与作者组重叠；LoCoMo 与 LoCoMo-Plus 用不同 QA/judge 协议，5.45 gap 含协议差；匹配管线下只领先 0.97；Bridge（条目×联想）没有独立基准；正文 §4.1 没写 reranker，附录 E 又用了 reranker。RRSI 摘要"up to 4.3 OOD"与 JobBench +4.7 冲突；"30% fewer tokens"按 Table 2 是 36.3%；Harvey 分布内留出与 Meta-Harness 并列 89.2；七个约束只做了两组消融；搜索成本（提议器/critic/候选评估）没有账本。
+- 交叉引用：C2C 与 `ho2026-declarative-attention`（都在推理时操作 KV-Cache，一个掩码减少读取、一个融合增加信息）、`li2026-oo-harness` / `wang2026-rsi-hub`（都在改模型外围装置）、`he2026-memory-tax`（成本账本）、`jiang2026-jev-mem`（检索侧减少文本中转）互引；T-Mem 与 `jiang2026-jev-mem`（控制层 vs 索引层）、`he2026-memory-tax`（收益/税）、`bao2026-raw-rag`（强基线）、`hu2026-sage`（语料级增强 vs 写入时触发器）、`du2026-a-rag` / `li2026-dci`（工具接口 vs 记忆索引）、`kumar2026-stair`（结构作为检索单位）互引；RRSI 与 `li2026-oo-harness`（表示 vs 搜索 dynamics）、`wang2026-rsi-hub`（装置 vs 策略）、`yeh2026-oat`（步级归因 vs 轮级反馈）、`he2026-memory-tax`（搜索成本）、`bao2026-raw-rag`（强基线重设参照系）互引。
+- 提交：`6750371`（C2C 笔记）、`74569cb`（T-Mem 笔记）、`7530f04`（RRSI 笔记）、`06eb4db`（索引）、`e14364e`（C2C 口径修正）、`c87ced2`（RRSI 归因修正）；本文件随 `docs(status)` 提交。
 
 ### 2026-11-06 精读 OneRec 三部曲（OneRec / OneRec-Think / OneReason）
 
@@ -262,6 +273,9 @@
 
 ## 下一步
 
+- [ ] 核对 <https://github.com/thu-nics/C2C> 是否给出融合器逐层参数、训练数据与评测集去重、长上下文融合延迟、多种子结果；若放出，回填 `fu2025-c2c` 的"可复现"与 Ideas 第一条、第二条。
+- [ ] 核对 <https://github.com/Sherlockwz/T-Mem> 是否给出 LoCoMo-Plus 题数与运行次数、reranker 配置、主题与触发器数量、增量更新脚本；若放出，回填 `guo2026-t-mem` 的"可复现"与 Ideas 第一条、第二条、第四条。
+- [ ] 核对 <https://github.com/google-research/rrsi> 与 <https://regularized-rsi.com> 是否给出搜索成本账本、四个基线的实现与超参、逐条约束消融、judge 提示词；若放出，回填 `xia2026-rrsi` 的"可复现"与 Ideas 第二条、第三条。
 - [ ] 核对 OneRec 是否放出代码、奖励模型结构、Pass@512 采样的延迟与成本口径；若放出，回填 `zhou2025-onerec` 的"可复现"与 Ideas 第三条（收益/税账本）。
 - [ ] 核对 <https://github.com/wangshy31/OneRec-Think> 是否包含公开实验脚本、人工类别 CoT 模板、Think-Ahead 的 `T` / `m` 与延迟数据；若放出，回填 `liu2025-onerec-think` 的"可复现"与 Ideas 第一条、第五条。
 - [ ] 向 OneReason 作者确认 RL 超参（`N` / `K` / `β` / 分阶段裁剪范围）、OneReason-Bench 题目是否公开、OneReason-8B 与 0.8B 权重与许可；确认后回填 `onerec2026-onereason` 的"可复现"与 Ideas 第六条。
@@ -283,6 +297,11 @@
 
 ## 阻塞 / 待确认
 
+- `fu2025-c2c` 的"2.5× average speedup"口径未定：Table 4 三组是 3.46× / 1.51× / 14.41×，算术平均 6.46×；引用加速比时需注明是单组还是平均。
+- `fu2025-c2c` 的 300 步检查点 MMLU-Redux 44.30 高于最终检查点 42.92，主表用最终检查点；引用 42.92 时需注明这不是训练过程中最好的检查点。
+- `guo2026-t-mem` 的 LoCoMo 与 LoCoMo-Plus 使用不同答题/评判协议（GPT-4o-mini vs GPT-4o + Gemini-2.5-Flash），5.45 的 gap 含协议差；引用时需注明。
+- `xia2026-rrsi` 的"up to 4.3 points on the five OOD benchmarks"与 JobBench +4.7 冲突；摘要的 4.3 可能只指 Frontier-Eng，引用时需注明。
+- `xia2026-rrsi` 的"30% fewer policy tokens"按 Table 2 是 36.3%（2.42 对 3.80）；引用时需注明。
 - 历史已于 2026-11-04 重写以移除 PDF 并强推，旧 hash 全部失效；`backup/pre-pdf-rewrite` 仅存于本地，未推送。
 - `du2026-a-rag` 的"3/5 数据集最好"口径未定：按 benchmark 数是 3 个（MuSiQue、HotpotQA、GraphRAG-Bench），按五个子集数是 4 个；引用主表时需注明。
 - `du2026-a-rag` 的 §5.1 写 GPT-5 的扩展结果，Limitations 又说没有在 GPT-5 上验证；引用 +25% 时需注明该冲突。
