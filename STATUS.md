@@ -6,9 +6,10 @@
 
 - 分支：`main`（跟踪 `origin/main`）
 - 远程：`origin` → `git@github.com:btroops/paper-reading.git`
-- 最近内容提交：`71559e5 notes(xu2025-sra): 去掉指代不清的后者`；`7097bee notes(xu2025-sra): 用柱状图与边际收益解释先验`；`68e3565 notes(xu2025-sra): 解释 w、r 与先验`；`eaade9c notes(xu2025-sra): 澄清 lossy-context surprisal 的条件集`
+- 最近内容提交：`c7724b6 docs(index): 收录先验概率概念笔记`；`6142bd5 notes(xu2025-sra): 链接先验概率概念笔记`；`9d40793 notes(concepts): 先验概率：从疾病检测到 SRA`；`71559e5 notes(xu2025-sra): 去掉指代不清的后者`
 - 已归档论文：21 篇（`ma2026-imperfective-paradox`，arXiv 2601.09373v3；`wei2026-hysparse2`，arXiv 2609.26368v1；`xu2025-sra`，arXiv 2503.14728v2；`fu2025-c2c`，arXiv 2510.03215v2；`guo2026-t-mem`，arXiv 2606.15405v2；`xia2026-rrsi`，arXiv 2609.24972v3；`zhou2025-onerec`，arXiv 2506.13695v4；`liu2025-onerec-think`，arXiv 2510.11639v2；`onerec2026-onereason`，arXiv 2606.06260v1；`jiang2026-jev-mem`，arXiv 2609.23986v1；`he2026-memory-tax`，arXiv 2610.34073v1；`bao2026-raw-rag`，arXiv 2610.30755v1；`yeh2026-oat`，arXiv 2607.12747v2；`wan2026-decision-rag`，arXiv 2610.35868v1；`wang2026-rsi-hub`，arXiv 2610.32253v1；`li2026-oo-harness`，arXiv 2610.28380v1；`kumar2026-stair`，arXiv 2609.03874v2；`ho2026-declarative-attention`，arXiv 2609.02737v2；`du2026-a-rag`，arXiv 2602.03442v1；`li2026-dci`，arXiv 2605.05242v1；`hu2026-sage`，arXiv 2602.05975v2）
 - 已精读论文：21 篇（`ma2026-imperfective-paradox`、`wei2026-hysparse2`、`xu2025-sra`、`fu2025-c2c`、`guo2026-t-mem`、`xia2026-rrsi`、`zhou2025-onerec`、`liu2025-onerec-think`、`onerec2026-onereason`、`jiang2026-jev-mem`、`he2026-memory-tax`、`bao2026-raw-rag`、`yeh2026-oat`、`wan2026-decision-rag`、`wang2026-rsi-hub`、`li2026-oo-harness`、`kumar2026-stair`、`ho2026-declarative-attention`、`du2026-a-rag`、`li2026-dci`、`hu2026-sage`）
+- 概念笔记：`notes/concepts/prior-probability.md`（先验概率：从疾病检测到 SRA，2026-11-09）
 - 阅读模型：`WWH-v9`（`WWH.md`），新增不许偷懒省字规则（指代落地、比较写全两边、数字写清口径）；v8 的论证不跳步、v7 的术语与反直译规则继续有效；Why 只提问、What 不写机制、段落 3–6 句
 - 命名规则：`<第一作者姓><年份>-<短标题>`，arXiv 编号只写在 front matter 与 README 索引
 - Python 环境：uv + Python 3.12，已装 `pymupdf`（`pyproject.toml` / `uv.lock` 已提交）
@@ -16,6 +17,15 @@
 - 进行中：无；Imperfective Paradox / HySparse2 / SRA 三篇已完成并提交（`9b51332`、`8f1ef1b`、`c8118d1`、`8b615f6`）
 
 ## 最近会话
+
+### 2026-11-09 新增概念笔记：先验概率
+
+- 背景：SRA 笔记反复用 $w$、$r$、$p(w)$，读者对“带噪声表征”与“先验”不理解；新增 `notes/concepts/prior-probability.md`，按“定义 → 贝叶斯公式 → 先验来源 → 强弱先验 → 疾病检测 → 语言先验 → SRA 符号 → 常见误解 → 高斯先验”展开。
+- 关键例子：患病率 1%、敏感度/特异度 99% 时，阳性者真正患病约 50%；患病率 10% 时约 91.7%，0.1% 时约 9.0%。用这个例子说明先验如何改变后验。
+- 语言例子：“The cute ___” 中 cat 先验高、monster 先验低；surprisal = $-\log$ 先验；lossy-context 下记忆擦除会削弱先验。
+- SRA 连接：$w$ 真实输入，$r$ 带噪声表征，$p(w)$ 先验，$p(r \mid w)$ 似然，$p(w \mid r)$ 后验；固定预算下高 surprisal 词的精度边际收益更大，所以资源优先给它。
+- 索引与链接：README 概念说明行新增；`notes/xu2025-sra.md` 第一次出现“先验”处加链接。
+- 提交：`9d40793`（概念笔记）、`6142bd5`（SRA 链接）、`c7724b6`（索引）；本文件随 `docs(status)` 提交。
 
 ### 2026-11-09 精读 Imperfective Paradox / HySparse2 / SRA（语义、长上下文、心理语言学）
 
