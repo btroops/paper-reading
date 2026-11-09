@@ -6,7 +6,7 @@
 
 - 分支：`main`（跟踪 `origin/main`）
 - 远程：`origin` → `git@github.com:btroops/paper-reading.git`
-- 最近内容提交：`a380956 notes(xia2026-rrsi): 补 proposer 与候选池定义`；`a7db4a1 notes(xia2026-rrsi): 重写 Why 里的编辑空间与搜索过程`；`91d1d9f notes(xia2026-rrsi): 补术语全称与口径说明`；`8e1c079 notes(guo2026-t-mem): 补检索与评判术语定义`
+- 最近内容提交：`e4efd23 notes(xia2026-rrsi): 修正编辑空间的表述`；`a380956 notes(xia2026-rrsi): 补 proposer 与候选池定义`；`a7db4a1 notes(xia2026-rrsi): 重写 Why 里的编辑空间与搜索过程`；`91d1d9f notes(xia2026-rrsi): 补术语全称与口径说明`
 - 已归档论文：18 篇（`fu2025-c2c`，arXiv 2510.03215v2；`guo2026-t-mem`，arXiv 2606.15405v2；`xia2026-rrsi`，arXiv 2609.24972v3；`zhou2025-onerec`，arXiv 2506.13695v4；`liu2025-onerec-think`，arXiv 2510.11639v2；`onerec2026-onereason`，arXiv 2606.06260v1；`jiang2026-jev-mem`，arXiv 2609.23986v1；`he2026-memory-tax`，arXiv 2610.34073v1；`bao2026-raw-rag`，arXiv 2610.30755v1；`yeh2026-oat`，arXiv 2607.12747v2；`wan2026-decision-rag`，arXiv 2610.35868v1；`wang2026-rsi-hub`，arXiv 2610.32253v1；`li2026-oo-harness`，arXiv 2610.28380v1；`kumar2026-stair`，arXiv 2609.03874v2；`ho2026-declarative-attention`，arXiv 2609.02737v2；`du2026-a-rag`，arXiv 2602.03442v1；`li2026-dci`，arXiv 2605.05242v1；`hu2026-sage`，arXiv 2602.05975v2）
 - 已精读论文：18 篇（`fu2025-c2c`、`guo2026-t-mem`、`xia2026-rrsi`、`zhou2025-onerec`、`liu2025-onerec-think`、`onerec2026-onereason`、`jiang2026-jev-mem`、`he2026-memory-tax`、`bao2026-raw-rag`、`yeh2026-oat`、`wan2026-decision-rag`、`wang2026-rsi-hub`、`li2026-oo-harness`、`kumar2026-stair`、`ho2026-declarative-attention`、`du2026-a-rag`、`li2026-dci`、`hu2026-sage`）
 - 阅读模型：`WWH-v9`（`WWH.md`），新增不许偷懒省字规则（指代落地、比较写全两边、数字写清口径）；v8 的论证不跳步、v7 的术语与反直译规则继续有效；Why 只提问、What 不写机制、段落 3–6 句
@@ -26,7 +26,7 @@
 - 核心数字（RRSI）：TB2.1 74.2→80.2（+6.0）、SWE 82.0→83.8（+1.8）、Harvey evolve 89.4→90.5（+1.1）/ID 86.9→89.2（+2.3）、JobBench 36.0→40.7（+4.7）、GDPval 48.8→52.3（+3.5）、APEX 34.2→37.9（+3.7）、EngDesign 50.0→54.9（+4.9）、Frontier 17.7→22.0（+4.3）；OOD 平均 39.7→43.6；未正则化 3.80M token/trial，RRSI 2.42M；Harvey 20 轮 32 个候选只接受 4 个编辑。
 - 原文疑点（已写入各笔记 Ideas）：C2C 摘要 2.5× 加速对不上 Table 4 的 3.46/1.51/14.41（算术平均 6.46×）；6.4–14.2% 与 §4.2 的 11.00/9.64/11.88 对不上；3.1–5.4% 与 3.06–5.36 对不上；T2T 基线只给一句提示、无训练，与 C2C 的 50 万条监督不可比；Table 12 的 300 步 44.30 高于最终 42.92。T-Mem 的 LoCoMo-Plus 与作者组重叠；LoCoMo 与 LoCoMo-Plus 用不同 QA/judge 协议，5.45 gap 含协议差；匹配管线下只领先 0.97；Bridge（条目×联想）没有独立基准；正文 §4.1 没写 reranker，附录 E 又用了 reranker。RRSI 摘要"up to 4.3 OOD"与 JobBench +4.7 冲突；"30% fewer tokens"按 Table 2 是 36.3%；Harvey 分布内留出与 Meta-Harness 并列 89.2；七个约束只做了两组消融；搜索成本（提议器/critic/候选评估）没有账本。
 - 交叉引用：C2C 与 `ho2026-declarative-attention`（都在推理时操作 KV-Cache，一个掩码减少读取、一个融合增加信息）、`li2026-oo-harness` / `wang2026-rsi-hub`（都在改模型外围装置）、`he2026-memory-tax`（成本账本）、`jiang2026-jev-mem`（检索侧减少文本中转）互引；T-Mem 与 `jiang2026-jev-mem`（控制层 vs 索引层）、`he2026-memory-tax`（收益/税）、`bao2026-raw-rag`（强基线）、`hu2026-sage`（语料级增强 vs 写入时触发器）、`du2026-a-rag` / `li2026-dci`（工具接口 vs 记忆索引）、`kumar2026-stair`（结构作为检索单位）互引；RRSI 与 `li2026-oo-harness`（表示 vs 搜索 dynamics）、`wang2026-rsi-hub`（装置 vs 策略）、`yeh2026-oat`（步级归因 vs 轮级反馈）、`he2026-memory-tax`（搜索成本）、`bao2026-raw-rag`（强基线重设参照系）互引。
-- 提交：`6750371`（C2C 笔记）、`74569cb`（T-Mem 笔记）、`7530f04`（RRSI 笔记）、`06eb4db`（索引）、`e14364e`（C2C 口径修正）、`c87ced2`（RRSI 归因修正）、`cd9ac99` / `8e1c079` / `91d1d9f`（术语修订）、`a7db4a1`（Why 重写）、`a380956`（proposer 与候选池定义）；本文件随 `docs(status)` 提交。
+- 提交：`6750371`（C2C 笔记）、`74569cb`（T-Mem 笔记）、`7530f04`（RRSI 笔记）、`06eb4db`（索引）、`e14364e`（C2C 口径修正）、`c87ced2`（RRSI 归因修正）、`cd9ac99` / `8e1c079` / `91d1d9f`（术语修订）、`a7db4a1`（Why 重写）、`a380956`（proposer 与候选池定义）、`e4efd23`（编辑空间表述）；本文件随 `docs(status)` 提交。
 
 ### 2026-11-06 精读 OneRec 三部曲（OneRec / OneRec-Think / OneReason）
 
