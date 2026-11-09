@@ -10,6 +10,9 @@
 
 | paper-id | 标题 | 年份 | arxiv | tags | status |
 | --- | --- | --- | --- | --- | --- |
+| [fu2025-c2c](notes/fu2025-c2c.md) | Cache-to-Cache: Direct Semantic Communication Between Large Language Models | 2025 | [2510.03215](https://arxiv.org/abs/2510.03215) | multi-llm, kv-cache, cross-model-communication, latent-communication, inference-efficiency, model-fusion | done |
+| [guo2026-t-mem](notes/guo2026-t-mem.md) | T-Mem: Memory That Anticipates, Not Archives | 2026 | [2606.15405](https://arxiv.org/abs/2606.15405) | agent-memory, long-term-memory, associative-recall, retrieval, write-time-indexing, locomo, llm-as-judge | done |
+| [xia2026-rrsi](notes/xia2026-rrsi.md) | RRSI: Regularized Recursive Self-Improvement of Agent Harnesses | 2026 | [2609.24972](https://arxiv.org/abs/2609.24972) | agent-harness, self-improvement, recursive-self-improvement, overfitting, regularization, agent-evolution, benchmark-transfer | done |
 | [zhou2025-onerec](notes/zhou2025-onerec.md) | OneRec Technical Report | 2025 | [2506.13695](https://arxiv.org/abs/2506.13695) | generative-recommendation, semantic-id, industrial-deployment, reinforcement-learning, scaling-law, system-design | done |
 | [liu2025-onerec-think](notes/liu2025-onerec-think.md) | OneRec-Think: In-Text Reasoning for Generative Recommendation | 2025 | [2510.11639](https://arxiv.org/abs/2510.11639) | generative-recommendation, chain-of-thought, reasoning, itemic-token, reinforcement-learning, industrial-deployment | done |
 | [onerec2026-onereason](notes/onerec2026-onereason.md) | OneReason Technical Report | 2026 | [2606.06260](https://arxiv.org/abs/2606.06260) | generative-recommendation, reasoning, chain-of-thought, reinforcement-learning, benchmark, distillation, industrial-deployment | done |
