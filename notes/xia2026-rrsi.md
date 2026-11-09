@@ -42,7 +42,7 @@ model: WWH-v9
 
 但 harness 工程目前主要靠人。工程师读失败轨迹，找到问题，改提示词或控制流，再跑一遍。这个过程受限于"工程师能读多少条轨迹"：读得越多，改得越准；读不过来，就只能凭经验猜。于是出现了一类自动化方法：让一个 LLM 读失败反馈，提出 harness 的修改，再在任务集上评估，保留分数更高的版本。论文把这种"用当前系统的反馈改进塑造当前系统行为的 harness"的过程，叫 agent 系统层面的递归自我改进（recursive self-improvement, RSI）。
 
-这套循环有一个结构性问题：它反复在同一个有限的 evolve set（进化集）上提出、评估、选择候选，而 evolve set 的分数是带噪声的。候选改得越多，越容易拟合这批任务的特定模式；选得越多，越容易把噪声当成信号；堆的提示词和工具越多，越容易用测试时计算换分数。三种行为叠加，结果是 evolve set 上的分数涨了，换一个基准就掉回去。论文在 Fig. 1(a) 里画了这件事：Meta-Harness 在 evolve set 上最高，到了分布外（out-of-distribution, OOD）只比初始 harness 高 0.9 分；AHE（Agentic Harness Engineering）和 TTHE（Test-Time Harness Evolution）在分布外甚至低于初始 harness，TTHE 低 1.7 分。
+这套循环有一个结构性问题：它反复在同一个有限的 evolve set（进化集）上提出、评估、选择候选，而 evolve set 的分数是带噪声的。候选改得越多，越容易拟合这批任务的特定模式；选得越多，越容易把噪声当成信号；堆的提示词和工具越多，越容易用测试时计算换分数。三种行为叠加，结果是 evolve set 上的分数涨了，换一个基准就掉回去。论文在 Fig. 1(a) 里画了这件事：Meta-Harness 在 evolve set 上最高，到了分布外（out-of-distribution, OOD）只比初始 harness 高 0.9 分；AHE（Agentic Harness Engineering）和 TTHE（Test-Time Harness Evolution）在分布外甚至低于初始 harness，TTHE 低 1.7 分。这里的分布外指没有参与进化、任务类型或评分方式与 evolve set 不同的另一套基准；同一套基准里留出的题不算分布外，算分布内留出。
 
 为什么现在必须解决？因为 harness 进化方法正在快速增加，而评测集都很小：Terminal-Bench 2.1 只有 89 题，Harvey LAB 的 evolve set 是 120 题，EngDesign 只有 61 题。在这么小的集合上反复自适应地评估，过拟合几乎是必然的；而且 harness 的搜索空间是开放的程序空间，比调超参更容易记住任务。论文引用的 concurrent work 也观察到，很多"进化收益"其实来自任务特定拟合、评估噪声或测试时计算，而不是可复用的机制。
 
@@ -106,7 +106,7 @@ $$
 
 ### 新结论：evolve set 上最弱，分布外最强
 
-主结果在 Fig. 3。三个领域的 evolve set 增益是：Terminal-Bench 2.1 从 74.2 到 80.2（+6.0），Harvey LAB 从 89.4 到 90.5（+1.1），EngDesign 从 50.0 到 54.9（+4.9）。留出切分全部不降：SWE-bench Verified 82.0→83.8（+1.8），Harvey LAB 分布内留出 86.9→89.2（+2.3），JobBench 36.0→40.7（+4.7），GDPval 48.8→52.3（+3.5），APEX-Agents 34.2→37.9（+3.7），Frontier-Eng 17.7→22.0（+4.3，相对 +24.3%）。agentic workspace 的三个分布外基准平均从 39.7 升到 43.6（+3.9）。`[已验证，Fig. 3, Table 6]`
+主结果在 Fig. 3。三个领域的 evolve set 增益是：Terminal-Bench 2.1 从 74.2 到 80.2（+6.0），Harvey LAB 从 89.4 到 90.5（+1.1），EngDesign 从 50.0 到 54.9（+4.9）。留出切分全部不降：SWE-bench Verified 82.0→83.8（+1.8），Harvey LAB 分布内留出 86.9→89.2（+2.3），JobBench 36.0→40.7（+4.7），GDPval 48.8→52.3（+3.5），APEX-Agents 34.2→37.9（+3.7），Frontier-Eng 17.7→22.0（+4.3，相对 +24.3%）。其中 SWE-bench Verified、JobBench、GDPval、APEX-Agents、Frontier-Eng 是分布外，Harvey LAB 的 40 题是分布内留出。agentic workspace 的三个分布外基准平均从 39.7 升到 43.6（+3.9）。`[已验证，Fig. 3, Table 6]`
 
 Table 1 把四个基线放在同一套 $H_0$、同一个策略、同一个 evolve set、同一个候选预算下比较。evolve set 上，Meta-Harness 最高（93.0），RRSI 最低（90.5）；分布内留出上，Meta-Harness 与 RRSI 都是 89.2；分布外平均上，RRSI 43.6 对 Meta-Harness 40.6、AHE 39.2、TTHE 38.0、HarnessX 39.7（四个基线的平均值为我按 JobBench/GDPval/APEX 三列计算）。论文的判断是：evolve set 的排名在分布外翻转，RRSI 用 evolve set 上的一点分数换了分布外的稳定性。`[已验证，Table 1]`
 
