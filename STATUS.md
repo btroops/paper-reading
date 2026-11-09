@@ -6,16 +6,27 @@
 
 - 分支：`main`（跟踪 `origin/main`）
 - 远程：`origin` → `git@github.com:btroops/paper-reading.git`
-- 最近内容提交：`0d77952 notes(xia2026-rrsi): 解释选择次数与噪声偏差`；`6f7fa4c notes(xia2026-rrsi): 补分布外收益的定义`；`380e207 notes(xia2026-rrsi): 落地指代不清的表述`；`f31c5d0 notes(xia2026-rrsi): 补 critic 与噪声带定义`
-- 已归档论文：18 篇（`fu2025-c2c`，arXiv 2510.03215v2；`guo2026-t-mem`，arXiv 2606.15405v2；`xia2026-rrsi`，arXiv 2609.24972v3；`zhou2025-onerec`，arXiv 2506.13695v4；`liu2025-onerec-think`，arXiv 2510.11639v2；`onerec2026-onereason`，arXiv 2606.06260v1；`jiang2026-jev-mem`，arXiv 2609.23986v1；`he2026-memory-tax`，arXiv 2610.34073v1；`bao2026-raw-rag`，arXiv 2610.30755v1；`yeh2026-oat`，arXiv 2607.12747v2；`wan2026-decision-rag`，arXiv 2610.35868v1；`wang2026-rsi-hub`，arXiv 2610.32253v1；`li2026-oo-harness`，arXiv 2610.28380v1；`kumar2026-stair`，arXiv 2609.03874v2；`ho2026-declarative-attention`，arXiv 2609.02737v2；`du2026-a-rag`，arXiv 2602.03442v1；`li2026-dci`，arXiv 2605.05242v1；`hu2026-sage`，arXiv 2602.05975v2）
-- 已精读论文：18 篇（`fu2025-c2c`、`guo2026-t-mem`、`xia2026-rrsi`、`zhou2025-onerec`、`liu2025-onerec-think`、`onerec2026-onereason`、`jiang2026-jev-mem`、`he2026-memory-tax`、`bao2026-raw-rag`、`yeh2026-oat`、`wan2026-decision-rag`、`wang2026-rsi-hub`、`li2026-oo-harness`、`kumar2026-stair`、`ho2026-declarative-attention`、`du2026-a-rag`、`li2026-dci`、`hu2026-sage`）
+- 最近内容提交：`8b615f6 docs(index): 收录 Imperfective Paradox、HySparse2、SRA 三篇`；`c8118d1 notes(xu2025-sra): 用依存局部性检验记忆资源的战略分配`；`8f1ef1b notes(wei2026-hysparse2): 两级 KV 共享把 prefill 缩到一半`；`9b51332 notes(ma2026-imperfective-paradox): 目的论偏置让进行时被当成完成`
+- 已归档论文：21 篇（`ma2026-imperfective-paradox`，arXiv 2601.09373v3；`wei2026-hysparse2`，arXiv 2609.26368v1；`xu2025-sra`，arXiv 2503.14728v2；`fu2025-c2c`，arXiv 2510.03215v2；`guo2026-t-mem`，arXiv 2606.15405v2；`xia2026-rrsi`，arXiv 2609.24972v3；`zhou2025-onerec`，arXiv 2506.13695v4；`liu2025-onerec-think`，arXiv 2510.11639v2；`onerec2026-onereason`，arXiv 2606.06260v1；`jiang2026-jev-mem`，arXiv 2609.23986v1；`he2026-memory-tax`，arXiv 2610.34073v1；`bao2026-raw-rag`，arXiv 2610.30755v1；`yeh2026-oat`，arXiv 2607.12747v2；`wan2026-decision-rag`，arXiv 2610.35868v1；`wang2026-rsi-hub`，arXiv 2610.32253v1；`li2026-oo-harness`，arXiv 2610.28380v1；`kumar2026-stair`，arXiv 2609.03874v2；`ho2026-declarative-attention`，arXiv 2609.02737v2；`du2026-a-rag`，arXiv 2602.03442v1；`li2026-dci`，arXiv 2605.05242v1；`hu2026-sage`，arXiv 2602.05975v2）
+- 已精读论文：21 篇（`ma2026-imperfective-paradox`、`wei2026-hysparse2`、`xu2025-sra`、`fu2025-c2c`、`guo2026-t-mem`、`xia2026-rrsi`、`zhou2025-onerec`、`liu2025-onerec-think`、`onerec2026-onereason`、`jiang2026-jev-mem`、`he2026-memory-tax`、`bao2026-raw-rag`、`yeh2026-oat`、`wan2026-decision-rag`、`wang2026-rsi-hub`、`li2026-oo-harness`、`kumar2026-stair`、`ho2026-declarative-attention`、`du2026-a-rag`、`li2026-dci`、`hu2026-sage`）
 - 阅读模型：`WWH-v9`（`WWH.md`），新增不许偷懒省字规则（指代落地、比较写全两边、数字写清口径）；v8 的论证不跳步、v7 的术语与反直译规则继续有效；Why 只提问、What 不写机制、段落 3–6 句
 - 命名规则：`<第一作者姓><年份>-<短标题>`，arXiv 编号只写在 front matter 与 README 索引
 - Python 环境：uv + Python 3.12，已装 `pymupdf`（`pyproject.toml` / `uv.lock` 已提交）
 - 原文策略：PDF 仅本地保存，`papers/` 已被 `.gitignore` 排除，远程只保留笔记与索引
-- 进行中：无；C2C / T-Mem / RRSI 三篇已完成并提交（`6750371`、`74569cb`、`7530f04`、`06eb4db`）
+- 进行中：无；Imperfective Paradox / HySparse2 / SRA 三篇已完成并提交（`9b51332`、`8f1ef1b`、`c8118d1`、`8b615f6`）
 
 ## 最近会话
+
+### 2026-11-09 精读 Imperfective Paradox / HySparse2 / SRA（语义、长上下文、心理语言学）
+
+- 归档与命名：三篇 PDF 原在仓库根目录。`2601.09373v3.pdf` → `papers/ma2026-imperfective-paradox/paper.pdf`（第一作者 Ma，2026，现象 Imperfective Paradox）；`2609.26368v1.pdf` → `papers/wei2026-hysparse2/paper.pdf`（第一作者 Wei，2026，方法 HySparse2）；`2503.14728v2.pdf` → `papers/xu2025-sra/paper.pdf`（第一作者 Xu，2025，方法 SRA）。全文 19 / 16 / 62 页，已提取 `paper.txt`，按 WWH-v9 产出 `notes/ma2026-imperfective-paradox.md`、`notes/wei2026-hysparse2.md`、`notes/xu2025-sra.md`（均 status: done）。
+- 判型：Ma 实证与基准类为主（400 例诊断集、7 模型、4 种提示、5 个规模），附系统与算法类（数据集构造与指标）；HySparse2 系统与算法类为主（混合注意力架构、两级 KV 共享、prefill/decode 分离），附实证与基准类（80B-A3B、290B-A8B、长上下文与 agent 轨迹）；SRA 理论推导类为主（高斯编码-贝叶斯解码、资源约束下的最优分配），附实证与语料基准类（10 种 UD 语言、两个英语阅读时间语料）。
+- 核心数字（Imperfective Paradox）：零样本 Group C（终结性 + 不中断，正确 Unknown）的 TBRC 多数 0.94–1.00，Qwen2.5-7B 例外 0.53；Group D（非终结性 + 不中断，正确 True）0.97–1.00；ΔAA 多数 0.00–0.06，Qwen 0.44。Group A（终结性 + 明确中断，正确 False）准确率 0.03–0.47、TBRA 0.46–0.75。DAP 对 Llama C 0.02→0.36、Qwen 0.47→0.89；CoT 把 C 拉高但 D 掉（Llama 0.98→0.65、Qwen 0.97→0.37、Gemma 1.00→0.15）；反事实把 C 拉到 0.97–1.00 但 D 到 0.00–0.10。Qwen2.5 1.5B/7B/14B/32B/72B 的 TBRC 1.00/0.53/0.61/0.09/0.16，ΔAA 0.00/0.44/0.37/0.83/0.81。BERT 表示相似度与 TBRC 的 r=-0.93、p=0.07。
+- 核心数字（HySparse2）：80B-A3B，后训练相对 HySparse 平均 MRCR-v2 +11.30、RULER-v2 +19.81；相对 Hybrid SWA +6.44 / +18.65；256k RULER-v2 58.45 对 32.61 / 35.74。1M token prefill FLOPs 2.92× / 5.02×，KV-Cache 2.69 / 6.72 / 12.09 GB。token-level vs block-level：RULER-v2 56.13 对 49.56、两针 MRCR-v2 21.08 对 12.94、GraphWalks 34.92 对 29.38；代价是 BBH −1.23、NoLiMa −1.84。相对 HySparse，预训练 DROP −4.79、GSM8K −2.20、WinoGrande −2.37、MATH −1.82。
+- 核心数字（SRA）：Study 1 用 UD 2.11 的 10 种语言，先行词 surprisal 对依存距离的正效应在 6/10 语言显著（丹麦、英语、德语、意大利、俄语、西班牙），4/10 负效应（日语、韩语、汉语、土耳其语）；主语关系 5/10 正效应，宾语关系按词数计 0 种语言正效应（意大利语按 surprisal 计部分支持）。Study 2a（Natural Stories，181 人）在全部/主语关系上发现负的 L×surprisal 交互；Study 2b（Dundee，10 人）只在主语关系第一遍阅读上看到负交互，基线局部性效应本身不稳。理论：高斯编码-贝叶斯解码下，固定总精度时更意外的输入应获得更高编码精度（Appendix A.2）。
+- 原文疑点（已写入各笔记 Ideas）：Ma 的 Group C 金标签是理论语义学的 Unknown，人工评估只查语法/流利/充分，没有人类逻辑标注；表示分析用 BERT 而非被评测 LLM；r=-0.93 的 p=0.07；规模分析只有 Qwen2.5；提示条件不是单变量；模型只覆盖 7–9B、英语、模板句。HySparse2 的主对比同时改了头配置（MQA 64/1/256 vs GQA 64/4/192/128），KV-Cache/效率收益不能全归给两级共享；通用能力有 2–5 分下降；没有端到端 agent 成功率；FLOPs/KV 是静态计数，不是延迟。SRA 的词频控制用英语 norms 覆盖 10 种语言；120 个检验无多重比较校正；主语/宾语子集用线性模型、全部关系用 LME，口径不一致；6/10 正效应不能写成"普遍规律"；产生侧可能是 audience design/UID；理解侧有交互无主效应；surprisal 来自 GPT-3/mGPT；高斯推导是理想化。
+- 交叉引用：Ma 与 `he2026-memory-tax` 只在"记忆有成本、要分配"的概念上类比，对象分别是人类工作记忆与 agent 外部记忆；HySparse2 与 `ho2026-declarative-attention`（训练无关的注意力声明 vs 训练出来的稀疏架构）、`fu2025-c2c`（跨模型 KV 融合 vs 跨层 KV 共享）、`hu2026-sage`（长上下文检索质量 vs 底层注意力效率）、`he2026-memory-tax`（FLOPs 节省要减去延迟/传输的税）、`kumar2026-stair`（检索粒度 vs 注意力粒度）互引；SRA 与 `he2026-memory-tax`（人类记忆分配 vs agent 记忆收益/税）、`bao2026-raw-rag`（强基线/同预算的方法论）互引。
+- 提交：`9b51332`（Ma 笔记）、`8f1ef1b`（HySparse2 笔记）、`c8118d1`（SRA 笔记）、`8b615f6`（索引）；本文件随 `docs(status)` 提交。
 
 ### 2026-11-09 精读 C2C / T-Mem / RRSI（通信、记忆、harness 三层）
 
@@ -273,6 +284,9 @@
 
 ## 下一步
 
+- [ ] 核对 <https://github.com/boleima/ImperfectiveParadox> 是否放出人类逻辑标签、逐题输出、格式遵循率、BERT 层与池化细节；若放出，回填 `ma2026-imperfective-paradox` 的"可复现"与 Ideas 第一条、第二条。
+- [ ] 向小米 LLM-Core 确认 HySparse2 是否放出模型权重/代码、AgentPPL 与 Repo Code PPL 的构造、prefill 延迟与 KV 传输数据；若放出，回填 `wei2026-hysparse2` 的"可复现"与 Ideas 第一条、第三条。
+- [ ] 向 SRA 作者索取预处理脚本、R 模型代码与各语言词频来源；若放出，回填 `xu2025-sra` 的"可复现"与 Ideas 第一条、第二条。
 - [ ] 核对 <https://github.com/thu-nics/C2C> 是否给出融合器逐层参数、训练数据与评测集去重、长上下文融合延迟、多种子结果；若放出，回填 `fu2025-c2c` 的"可复现"与 Ideas 第一条、第二条。
 - [ ] 核对 <https://github.com/Sherlockwz/T-Mem> 是否给出 LoCoMo-Plus 题数与运行次数、reranker 配置、主题与触发器数量、增量更新脚本；若放出，回填 `guo2026-t-mem` 的"可复现"与 Ideas 第一条、第二条、第四条。
 - [ ] 核对 <https://github.com/google-research/rrsi> 与 <https://regularized-rsi.com> 是否给出搜索成本账本、四个基线的实现与超参、逐条约束消融、judge 提示词；若放出，回填 `xia2026-rrsi` 的"可复现"与 Ideas 第二条、第三条。
@@ -297,6 +311,10 @@
 
 ## 阻塞 / 待确认
 
+- `ma2026-imperfective-paradox` 的 Group C 金标签是理论语义学的 Unknown，人工评估只查语法/流利/充分，没有人类逻辑标注；引用 TBR/ΔAA 时需注明这是"相对理论标签"的偏置。
+- `wei2026-hysparse2` 的主对比同时改了头配置（MQA 64/1/256 vs GQA 64/4/192/128），KV-Cache 与效率收益不能全部归给两级 KV 共享；引用 2.69 GB / 2.92× 时需注明。
+- `xu2025-sra` 的词频控制用英语 norms 覆盖 10 种语言，非英语语言的词频控制不可靠；引用跨语言结论时需注明。
+- `xu2025-sra` 的 6/10 正效应与 4/10 负效应不能写成"普遍规律"；引用时需注明。
 - `fu2025-c2c` 的"2.5× average speedup"口径未定：Table 4 三组是 3.46× / 1.51× / 14.41×，算术平均 6.46×；引用加速比时需注明是单组还是平均。
 - `fu2025-c2c` 的 300 步检查点 MMLU-Redux 44.30 高于最终检查点 42.92，主表用最终检查点；引用 42.92 时需注明这不是训练过程中最好的检查点。
 - `guo2026-t-mem` 的 LoCoMo 与 LoCoMo-Plus 使用不同答题/评判协议（GPT-4o-mini vs GPT-4o + Gemini-2.5-Flash），5.45 的 gap 含协议差；引用时需注明。
