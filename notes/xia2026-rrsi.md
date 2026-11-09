@@ -46,7 +46,7 @@ model: WWH-v9
 
 为什么现在必须解决？因为 harness 进化方法正在快速增加，而评测集都很小：Terminal-Bench 2.1 只有 89 题，Harvey LAB 的 evolve set 是 120 题，EngDesign 只有 61 题。在这么小的集合上反复自适应地评估，过拟合几乎是必然的；而且 harness 的搜索空间是开放的程序空间，比调超参更容易记住任务。论文引用的 concurrent work 也观察到，很多"进化收益"其实来自任务特定拟合、评估噪声或测试时计算，而不是可复用的机制。
 
-现有方法主要在两个地方做限制。第一处是编辑空间：允许提议器（proposer）改哪些东西。比如 HarnessX 把 harness 限制成一组模块化、带类型的原语（prompt、工具、记忆、控制流），提议器只能在这些原语之间组合；Meta-Harness 允许直接改可执行的 harness 代码。第二处是保留策略：有的方法用多样性档案（quality-diversity archive）同时保留多个不同风格的候选，避免搜索过早收敛到一个方向。这两处都没有回答一个问题：一条来自 evolve set 的反馈，凭什么变成永久的 harness 状态？现有循环的答案基本只有一条——谁在当前 evolve set 上分数最高就留谁。
+现有方法主要在两个地方做限制。第一处是编辑空间：允许提议器（proposer）改哪些东西。提议器是一个负责改 harness 的 LLM，它不执行任务，只读当前 harness、失败反馈和编辑历史，写出一版候选改动（通常是一个 diff）。比如 HarnessX 把 harness 限制成一组模块化、带类型的原语（prompt、工具、记忆、控制流），提议器只能在这些原语之间组合；Meta-Harness 允许直接改可执行的 harness 代码。第二处是保留策略：有的方法用多样性候选池（quality-diversity archive）同时保留多个不同风格的候选。候选池不是一份评测日志，而是一组还没被选中的替代 harness；当前方向卡住时，可以从池里换一个方向继续，避免搜索过早收敛到一个机制。这两处都没有回答一个问题：一条来自 evolve set 的反馈，凭什么变成永久的 harness 状态？现有循环的答案基本只有一条——谁在当前 evolve set 上分数最高就留谁。
 
 RRSI 换了一个切法：编辑空间完全不动，任何源码级修改都允许；只改搜索过程。这里的搜索过程指循环里的几个决定：一轮改多少、参考哪些历史、卡住时往哪看、什么候选允许被接受、哪些旧组件要删掉。这些决定被拆成七条约束，前三条在提议侧，后四条在选择侧。
 
@@ -175,7 +175,7 @@ $\delta$ 是唯一"必须测、不能调"的值：它来自 $H_0$ 的重复评�
 
 八个基准分三种角色。coding：Terminal-Bench 2.1 是 evolve set（89 个容器化终端任务，单元测试判分），SWE-bench Verified 是分布外（真实 GitHub issue，fail-to-pass 与 pass-to-pass 测试）。agentic workspace：Harvey LAB 是 evolve set（120 题）加分布内留出（40 题），JobBench、GDPval、APEX-Agents 是分布外；Harvey 的任务是法律工作，交付 Word/Excel/PDF 文件，按 20–100 条 criterion 的 rubric 判分，约 14,000 条 verdict/次；GDPval 是 185 个任务、三方评审团、双向呈现；APEX-Agents 是 480 个任务、MCP 工具面、pass@1（单次采样成功率）。engineering design：EngDesign 是 evolve set（61 题，冻结模拟器判分），Frontier-Eng 是分布外（47 题，38 题能构建环境，Medal Score）。`[已验证，§B]`
 
-策略是 Claude Opus 4.8，提议器、分析师、泄漏 critic 也都是 Claude Opus 4.8。基线是 $H_0$、Meta-Harness、AHE、TTHE、HarnessX；论文说所有基线从同一个 $H_0$ 出发，共享冻结策略、evolve set 和候选预算（§4.1）。这个"同预算"是论文最重要的可比性声明，但论文没有说明基线是原作者代码还是自己重跑；附录 C 只给了四段方法描述，没有给超参和提示词。`[已验证，§4.1, §C]`
+策略是 Claude Opus 4.8，提议器、分析师、泄漏 critic 也都是 Claude Opus 4.8。四个角色分工不同：策略在 harness 里执行任务，提议器改 harness，分析师写跨轮失败反馈，critic 读候选 diff 查泄漏。基线是 $H_0$、Meta-Harness、AHE、TTHE、HarnessX；论文说所有基线从同一个 $H_0$ 出发，共享冻结策略、evolve set 和候选预算（§4.1）。这个"同预算"是论文最重要的可比性声明，但论文没有说明基线是原作者代码还是自己重跑；附录 C 只给了四段方法描述，没有给超参和提示词。`[已验证，§4.1, §C]`
 
 ### 六、结果：留出集全部不降，但幅度和口径要看清
 
@@ -225,7 +225,7 @@ Table 8 给了四个具体决策。R0-A 加"完成前验证审计"和"长任务�
 12. 噪声下限是 $S^{\star} - \delta$，$S^{\star}$ 是历史最好分数，不是当前 incumbent 的分数。这个设计允许 incumbent 在噪声带内下降，只要不跌破历史最好太多；它防的是"累积降分"，不是"任何降分"。论文把它描述成"prevents the search from walking downhill through a sequence of regressions"，这个说法比规则本身强。`[方法问题]`
 13. 最终 harness 是领域特定的：coding、agentic workspace、engineering design 各跑一次，得到三套 harness。论文的"generalization"是同一领域内换基准（SWE、JobBench、GDPval、APEX、Frontier），不是一套 harness 跨三个领域。摘要说"transferring to unseen benchmarks with different task descriptions, tool interfaces, or verifiers"，这个定义是窄的；跨领域的单一 harness 没有测。`[方法问题]`
 14. 最终 harness 只改了 4 处，而且都是"交付前检查"类的通用机制。一个自然的替代解释是：这些机制本来就应该手写进 $H_0$，RRSI 只是碰巧搜到了它们；如果是这样，RRSI 的价值在"搜索效率"，不在"正则化"。论文没有做"手工加这 4 处编辑"的对照。`[方法问题]`
-15. 提议器、分析师、critic 都是 Claude Opus 4.8，policy 也是 Claude Opus 4.8。搜索和被搜索是同一个模型家族，可能存在" proposer 知道 policy 会怎么犯错"的耦合；Gemini 3.5 Flash 的 coding 实验只换 policy，没有换 proposer/critic。跨模型家族的完整搜索没有测。`[方法问题]`
+15. 提议器、分析师、critic 都是 Claude Opus 4.8，策略也是 Claude Opus 4.8。搜索和被搜索是同一个模型家族，可能存在"提议器知道策略会怎么犯错"的耦合；Gemini 3.5 Flash 的 coding 实验只换策略，没有换提议器和 critic。跨模型家族的完整搜索没有测。`[方法问题]`
 
 **系统与成本**
 
@@ -263,12 +263,12 @@ Table 8 给了四个具体决策。R0-A 加"完成前验证审计"和"长任务�
 - **最小验证**：取 coding 运行（Terminal-Bench 2.1）的最终 harness，不改一行，直接跑 Harvey LAB 的 40 题留出、JobBench、EngDesign；比较 $H_0$ 和这套 harness。预期在 Harvey 留出上不降或小幅提升，在 EngDesign 上可能降，因为工具接口不同。
 - **失败条件**：跨领域全部下降，说明 harness 的收益仍然绑定在领域和工具面上，"通用机制"的说法需要收窄。
 
-**五、开放权重全流程：用 Qwen3-32B 同时当 policy 和 proposer**
+**五、开放权重全流程：用 Qwen3-32B 同时当策略和提议器**
 
-- **主张**：RRSI 的增益不依赖 Claude Opus 4.8 的特定能力；用开放权重模型同时当 policy、proposer、critic，相对排序应该保持，绝对分下降。
+- **主张**：RRSI 的增益不依赖 Claude Opus 4.8 的特定能力；用开放权重模型同时当策略、提议器、critic，相对排序应该保持，绝对分下降。
 - **与原文关系**：扩展，补可复现性。
-- **最小验证**：用 Qwen3-32B（或同类开放模型）当 policy 和 proposer，在 Terminal-Bench 2.1 上跑完整 RRSI 与未正则化进化，评估 SWE-bench Verified。预期 RRSI 仍比未正则化高 2 分以上，但绝对分比 Claude 低 10–20 分。
-- **失败条件**：开放权重模型的提议质量太差，RRSI 与未正则化没有差异；这说明正则化需要足够强的 proposer 才能起作用。
+- **最小验证**：用 Qwen3-32B（或同类开放模型）当策略和提议器，在 Terminal-Bench 2.1 上跑完整 RRSI 与未正则化进化，评估 SWE-bench Verified。预期 RRSI 仍比未正则化高 2 分以上，但绝对分比 Claude 低 10–20 分。
+- **失败条件**：开放权重模型的提议质量太差，RRSI 与未正则化没有差异；这说明正则化需要足够强的提议器才能起作用。
 
 **六、体裁感知的泄漏筛查：查"复述评分规则"而不只是查任务名**
 
@@ -281,7 +281,7 @@ Table 8 给了四个具体决策。R0-A 加"完成前验证审计"和"长任务�
 
 仓库内与本文最接近的是 [li2026-oo-harness](li2026-oo-harness.md)：两篇都在做 harness 进化，但杠杆不同。OO-Harness 改的是 harness 的表示，把专家 harness 做成基座 harness 的子类，用继承和覆盖复用代码；RRSI 不改表示，改的是搜索过程，用正则化约束"哪些改动能留下"。OO-Harness 的接受规则、路由依据和继承机制，可以作为 RRSI 的提议侧组件；RRSI 的噪声下限和成本规则，也可以加到 OO-Harness 的选择侧。
 
-[wang2026-rsi-hub](wang2026-rsi-hub.md) 把进化策略与执行装置拆开，用配方、算子、档案和准入记录来组织进化；RRSI 是一个具体的进化策略（提议 + 选择），可以作为一个配方跑在 RSIHub 上。RSIHub 的档案记录（候选 commit、父代、配方快照、指纹）正好可以补 RRSI 缺失的搜索成本与 provenance；RRSI 的七条约束可以补 RSIHub 缺失的"选择纪律"。
+[wang2026-rsi-hub](wang2026-rsi-hub.md) 把进化策略与执行装置拆开，用配方、算子、评测记录和准入记录来组织进化；RRSI 是一个具体的进化策略（提议 + 选择），可以作为一个配方跑在 RSIHub 上。RSIHub 的评测记录（`archive.jsonl`，含候选 commit、父代、配方快照、指纹）正好可以补 RRSI 缺失的搜索成本与 provenance；RRSI 的七条约束可以补 RSIHub 缺失的"选择纪律"。
 
 [yeh2026-oat](yeh2026-oat.md) 做 agent 失败归因，RRSI 的分析师每轮写跨轮失败反馈；OAT 可以作为 RRSI 的 Analyze 算子，把"哪一步失败"变成更精确的反馈，而不是让一个 LLM 读完整轨迹写总结。两篇的粒度不同：OAT 是步级，RRSI 是轮级。
 
@@ -292,7 +292,7 @@ Table 8 给了四个具体决策。R0-A 加"完成前验证审计"和"长任务�
 ## 可复现
 
 - 代码：<https://github.com/google-research/rrsi>；项目网站：<https://regularized-rsi.com>（逐轮提议、critic 判决、接受决定、harness diff）。
-- 策略与提议模型：Claude Opus 4.8（policy、proposer、analyst、leakage critic）；Gemini 3.5 Flash（coding 的策略鲁棒性实验）；Gemini 3.1 Flash Lite（跨模型迁移实验）。
+- 策略与提议模型：Claude Opus 4.8（策略、提议器、分析师、泄漏 critic）；Gemini 3.5 Flash（coding 的策略鲁棒性实验）；Gemini 3.1 Flash Lite（跨模型迁移实验）。
 - 基准：Terminal-Bench 2.1（89 题）、SWE-bench Verified、Harvey LAB（120 evolve + 40 留出）、JobBench、GDPval（185 题）、APEX-Agents（480 题）、EngDesign（61 题）、Frontier-Eng（47 题，38 题计分）。
 - 超参：$T = 20/20/40$，$k = 2/2/4$，$\delta = 0.017/0.004/0.020$，$b_{\min} = 1$，$b_{\max} = 4/3/4$，$w = 3$，$m_{\text{draft}} = 1$，$n_{\text{prune}} = 4/5$，$\beta_0 = 0.10/0.10/0.15$，$\beta_1 = 44.5/35.4/24.4$。
 - 统计：配对 task-level bootstrap，10,000 次重采样，95% 百分位区间；主实验每个领域两次独立进化。
