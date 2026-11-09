@@ -6,7 +6,7 @@
 
 - 分支：`main`（跟踪 `origin/main`）
 - 远程：`origin` → `git@github.com:btroops/paper-reading.git`
-- 最近内容提交：`eaade9c notes(xu2025-sra): 澄清 lossy-context surprisal 的条件集`；`087e2ad notes(xu2025-sra): 解释依存与 surprisal`；`8b615f6 docs(index): 收录 Imperfective Paradox、HySparse2、SRA 三篇`；`c8118d1 notes(xu2025-sra): 用依存局部性检验记忆资源的战略分配`
+- 最近内容提交：`68e3565 notes(xu2025-sra): 解释 w、r 与先验`；`eaade9c notes(xu2025-sra): 澄清 lossy-context surprisal 的条件集`；`087e2ad notes(xu2025-sra): 解释依存与 surprisal`；`8b615f6 docs(index): 收录 Imperfective Paradox、HySparse2、SRA 三篇`
 - 已归档论文：21 篇（`ma2026-imperfective-paradox`，arXiv 2601.09373v3；`wei2026-hysparse2`，arXiv 2609.26368v1；`xu2025-sra`，arXiv 2503.14728v2；`fu2025-c2c`，arXiv 2510.03215v2；`guo2026-t-mem`，arXiv 2606.15405v2；`xia2026-rrsi`，arXiv 2609.24972v3；`zhou2025-onerec`，arXiv 2506.13695v4；`liu2025-onerec-think`，arXiv 2510.11639v2；`onerec2026-onereason`，arXiv 2606.06260v1；`jiang2026-jev-mem`，arXiv 2609.23986v1；`he2026-memory-tax`，arXiv 2610.34073v1；`bao2026-raw-rag`，arXiv 2610.30755v1；`yeh2026-oat`，arXiv 2607.12747v2；`wan2026-decision-rag`，arXiv 2610.35868v1；`wang2026-rsi-hub`，arXiv 2610.32253v1；`li2026-oo-harness`，arXiv 2610.28380v1；`kumar2026-stair`，arXiv 2609.03874v2；`ho2026-declarative-attention`，arXiv 2609.02737v2；`du2026-a-rag`，arXiv 2602.03442v1；`li2026-dci`，arXiv 2605.05242v1；`hu2026-sage`，arXiv 2602.05975v2）
 - 已精读论文：21 篇（`ma2026-imperfective-paradox`、`wei2026-hysparse2`、`xu2025-sra`、`fu2025-c2c`、`guo2026-t-mem`、`xia2026-rrsi`、`zhou2025-onerec`、`liu2025-onerec-think`、`onerec2026-onereason`、`jiang2026-jev-mem`、`he2026-memory-tax`、`bao2026-raw-rag`、`yeh2026-oat`、`wan2026-decision-rag`、`wang2026-rsi-hub`、`li2026-oo-harness`、`kumar2026-stair`、`ho2026-declarative-attention`、`du2026-a-rag`、`li2026-dci`、`hu2026-sage`）
 - 阅读模型：`WWH-v9`（`WWH.md`），新增不许偷懒省字规则（指代落地、比较写全两边、数字写清口径）；v8 的论证不跳步、v7 的术语与反直译规则继续有效；Why 只提问、What 不写机制、段落 3–6 句
@@ -26,7 +26,7 @@
 - 核心数字（SRA）：Study 1 用 UD 2.11 的 10 种语言，先行词 surprisal 对依存距离的正效应在 6/10 语言显著（丹麦、英语、德语、意大利、俄语、西班牙），4/10 负效应（日语、韩语、汉语、土耳其语）；主语关系 5/10 正效应，宾语关系按词数计 0 种语言正效应（意大利语按 surprisal 计部分支持）。Study 2a（Natural Stories，181 人）在全部/主语关系上发现负的 L×surprisal 交互；Study 2b（Dundee，10 人）只在主语关系第一遍阅读上看到负交互，基线局部性效应本身不稳。理论：高斯编码-贝叶斯解码下，固定总精度时更意外的输入应获得更高编码精度（Appendix A.2）。
 - 原文疑点（已写入各笔记 Ideas）：Ma 的 Group C 金标签是理论语义学的 Unknown，人工评估只查语法/流利/充分，没有人类逻辑标注；表示分析用 BERT 而非被评测 LLM；r=-0.93 的 p=0.07；规模分析只有 Qwen2.5；提示条件不是单变量；模型只覆盖 7–9B、英语、模板句。HySparse2 的主对比同时改了头配置（MQA 64/1/256 vs GQA 64/4/192/128），KV-Cache/效率收益不能全归给两级共享；通用能力有 2–5 分下降；没有端到端 agent 成功率；FLOPs/KV 是静态计数，不是延迟。SRA 的词频控制用英语 norms 覆盖 10 种语言；120 个检验无多重比较校正；主语/宾语子集用线性模型、全部关系用 LME，口径不一致；6/10 正效应不能写成"普遍规律"；产生侧可能是 audience design/UID；理解侧有交互无主效应；surprisal 来自 GPT-3/mGPT；高斯推导是理想化。
 - 交叉引用：Ma 与 `he2026-memory-tax` 只在"记忆有成本、要分配"的概念上类比，对象分别是人类工作记忆与 agent 外部记忆；HySparse2 与 `ho2026-declarative-attention`（训练无关的注意力声明 vs 训练出来的稀疏架构）、`fu2025-c2c`（跨模型 KV 融合 vs 跨层 KV 共享）、`hu2026-sage`（长上下文检索质量 vs 底层注意力效率）、`he2026-memory-tax`（FLOPs 节省要减去延迟/传输的税）、`kumar2026-stair`（检索粒度 vs 注意力粒度）互引；SRA 与 `he2026-memory-tax`（人类记忆分配 vs agent 记忆收益/税）、`bao2026-raw-rag`（强基线/同预算的方法论）互引。
-- 提交：`9b51332`（Ma 笔记）、`8f1ef1b`（HySparse2 笔记）、`c8118d1`（SRA 笔记）、`8b615f6`（索引）、`087e2ad`（SRA 术语解释）、`eaade9c`（lossy-context 条件集澄清）；本文件随 `docs(status)` 提交。
+- 提交：`9b51332`（Ma 笔记）、`8f1ef1b`（HySparse2 笔记）、`c8118d1`（SRA 笔记）、`8b615f6`（索引）、`087e2ad`（SRA 术语解释）、`eaade9c`（lossy-context 条件集澄清）、`68e3565`（w、r 与先验解释）；本文件随 `docs(status)` 提交。
 
 ### 2026-11-09 精读 C2C / T-Mem / RRSI（通信、记忆、harness 三层）
 
