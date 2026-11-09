@@ -42,7 +42,7 @@ model: WWH-v9
 
 但 harness 工程目前主要靠人。工程师读失败轨迹，找到问题，改提示词或控制流，再跑一遍。这个过程受限于"工程师能读多少条轨迹"：读得越多，改得越准；读不过来，就只能凭经验猜。于是出现了一类自动化方法：让一个 LLM 读失败反馈，提出 harness 的修改，再在任务集上评估，保留分数更高的版本。论文把这种"用当前系统的反馈改进塑造当前系统行为的 harness"的过程，叫 agent 系统层面的递归自我改进（recursive self-improvement, RSI）。
 
-这套循环有一个结构性问题：它反复在同一个有限的 evolve set（进化集）上提出、评估、选择候选，而 evolve set 的分数是带噪声的。候选改得越多，越容易拟合这批任务的特定模式；选得越多，越容易把噪声当成信号；堆的提示词和工具越多，越容易用测试时计算换分数。三种行为叠加，结果是 evolve set 上的分数涨了，换一个基准就掉回去。论文在 Fig. 1(a) 里画了这件事：Meta-Harness 在 evolve set 上最高，到了分布外只比初始 harness 高 0.9 分；AHE 和 TTHE 在分布外甚至低于初始 harness，TTHE 低 1.7 分。
+这套循环有一个结构性问题：它反复在同一个有限的 evolve set（进化集）上提出、评估、选择候选，而 evolve set 的分数是带噪声的。候选改得越多，越容易拟合这批任务的特定模式；选得越多，越容易把噪声当成信号；堆的提示词和工具越多，越容易用测试时计算换分数。三种行为叠加，结果是 evolve set 上的分数涨了，换一个基准就掉回去。论文在 Fig. 1(a) 里画了这件事：Meta-Harness 在 evolve set 上最高，到了分布外（out-of-distribution, OOD）只比初始 harness 高 0.9 分；AHE（Agentic Harness Engineering）和 TTHE（Test-Time Harness Evolution）在分布外甚至低于初始 harness，TTHE 低 1.7 分。
 
 为什么现在必须解决？因为 harness 进化方法正在快速增加，而评测集都很小：Terminal-Bench 2.1 只有 89 题，Harvey LAB 的 evolve set 是 120 题，EngDesign 只有 61 题。在这么小的集合上反复自适应地评估，过拟合几乎是必然的；而且 harness 的搜索空间是开放的程序空间，比调超参更容易记住任务。论文引用的 concurrent work 也观察到，很多"进化收益"其实来自任务特定拟合、评估噪声或测试时计算，而不是可复用的机制。
 
@@ -52,7 +52,7 @@ model: WWH-v9
 
 先交代任务。输入是一个初始 harness $H_0$、一个冻结的底座策略 $\pi$、一个 evolve set $\mathcal{D}_{\text{evolve}}$ 和一个候选预算；输出是一个最终的 harness $H_T$（一段可执行的代码与配置）。进化只在 evolve set 上跑；跑完之后，$H_T$ 不改一行，直接在分布内留出集和分布外基准上评测。边界是：底座模型权重全程冻结；每个领域（coding、agentic workspace、engineering design）单独进化一套 harness；不研究权重更新，也不研究跨领域的单一 harness。
 
-论文的答案是：把 harness 进化当成一个自适应的经验优化问题，在提议侧和选择侧同时加正则化，可以在保持编辑空间开放的前提下，把 evolve set 的收益转成分布外收益。RRSI 在八个基准、三个领域上，evolve set 最高涨 6.0 分，分布外最高涨 4.7 分（摘要写 4.3，见 Ideas），六个留出切分全部不降；相对未正则化的进化，最终 harness 每次 trial 少用约 36% 的 policy token（摘要写 30%）。`[已验证，Fig. 3, Table 2]`
+论文的答案是：把 harness 进化当成一个自适应的经验优化问题，在提议侧和选择侧同时加正则化，可以在保持编辑空间开放的前提下，把 evolve set 的收益转成分布外收益。RRSI 在八个基准、三个领域上，evolve set 最高涨 6.0 分，分布外最高涨 4.7 分（摘要写 4.3，见 Ideas），六个留出切分全部不降；相对未正则化的进化，最终 harness 每次 trial 少用约 36% 的 policy token（策略模型在一条轨迹里消耗的 token 数；摘要写 30%）。`[已验证，Fig. 3, Table 2]`
 
 ### 新认识：harness 进化的过拟合是三种行为耦合，不是单一原因
 
@@ -165,9 +165,9 @@ $\delta$ 是唯一"必须测、不能调"的值：它来自 $H_0$ 的重复评�
 
 ### 五、实验设置：八个基准，三种角色
 
-八个基准分三种角色。coding：Terminal-Bench 2.1 是 evolve set（89 个容器化终端任务，单元测试判分），SWE-bench Verified 是分布外（真实 GitHub issue，fail-to-pass 与 pass-to-pass 测试）。agentic workspace：Harvey LAB 是 evolve set（120 题）加分布内留出（40 题），JobBench、GDPval、APEX-Agents 是分布外；Harvey 的任务是法律工作，交付 Word/Excel/PDF 文件，按 20–100 条 criterion 的 rubric 判分，约 14,000 条 verdict/次；GDPval 是 185 个任务、三方评审团、双向呈现；APEX-Agents 是 480 个任务、MCP 工具面、pass@1。engineering design：EngDesign 是 evolve set（61 题，冻结模拟器判分），Frontier-Eng 是分布外（47 题，38 题能构建环境，Medal Score）。`[已验证，§B]`
+八个基准分三种角色。coding：Terminal-Bench 2.1 是 evolve set（89 个容器化终端任务，单元测试判分），SWE-bench Verified 是分布外（真实 GitHub issue，fail-to-pass 与 pass-to-pass 测试）。agentic workspace：Harvey LAB 是 evolve set（120 题）加分布内留出（40 题），JobBench、GDPval、APEX-Agents 是分布外；Harvey 的任务是法律工作，交付 Word/Excel/PDF 文件，按 20–100 条 criterion 的 rubric 判分，约 14,000 条 verdict/次；GDPval 是 185 个任务、三方评审团、双向呈现；APEX-Agents 是 480 个任务、MCP 工具面、pass@1（单次采样成功率）。engineering design：EngDesign 是 evolve set（61 题，冻结模拟器判分），Frontier-Eng 是分布外（47 题，38 题能构建环境，Medal Score）。`[已验证，§B]`
 
-策略是 Claude Opus 4.8，提议器、分析师、泄漏 critic 也都是 Claude Opus 4.8。基线是 $H_0$、Meta-Harness、AHE、TTHE、HarnessX；论文说所有基线从同一个 $H_0$ 出发，共享冻结策略、evolve set 和候选预算（§4.1）。这个"同预算"是论文最重要的可比性声明，但基线是论文自己重跑的，不是原作者代码；附录 C 只给了四段方法描述，没有给超参和提示词。`[已验证，§4.1, §C]`
+策略是 Claude Opus 4.8，提议器、分析师、泄漏 critic 也都是 Claude Opus 4.8。基线是 $H_0$、Meta-Harness、AHE、TTHE、HarnessX；论文说所有基线从同一个 $H_0$ 出发，共享冻结策略、evolve set 和候选预算（§4.1）。这个"同预算"是论文最重要的可比性声明，但论文没有说明基线是原作者代码还是自己重跑；附录 C 只给了四段方法描述，没有给超参和提示词。`[已验证，§4.1, §C]`
 
 ### 六、结果：留出集全部不降，但幅度和口径要看清
 
@@ -206,7 +206,7 @@ Table 8 给了四个具体决策。R0-A 加"完成前验证审计"和"长任务�
 
 5. 论文没有说明四个基线是原作者代码还是自己重跑。论文说"same $H_0$, same policy, same evolve set, same candidate budget"，但附录 C 只给了四段方法描述，没有给基线的提示词、轮数、候选池大小、接受规则。Meta-Harness 在 evolve set 上 93.0，比 RRSI 高 2.5 分，说明基线并不弱；但读者无法判断它们的实现是否和原论文一致。`[评估问题]`
 6. 主表的 LLM-as-judge 在不同基准上不是同一个 judge：Harvey 和 APEX 用 Gemini-3.5-Flash，JobBench 用 Gemini-3.5-Flash 与 Claude Opus 4.8 的平均，GDPval 用 Qwen3.6-35B-A3B、Claude Sonnet 4.6、Gemini-3.1 Pro 三方评审。judge 换了，分数尺度就换了；跨基准的绝对值不能直接比较，只有同一基准内的前后对比有意义。论文没有报 judge 之间的一致性。`[评估问题]`
-7. 分布内留出只有 Harvey LAB 的 40 题，evolve set 是 120 题；40 题的置信区间很宽（+2.3 [+0.9, +3.8]）。论文把"分布内留出"和"分布外"分开报是好的，但 40 题的留出不足以支撑"in-distribution generalization"的强结论。`[评估问题]`
+7. 分布内留出只有 Harvey LAB 的 40 题，evolve set 是 120 题；40 题的置信区间很宽（+2.3 [+0.9, +3.8]）。论文把"分布内留出"和"分布外"分开报是好的，但 40 题的留出不足以支撑"分布内泛化"的强结论。`[评估问题]`
 8. Terminal-Bench 2.1 的 89 题、EngDesign 的 61 题、Frontier-Eng 的 38 题都很小；+6.0、+4.9、+4.3 这些数字的置信区间下界分别只有 +4.3、+1.8、+1.1。论文给了区间，但摘要只写点估计，读者容易把 +6.0 当成确定值。`[评估问题]`
 
 **方法与归因**
@@ -271,7 +271,7 @@ Table 8 给了四个具体决策。R0-A 加"完成前验证审计"和"长任务�
 
 ## 相关工作
 
-仓库内与本文最接近的是 [li2026-oo-harness](li2026-oo-harness.md)：两篇都在做 harness 进化，但杠杆不同。OO-Harness 改的是 harness 的表示，把专家 harness 做成基座 harness 的子类，用继承和覆盖复用代码；RRSI 不改表示，改的是搜索 dynamics，用正则化约束"哪些改动能留下"。OO-Harness 的接受规则、路由依据和继承机制，可以作为 RRSI 的提议侧组件；RRSI 的噪声下限和成本规则，也可以加到 OO-Harness 的选择侧。
+仓库内与本文最接近的是 [li2026-oo-harness](li2026-oo-harness.md)：两篇都在做 harness 进化，但杠杆不同。OO-Harness 改的是 harness 的表示，把专家 harness 做成基座 harness 的子类，用继承和覆盖复用代码；RRSI 不改表示，改的是搜索过程，用正则化约束"哪些改动能留下"。OO-Harness 的接受规则、路由依据和继承机制，可以作为 RRSI 的提议侧组件；RRSI 的噪声下限和成本规则，也可以加到 OO-Harness 的选择侧。
 
 [wang2026-rsi-hub](wang2026-rsi-hub.md) 把进化策略与执行装置拆开，用配方、算子、档案和准入记录来组织进化；RRSI 是一个具体的进化策略（提议 + 选择），可以作为一个配方跑在 RSIHub 上。RSIHub 的档案记录（候选 commit、父代、配方快照、指纹）正好可以补 RRSI 缺失的搜索成本与 provenance；RRSI 的七条约束可以补 RSIHub 缺失的"选择纪律"。
 
