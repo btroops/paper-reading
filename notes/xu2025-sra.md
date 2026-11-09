@@ -32,7 +32,7 @@ model: WWH-v9
 
 再说 **surprisal**。它是信息论里的一个量：$-\log p(w \mid \text{context})$，单位是 bit，衡量"在当前上下文里，下一个词有多难猜"。比如在 "The cute ___" 后面，cat 的概率高，surprisal 低；monster 的概率低，surprisal 高。surprisal 理论说，一个词的 surprisal 越高，加工难度越大，阅读时间越长。`[§2.1, §3.1]`
 
-**Lossy-context surprisal** 进一步说：预测下一个词时，所用到的上下文不是完整原文，而是工作记忆里一份有损的表征；有些词会被擦除、衰减或干扰。所以 surprisal 不只取决于"上下文本身有多可预测"，还取决于"记忆里还剩下多少上下文"。`[§2.1, §3.1]`
+**Lossy-context surprisal** 进一步说：预测下一个词时，所用到的上下文不是完整原文，而是工作记忆里一份有损的表征；有些词会被擦除、衰减或干扰。所以它算的不是 $p(w \mid \text{完整上下文})$，而是 $p(w \mid \text{记忆里保留下来的那部分上下文})$。举个具体的例子："The keys are in the drawer. ...（隔了十个词）... They are in the ___"。完整上下文里，drawer 强烈预测 drawer；如果前面的 drawer 已经被擦除，记忆里只剩 "They are in the ___"，预测就弱得多，surprisal 也就更高。`[§2.1, §3.1]`
 
 这三个理论都把"记忆容量有限"当作背景约束，但没有回答一个更细的问题：在容量有限的前提下，资源应该按什么规则分配给不同的词？DLT 说的是"距离越远越难"，surprisal 理论说的是"越意外越难"，lossy-context surprisal 说的是"记忆越有损越难"；三者都没有说"有限的资源应该优先给谁"。
 
