@@ -28,7 +28,13 @@ model: WWH-v9
 
 人处理句子时，工作记忆的容量有限，而且表征带噪声。一个词听过去，如果不复述，几秒后就会衰减；中间再插入几个词，还会互相干扰。可是语言理解看起来毫不费力：我们能在几百毫秒内把语音流变成结构，把前面的主语一直记到句末的动词。这两件事放在一起，就是一个资源分配问题：有限的记忆资源，应该怎么分给句子里的各个单位？`[§1]`
 
-已有的理论各自回答了一部分。**依存局部性理论**（Dependency Locality Theory, DLT）说，依存距离越长，维持未完成依存和整合的成本越高，所以语言倾向把相互依存的词放近。**surprisal 理论**说，一个词的加工难度与它的 surprisal（$-\log p(w \mid \text{context})$，越不可预测值越大）成正比。** lossy-context surprisal** 进一步说，预测所依据的上下文记忆本身是有损的，某些词会被擦除。这三个理论都把"记忆容量有限"当作背景约束，但没有回答一个更细的问题：在容量有限的前提下，资源应该按什么规则分配给不同的词？`[§2.1, §3.1]`
+先说**依存**（dependency）。句子里很多词不是孤立的：一个词在语法上依附于另一个词。比如 "The monster in the tower approached the princess" 里，approached 是中心词（head），monster 是它的主语依存词（dependent），princess 是宾语依存词；monster 和 approached 之间隔着 in、the、tower 三个词，这条依存的长度就是 3。换成 "The monster who stayed in the tower near the castle approached..."，monster 和 approached 之间隔着 who、stayed、in、the、tower、near、the、castle 八个词，长度就是 8。**依存局部性理论**（Dependency Locality Theory, DLT）说，依存距离越长，听话人越要在记忆里维持一个"还没等到中心词"的未完成结构，整合成本越高；所以语言倾向把相互依存的词放近。`[§3.1]`
+
+再说 **surprisal**。它是信息论里的一个量：$-\log p(w \mid \text{context})$，单位是 bit，衡量"在当前上下文里，下一个词有多难猜"。比如在 "The cute ___" 后面，cat 的概率高，surprisal 低；monster 的概率低，surprisal 高。surprisal 理论说，一个词的 surprisal 越高，加工难度越大，阅读时间越长。`[§2.1, §3.1]`
+
+**Lossy-context surprisal** 进一步说：预测下一个词时，所用到的上下文不是完整原文，而是工作记忆里一份有损的表征；有些词会被擦除、衰减或干扰。所以 surprisal 不只取决于"上下文本身有多可预测"，还取决于"记忆里还剩下多少上下文"。`[§2.1, §3.1]`
+
+这三个理论都把"记忆容量有限"当作背景约束，但没有回答一个更细的问题：在容量有限的前提下，资源应该按什么规则分配给不同的词？DLT 说的是"距离越远越难"，surprisal 理论说的是"越意外越难"，lossy-context surprisal 说的是"记忆越有损越难"；三者都没有说"有限的资源应该优先给谁"。
 
 论文提出的答案是 **Strategic Resource Allocation**（SRA，战略资源分配）：工作记忆资源应该优先分配给**意外**（surprising）的语言单位。理由不是"意外的词更重要"这种直觉，而是一个资源理性（resource-rational）的推导。记忆检索本质上是贝叶斯推断：给定一个带噪声的内部表征 $r$，用先验 $p(w)$ 去重建输入 $w$。先验越强、输入越可预测，重建越容易；先验越弱、输入越意外，重建越依赖编码精度。如果所有单位都分配同样的资源（均匀分配），高意外单位的检索误差会更大；把资源从低意外单位挪一点给高意外单位，总误差会下降。于是最优策略是：给高意外单位更高的编码精度，让它们在后续检索时更抗干扰、更抗衰减。`[§2.1.2, §2.2]`
 
