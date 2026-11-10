@@ -6,16 +6,30 @@
 
 - 分支：`main`（跟踪 `origin/main`）
 - 远程：`origin` → `git@github.com:btroops/paper-reading.git`
-- 最近内容提交：`8b615f6 docs(index): 收录 Imperfective Paradox、HySparse2、SRA 三篇`；`c8118d1 notes(xu2025-sra): 用依存局部性检验记忆资源的战略分配`；`8f1ef1b notes(wei2026-hysparse2): 两级 KV 共享把 prefill 缩到一半`；`9b51332 notes(ma2026-imperfective-paradox): 目的论偏置让进行时被当成完成`
-- 已归档论文：21 篇（`ma2026-imperfective-paradox`，arXiv 2601.09373v3；`wei2026-hysparse2`，arXiv 2609.26368v1；`xu2025-sra`，arXiv 2503.14728v2；`fu2025-c2c`，arXiv 2510.03215v2；`guo2026-t-mem`，arXiv 2606.15405v2；`xia2026-rrsi`，arXiv 2609.24972v3；`zhou2025-onerec`，arXiv 2506.13695v4；`liu2025-onerec-think`，arXiv 2510.11639v2；`onerec2026-onereason`，arXiv 2606.06260v1；`jiang2026-jev-mem`，arXiv 2609.23986v1；`he2026-memory-tax`，arXiv 2610.34073v1；`bao2026-raw-rag`，arXiv 2610.30755v1；`yeh2026-oat`，arXiv 2607.12747v2；`wan2026-decision-rag`，arXiv 2610.35868v1；`wang2026-rsi-hub`，arXiv 2610.32253v1；`li2026-oo-harness`，arXiv 2610.28380v1；`kumar2026-stair`，arXiv 2609.03874v2；`ho2026-declarative-attention`，arXiv 2609.02737v2；`du2026-a-rag`，arXiv 2602.03442v1；`li2026-dci`，arXiv 2605.05242v1；`hu2026-sage`，arXiv 2602.05975v2）
-- 已精读论文：21 篇（`ma2026-imperfective-paradox`、`wei2026-hysparse2`、`xu2025-sra`、`fu2025-c2c`、`guo2026-t-mem`、`xia2026-rrsi`、`zhou2025-onerec`、`liu2025-onerec-think`、`onerec2026-onereason`、`jiang2026-jev-mem`、`he2026-memory-tax`、`bao2026-raw-rag`、`yeh2026-oat`、`wan2026-decision-rag`、`wang2026-rsi-hub`、`li2026-oo-harness`、`kumar2026-stair`、`ho2026-declarative-attention`、`du2026-a-rag`、`li2026-dci`、`hu2026-sage`）
+- 最近内容提交：见下方"最近会话"里的提交清单；上一批为 `8b615f6 docs(index): 收录 Imperfective Paradox、HySparse2、SRA 三篇`
+- 已归档论文：26 篇（`cadet2026-workflow-mining`，arXiv 2610.31709v1；`li2026-thinkingbox`，arXiv 2608.19741v5；`schneider2026-lakehouse-skills`，arXiv 2606.01185v2；`wu2026-longmemeval-v2`，arXiv 2605.12493v1；`pysklo2026-agent-diff`，arXiv 2602.11224v3；`ma2026-imperfective-paradox`，arXiv 2601.09373v3；`wei2026-hysparse2`，arXiv 2609.26368v1；`xu2025-sra`，arXiv 2503.14728v2；`fu2025-c2c`，arXiv 2510.03215v2；`guo2026-t-mem`，arXiv 2606.15405v2；`xia2026-rrsi`，arXiv 2609.24972v3；`zhou2025-onerec`，arXiv 2506.13695v4；`liu2025-onerec-think`，arXiv 2510.11639v2；`onerec2026-onereason`，arXiv 2606.06260v1；`jiang2026-jev-mem`，arXiv 2609.23986v1；`he2026-memory-tax`，arXiv 2610.34073v1；`bao2026-raw-rag`，arXiv 2610.30755v1；`yeh2026-oat`，arXiv 2607.12747v2；`wan2026-decision-rag`，arXiv 2610.35868v1；`wang2026-rsi-hub`，arXiv 2610.32253v1；`li2026-oo-harness`，arXiv 2610.28380v1；`kumar2026-stair`，arXiv 2609.03874v2；`ho2026-declarative-attention`，arXiv 2609.02737v2；`du2026-a-rag`，arXiv 2602.03442v1；`li2026-dci`，arXiv 2605.05242v1；`hu2026-sage`，arXiv 2602.05975v2）
+- 已精读论文：26 篇（`cadet2026-workflow-mining`、`li2026-thinkingbox`、`schneider2026-lakehouse-skills`、`wu2026-longmemeval-v2`、`pysklo2026-agent-diff`、`ma2026-imperfective-paradox`、`wei2026-hysparse2`、`xu2025-sra`、`fu2025-c2c`、`guo2026-t-mem`、`xia2026-rrsi`、`zhou2025-onerec`、`liu2025-onerec-think`、`onerec2026-onereason`、`jiang2026-jev-mem`、`he2026-memory-tax`、`bao2026-raw-rag`、`yeh2026-oat`、`wan2026-decision-rag`、`wang2026-rsi-hub`、`li2026-oo-harness`、`kumar2026-stair`、`ho2026-declarative-attention`、`du2026-a-rag`、`li2026-dci`、`hu2026-sage`）
 - 阅读模型：`WWH-v9`（`WWH.md`），新增不许偷懒省字规则（指代落地、比较写全两边、数字写清口径）；v8 的论证不跳步、v7 的术语与反直译规则继续有效；Why 只提问、What 不写机制、段落 3–6 句
 - 命名规则：`<第一作者姓><年份>-<短标题>`，arXiv 编号只写在 front matter 与 README 索引
 - Python 环境：uv + Python 3.12，已装 `pymupdf`（`pyproject.toml` / `uv.lock` 已提交）
 - 原文策略：PDF 仅本地保存，`papers/` 已被 `.gitignore` 排除，远程只保留笔记与索引
-- 进行中：无；Imperfective Paradox / HySparse2 / SRA 三篇已完成并提交（`9b51332`、`8f1ef1b`、`c8118d1`、`8b615f6`）
+- 进行中：无；五篇 agent 评测与方法论文已完成并提交（见下节）
 
 ## 最近会话
+
+### 2026-11-10 精读五篇 agent 评测论文（工作流挖掘 / 状态评测 / 技能优化 / 记忆基准 / API 状态差分）
+
+- 归档与命名：五篇 PDF 均从 arXiv 下载到 `papers/<paper-id>/paper.pdf`，已提取 `paper.txt`。`paper-id` 依次为 `cadet2026-workflow-mining`（2610.31709v1，第一作者 Cadet）、`li2026-thinkingbox`（2608.19741v5，第一作者 Li）、`schneider2026-lakehouse-skills`（2606.01185v2，第一作者 Schneider）、`wu2026-longmemeval-v2`（2605.12493v1，第一作者 Wu）、`pysklo2026-agent-diff`（2602.11224v3，第一作者 Pysklo）。第一篇初次归档为 `cadet2026-apex`，因正文从未出现 APEX 这个名字（只在项目页与代码链接里），改为短标题 `workflow-mining`。
+- 环境问题（已绕过，未改全局配置）：`UV_PYTHON_INSTALL_MIRROR` 指向的清华镜像缺少 20261026 批次，导致 `uv run` 无法下载 Python 3.12。本次逐条命令临时前置 `UV_PYTHON_INSTALL_MIRROR=https://releases.astral.sh/github/python-build-standalone/releases/download` 完成安装；是否需要写进 `AGENTS.md` 第 3 节待决定。
+- 判型：`cadet2026-workflow-mining` 实证与基准类为主、附系统与算法类；`li2026-thinkingbox` 实证与基准类为主、附系统与算法类；`schneider2026-lakehouse-skills` 系统与算法类为主、附实证与基准类；`wu2026-longmemeval-v2` 实证与基准类为主、附系统与算法类；`pysklo2026-agent-diff` 实证与基准类为主、附系统与算法类。
+- 核心数字（workflow-mining）：1,701/1,740 条搜索完成，34,020 个候选，过滤 1,031 个（3.0%）跑不通的，删 4 个全零滑块谜题后 28,568 个工作流 / 26 谜题；切分 19,822 / 4,278 / 4,468。验证集 $R^2$ 从纯 `graph.py` 的 0.521（8 特征）升到含 `prompt.py` 的 0.638（27 特征）。三条原则的中位差：Star 开局 训练 −0.036（$p=.008$，7/13 为负、0/13 为正）、留出 −0.045（$p=.038$，4/12 为负、0/12 为正）；SharedMemory 训练 +0.072、留出 +0.135（9/10 符号一致）；提示词字符数 训练 +0.073（11/13）、留出 +0.118（13/13 符号一致），占位符个数 留出 +0.059（11/13）。算子平均分 SM 0.23 / Debate 0.18 / Star 0.16；成本 SM 0.25 美元 vs 0.12–0.13 美元。评估成本约 4,454 美元，不含优化器调用。
+- 核心数字（thinkingbox）：507 题（零售 98、出行 104、车险 100、数字银行 104、咨询 101），每題 20 次。单次通过率 Opus 5 66.50、GPT-5.4 65.36、Kimi-K3 57.37、Qwen3.8-27B 51.70；20 次全对 Opus 5 47.53、GPT-6 Astra 46.89、GPT-5.4 30.62、Kimi-K3 17.60、Qwen3.8-27B 10.93；pass@20 最高 Kimi-K3 93.89。0/20 与 20/20 题数：Opus 5 106/241、GPT-5.4 45/128、Grok-4.3 274/0。失败主导签名平均：工具使用 79.9%、状态更新错误 10.3%、用户诉求未解决 7.0%、无改状态动作 2.9%。成本 0.127–18.796 美元/次成功，6.80–9,200.75 美元/全对题。477/507 只判终态，30 题加 rubric。
+- 核心数字（lakehouse-skills）：780 题（只读 365、写路径 415），六个技能各按 70/15/15 切。留出集奖励每个技能都升，平均 +12.0%、最高 28.6%（正文只给平均值，28.6% 对应哪个技能未点名）；优化后技能平均长 27.2 倍。生产日志先验：计算类 导入 40%/查询 35%/运行 25%，分支类 合并 43%/删除 37%/创建 11%。三层判分（轨迹/湖仓状态/回复），奖励为通过检查比例。仅 `claude-sonnet-4-6` + Claude Code 一个配置。
+- 核心数字（longmemeval-v2）：451 题（静态 211、动态 66、工作流 83、陷阱 91），Small 100 条轨迹 / 25.6M token，Medium 每题约 498 条 / 114.8M token。无上下文最好 14.1%；oracle 全轨迹 Qwen3.5-9B 59.6%、切片+笔记 82.5%、Codex 89.7%。主表 Small/Medium：朴素 RAG 0.428/0.381、加笔记 0.510/0.459、AgentRunbook-R 0.586/0.570（26.9 s）、Codex 0.699/0.687（177.2 s）、AgentRunbook-C 0.749/0.701（108.3 s）。消融：去状态池掉到 0.423（静态 0.661→0.286），去事件池 0.556，去笔记池只掉 0.007；去工作流说明 0.701，去清单主要涨延迟。
+- 核心数字（agent-diff）：224 题（Box 48、Slack 59、Linear 57、Calendar 60），108 个接口，$n^*$ 均值 5.3、范围 1–24，66% 隐式信息、53% 多实体。无文档断言加权分 38.0–88.1（DeepSeek-v3.2 88.1、Devstral 86.0、Llama-4-Scout 38.0），通过率 29%–76%。相关文档让通过率 +7.0 pp（$P=1.00$）、分数 +2.4（$P=0.73$）；全文档分数 +0.2、Linear −4.0。Hub 题 +19.0±10.5 vs 非 Hub +3.4±4.4（$P(\text{H}>\text{NH})=0.999$）。
+- 原文疑点（已写入各笔记 Ideas）：workflow-mining 的结论是策略条件估计量（附录 A 自认）、特征与搜索轮次相关而轮次被剥掉、留出集每臂簇数 4–14 低于 15 的门槛、成本未进目标函数、门控特征含提示词长度导致循环论证、300 次试验混有非特征试验且 70 个候选无多重比较校正。thinkingbox 的 RLFT 模型在同一基准训练与评测且未报留出切分、pass$^k$ 用有偏插值估计量（凸函数导致上偏）、合取判定使跨域通过率与断言条数耦合、"工具使用"79.9% 这一桶过粗、477/507 只看终态导致"做对但误报"判通过、模拟用户与被测模型同家族、人工审任务未报规模。lakehouse-skills 的 28.6% 无法在正文定位、技能长 27.2 倍未计成本、轨迹层检查让奖励可被过程匹配满足、验证器与 agent 同沙箱未讨论奖励劫持、跨技能测试泄漏未报、缺"直接贴 SDK 文档"这一便宜对照。longmemeval-v2 的 R 与 C 换了控制器（Qwen3.5-9B vs GPT-5.4-mini）导致机制与模型混淆、摘要数字是两档算术平均且 40.1 对不上 40.45、只报查询延迟不报写入成本、五种能力主表只报四列（前提意识无单独分数）、Table 2 无置信区间。agent-diff 每种条件只跑 3 次且区间是任务级、副本保真度无量化、副作用只覆盖被建模的表、闭世界不变量的忽略字段表未公开、"新颖接口"依赖未核实的训练截止、文档消融缺中性填充对照、错误标注由单个 LLM 裁判完成。
+- 交叉引用：五篇互引并接入既有笔记——`li2026-thinkingbox` 与 `pysklo2026-agent-diff`、`schneider2026-lakehouse-skills` 构成"状态判分三种严格程度"的链条；`cadet2026-workflow-mining` 与 `wang2026-rsi-hub`、`li2026-oo-harness`、`xia2026-rrsi`、`yeh2026-oat` 互引；`wu2026-longmemeval-v2` 与 `he2026-memory-tax`、`bao2026-raw-rag`、`guo2026-t-mem`、`jiang2026-jev-mem`、`du2026-a-rag`、`li2026-dci` 互引。
+- 提交：`e707c90`（workflow-mining 笔记）、`7ce6d5b`（thinkingbox 笔记）、`c34142b`（lakehouse-skills 笔记）、`1741c84`（longmemeval-v2 笔记）、`b00d32b`（agent-diff 笔记）、`e3a882e`（索引）；本文件随 `docs(status)` 提交。
 
 ### 2026-11-09 精读 Imperfective Paradox / HySparse2 / SRA（语义、长上下文、心理语言学）
 
@@ -284,6 +298,12 @@
 
 ## 下一步
 
+- [ ] 核对 <https://github.com/xcadet/apex> 是否放出 28,568 个工作流、逐轮分数、`train.py` 初始特征集与 $L_0$ 惩罚系数 $\lambda$；若放出，回填 `cadet2026-workflow-mining` 的"可复现"与 Ideas 第二、六条。
+- [ ] 向 ThinkingBox 作者确认三件事：RLFT 训练与 507 题评测是否有任务级切分；GRPO 超参与训练题数；30 道 rubric 题的裁判是否做过人工一致性。确认后修正 `li2026-thinkingbox` 的"可复现"与 Ideas 第一、六条。
+- [ ] 核对 <https://github.com/BauplanLabs/skill-issues> 是否给出每个技能的候选数、Fig. 4 原始数值、优化后技能字符数绝对值与人工审任务记录；若放出，回填 `schneider2026-lakehouse-skills` 的"可复现"与 Ideas 第一、四条。
+- [ ] 核对 <https://xiaowu0162.github.io/longmemeval-v2/> 是否放出 451 题、haystack 构造脚本、写入侧成本与 Table 2 的置信区间；若放出，回填 `wu2026-longmemeval-v2` 的"可复现"与 Ideas 第二、三条。
+- [ ] 核对 <https://github.com/agent-diff-bench/agent-diff> 是否给出副本一致性测试的逐接口结果、每题的忽略字段表与断言条数、错误标注的人工一致率；若放出，回填 `pysklo2026-agent-diff` 的"可复现"与 Ideas 第二、四条。
+- [ ] 决定是否把 `UV_PYTHON_INSTALL_MIRROR` 的可用源写进 `AGENTS.md` 第 3 节（本次清华镜像缺 20261026 批次，改用 astral 官方源才装上 Python 3.12）。
 - [ ] 核对 <https://github.com/boleima/ImperfectiveParadox> 是否放出人类逻辑标签、逐题输出、格式遵循率、BERT 层与池化细节；若放出，回填 `ma2026-imperfective-paradox` 的"可复现"与 Ideas 第一条、第二条。
 - [ ] 向小米 LLM-Core 确认 HySparse2 是否放出模型权重/代码、AgentPPL 与 Repo Code PPL 的构造、prefill 延迟与 KV 传输数据；若放出，回填 `wei2026-hysparse2` 的"可复现"与 Ideas 第一条、第三条。
 - [ ] 向 SRA 作者索取预处理脚本、R 模型代码与各语言词频来源；若放出，回填 `xu2025-sra` 的"可复现"与 Ideas 第一条、第二条。
@@ -311,6 +331,15 @@
 
 ## 阻塞 / 待确认
 
+- `cadet2026-workflow-mining` 的三条原则是策略条件估计量（附录 A 自认），只在"GPT-5.4 优化器 + 六个算子 + 26 个 Enigmata 谜题"的搜索总体内成立；引用 −0.045 / +0.135 / +0.118 时必须注明这个作用域。
+- `cadet2026-workflow-mining` 的留出集每臂聚类数只有 4–14（多数低于 15 的经验门槛），方向可由符号一致性支撑，幅度不可当点估计引用。
+- `li2026-thinkingbox` 的 pass$^20$ 是用有偏插值估计量 $\left(C/N\right)^k$ 算的，对 $k>1$ 上偏，因此 47.53% / 17.60% 是可靠率的上界；引用时须注明，且不能与用无偏估计量的结果混比。
+- `li2026-thinkingbox` 的 RLFT 数字（Qwen3.8-27B 60.78、Qwen3.6-27B 53.17、Qwen3.5-9B 13.33）是在同一 507 题上训练与评测的结果，训练/测试切分未报；引用时须注明"可能含训练集重叠"。
+- `schneider2026-lakehouse-skills` 的"最高 28.6%"只在摘要与引言出现，正文只给平均 +12.0%，且未指明对应技能；引用时须注明该数字不可在正文定位，只能读 Fig. 4。
+- `wu2026-longmemeval-v2` 的摘要数字是 Small 与 Medium 两档的算术平均（57.8 / 69.3 / 72.5 / 182 s / 6.9× / 快 32% 均可复算），其中 40.1% 与两档平均 40.45% 对不上；引用单档成绩时须用 Table 2。
+- `wu2026-longmemeval-v2` 的 R 与 C 使用不同控制器（Qwen3.5-9B vs GPT-5.4-mini xhigh），58.6→74.9 的提升不能全归给"文件式记忆"；引用时须注明。
+- `pysklo2026-agent-diff` 的 ±2.4 是任务级自助区间，每种条件只跑 3 次，不覆盖运行间方差；引用小差距（如 49.3 与 38.0 之间、Hub 分层的单模型差值）时须注明。
+- `pysklo2026-agent-diff` 的"副作用"只覆盖被建模的实体表，通知/审计/下游同步被排除在副本外；引用"能检出对无关资源的修改"时须限定为数据库行。
 - `ma2026-imperfective-paradox` 的 Group C 金标签是理论语义学的 Unknown，人工评估只查语法/流利/充分，没有人类逻辑标注；引用 TBR/ΔAA 时需注明这是"相对理论标签"的偏置。
 - `wei2026-hysparse2` 的主对比同时改了头配置（MQA 64/1/256 vs GQA 64/4/192/128），KV-Cache 与效率收益不能全部归给两级 KV 共享；引用 2.69 GB / 2.92× 时需注明。
 - `xu2025-sra` 的词频控制用英语 norms 覆盖 10 种语言，非英语语言的词频控制不可靠；引用跨语言结论时需注明。
