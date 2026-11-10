@@ -29,7 +29,8 @@
 - 核心数字（agent-diff）：224 题（Box 48、Slack 59、Linear 57、Calendar 60），108 个接口，$n^*$ 均值 5.3、范围 1–24，66% 隐式信息、53% 多实体。无文档断言加权分 38.0–88.1（DeepSeek-v3.2 88.1、Devstral 86.0、Llama-4-Scout 38.0），通过率 29%–76%。相关文档让通过率 +7.0 pp（$P=1.00$）、分数 +2.4（$P=0.73$）；全文档分数 +0.2、Linear −4.0。Hub 题 +19.0±10.5 vs 非 Hub +3.4±4.4（$P(\text{H}>\text{NH})=0.999$）。
 - 原文疑点（已写入各笔记 Ideas）：workflow-mining 的结论是策略条件估计量（附录 A 自认）、特征与搜索轮次相关而轮次被剥掉、留出集每臂簇数 4–14 低于 15 的门槛、成本未进目标函数、门控特征含提示词长度导致循环论证、300 次试验混有非特征试验且 70 个候选无多重比较校正。thinkingbox 的 RLFT 模型在同一基准训练与评测且未报留出切分、pass$^k$ 用有偏插值估计量（凸函数导致上偏）、合取判定使跨域通过率与断言条数耦合、"工具使用"79.9% 这一桶过粗、477/507 只看终态导致"做对但误报"判通过、模拟用户与被测模型同家族、人工审任务未报规模。lakehouse-skills 的 28.6% 无法在正文定位、技能长 27.2 倍未计成本、轨迹层检查让奖励可被过程匹配满足、验证器与 agent 同沙箱未讨论奖励劫持、跨技能测试泄漏未报、缺"直接贴 SDK 文档"这一便宜对照。longmemeval-v2 的 R 与 C 换了控制器（Qwen3.5-9B vs GPT-5.4-mini）导致机制与模型混淆、摘要数字是两档算术平均且 40.1 对不上 40.45、只报查询延迟不报写入成本、五种能力主表只报四列（前提意识无单独分数）、Table 2 无置信区间。agent-diff 每种条件只跑 3 次且区间是任务级、副本保真度无量化、副作用只覆盖被建模的表、闭世界不变量的忽略字段表未公开、"新颖接口"依赖未核实的训练截止、文档消融缺中性填充对照、错误标注由单个 LLM 裁判完成。
 - 交叉引用：五篇互引并接入既有笔记——`li2026-thinkingbox` 与 `pysklo2026-agent-diff`、`schneider2026-lakehouse-skills` 构成"状态判分三种严格程度"的链条；`cadet2026-workflow-mining` 与 `wang2026-rsi-hub`、`li2026-oo-harness`、`xia2026-rrsi`、`yeh2026-oat` 互引；`wu2026-longmemeval-v2` 与 `he2026-memory-tax`、`bao2026-raw-rag`、`guo2026-t-mem`、`jiang2026-jev-mem`、`du2026-a-rag`、`li2026-dci` 互引。
-- 提交：`e707c90`（workflow-mining 笔记）、`7ce6d5b`（thinkingbox 笔记）、`c34142b`（lakehouse-skills 笔记）、`1741c84`（longmemeval-v2 笔记）、`b00d32b`（agent-diff 笔记）、`e3a882e`（索引）；本文件随 `docs(status)` 提交。
+- 提交：`e707c90`（workflow-mining 笔记）、`7ce6d5b`（thinkingbox 笔记）、`c34142b`（lakehouse-skills 笔记）、`1741c84`（longmemeval-v2 笔记）、`b00d32b`（agent-diff 笔记）、`e3a882e`（索引）、`15fc85c`（本文件）、`72ecaae`（thinkingbox 表号修正）、`1f49eef`（longmemeval-v2 表号与比例口径修正）。
+- 环境备注：`uv run` 期间 `uv.lock` 被自动改写成镜像源地址（`UV_DEFAULT_INDEX` 指向阿里云），已 `git checkout` 还原，未提交；后续若再出现同样情况，同样是环境产物而非依赖变更。
 
 ### 2026-11-09 精读 Imperfective Paradox / HySparse2 / SRA（语义、长上下文、心理语言学）
 
