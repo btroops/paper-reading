@@ -4,8 +4,8 @@
 
 ## 当前快照
 
-- 分支：`main`（跟踪 `origin/main`）
-- 远程：`origin` → `git@github.com:btroops/paper-reading.git`
+- 分支：`main`（跟踪 `origin/main`，已与远程对齐于 `cbf6ee6`）
+- 远程：`origin` → `git@github.com:btroops/paper-reading.git`（2026-11-10 曾被改成 HTTPS 且无可用凭据，已改回 SSH）
 - 最近内容提交：见下方"最近会话"里的提交清单；上一批为 `8b615f6 docs(index): 收录 Imperfective Paradox、HySparse2、SRA 三篇`
 - 已归档论文：26 篇（`cadet2026-workflow-mining`，arXiv 2610.31709v1；`li2026-thinkingbox`，arXiv 2608.19741v5；`schneider2026-lakehouse-skills`，arXiv 2606.01185v2；`wu2026-longmemeval-v2`，arXiv 2605.12493v1；`pysklo2026-agent-diff`，arXiv 2602.11224v3；`ma2026-imperfective-paradox`，arXiv 2601.09373v3；`wei2026-hysparse2`，arXiv 2609.26368v1；`xu2025-sra`，arXiv 2503.14728v2；`fu2025-c2c`，arXiv 2510.03215v2；`guo2026-t-mem`，arXiv 2606.15405v2；`xia2026-rrsi`，arXiv 2609.24972v3；`zhou2025-onerec`，arXiv 2506.13695v4；`liu2025-onerec-think`，arXiv 2510.11639v2；`onerec2026-onereason`，arXiv 2606.06260v1；`jiang2026-jev-mem`，arXiv 2609.23986v1；`he2026-memory-tax`，arXiv 2610.34073v1；`bao2026-raw-rag`，arXiv 2610.30755v1；`yeh2026-oat`，arXiv 2607.12747v2；`wan2026-decision-rag`，arXiv 2610.35868v1；`wang2026-rsi-hub`，arXiv 2610.32253v1；`li2026-oo-harness`，arXiv 2610.28380v1；`kumar2026-stair`，arXiv 2609.03874v2；`ho2026-declarative-attention`，arXiv 2609.02737v2；`du2026-a-rag`，arXiv 2602.03442v1；`li2026-dci`，arXiv 2605.05242v1；`hu2026-sage`，arXiv 2602.05975v2）
 - 已精读论文：26 篇（`cadet2026-workflow-mining`、`li2026-thinkingbox`、`schneider2026-lakehouse-skills`、`wu2026-longmemeval-v2`、`pysklo2026-agent-diff`、`ma2026-imperfective-paradox`、`wei2026-hysparse2`、`xu2025-sra`、`fu2025-c2c`、`guo2026-t-mem`、`xia2026-rrsi`、`zhou2025-onerec`、`liu2025-onerec-think`、`onerec2026-onereason`、`jiang2026-jev-mem`、`he2026-memory-tax`、`bao2026-raw-rag`、`yeh2026-oat`、`wan2026-decision-rag`、`wang2026-rsi-hub`、`li2026-oo-harness`、`kumar2026-stair`、`ho2026-declarative-attention`、`du2026-a-rag`、`li2026-dci`、`hu2026-sage`）
