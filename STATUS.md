@@ -4,18 +4,28 @@
 
 ## 当前快照
 
-- 分支：`main`（跟踪 `origin/main`，已与远程对齐于 `cbf6ee6`）
+- 分支：`main`（跟踪 `origin/main`）
 - 远程：`origin` → `git@github.com:btroops/paper-reading.git`（2026-11-10 曾被改成 HTTPS 且无可用凭据，已改回 SSH）
-- 最近内容提交：见下方"最近会话"里的提交清单；上一批为 `8b615f6 docs(index): 收录 Imperfective Paradox、HySparse2、SRA 三篇`
-- 已归档论文：26 篇（`cadet2026-workflow-mining`，arXiv 2610.31709v1；`li2026-thinkingbox`，arXiv 2608.19741v5；`schneider2026-lakehouse-skills`，arXiv 2606.01185v2；`wu2026-longmemeval-v2`，arXiv 2605.12493v1；`pysklo2026-agent-diff`，arXiv 2602.11224v3；`ma2026-imperfective-paradox`，arXiv 2601.09373v3；`wei2026-hysparse2`，arXiv 2609.26368v1；`xu2025-sra`，arXiv 2503.14728v2；`fu2025-c2c`，arXiv 2510.03215v2；`guo2026-t-mem`，arXiv 2606.15405v2；`xia2026-rrsi`，arXiv 2609.24972v3；`zhou2025-onerec`，arXiv 2506.13695v4；`liu2025-onerec-think`，arXiv 2510.11639v2；`onerec2026-onereason`，arXiv 2606.06260v1；`jiang2026-jev-mem`，arXiv 2609.23986v1；`he2026-memory-tax`，arXiv 2610.34073v1；`bao2026-raw-rag`，arXiv 2610.30755v1；`yeh2026-oat`，arXiv 2607.12747v2；`wan2026-decision-rag`，arXiv 2610.35868v1；`wang2026-rsi-hub`，arXiv 2610.32253v1；`li2026-oo-harness`，arXiv 2610.28380v1；`kumar2026-stair`，arXiv 2609.03874v2；`ho2026-declarative-attention`，arXiv 2609.02737v2；`du2026-a-rag`，arXiv 2602.03442v1；`li2026-dci`，arXiv 2605.05242v1；`hu2026-sage`，arXiv 2602.05975v2）
-- 已精读论文：26 篇（`cadet2026-workflow-mining`、`li2026-thinkingbox`、`schneider2026-lakehouse-skills`、`wu2026-longmemeval-v2`、`pysklo2026-agent-diff`、`ma2026-imperfective-paradox`、`wei2026-hysparse2`、`xu2025-sra`、`fu2025-c2c`、`guo2026-t-mem`、`xia2026-rrsi`、`zhou2025-onerec`、`liu2025-onerec-think`、`onerec2026-onereason`、`jiang2026-jev-mem`、`he2026-memory-tax`、`bao2026-raw-rag`、`yeh2026-oat`、`wan2026-decision-rag`、`wang2026-rsi-hub`、`li2026-oo-harness`、`kumar2026-stair`、`ho2026-declarative-attention`、`du2026-a-rag`、`li2026-dci`、`hu2026-sage`）
+- 最近内容提交：见下方"最近会话"里的提交清单；上一批为 `e707c90`–`cbf6ee6`（五篇 agent 评测论文）
+- 已归档论文：28 篇（`cardei2026-irah`，arXiv 2610.30167v1；`hazoom2026-factual-nuggets`，arXiv 2605.25641v2；`cadet2026-workflow-mining`，arXiv 2610.31709v1；`li2026-thinkingbox`，arXiv 2608.19741v5；`schneider2026-lakehouse-skills`，arXiv 2606.01185v2；`wu2026-longmemeval-v2`，arXiv 2605.12493v1；`pysklo2026-agent-diff`，arXiv 2602.11224v3；`ma2026-imperfective-paradox`，arXiv 2601.09373v3；`wei2026-hysparse2`，arXiv 2609.26368v1；`xu2025-sra`，arXiv 2503.14728v2；`fu2025-c2c`，arXiv 2510.03215v2；`guo2026-t-mem`，arXiv 2606.15405v2；`xia2026-rrsi`，arXiv 2609.24972v3；`zhou2025-onerec`，arXiv 2506.13695v4；`liu2025-onerec-think`，arXiv 2510.11639v2；`onerec2026-onereason`，arXiv 2606.06260v1；`jiang2026-jev-mem`，arXiv 2609.23986v1；`he2026-memory-tax`，arXiv 2610.34073v1；`bao2026-raw-rag`，arXiv 2610.30755v1；`yeh2026-oat`，arXiv 2607.12747v2；`wan2026-decision-rag`，arXiv 2610.35868v1；`wang2026-rsi-hub`，arXiv 2610.32253v1；`li2026-oo-harness`，arXiv 2610.28380v1；`kumar2026-stair`，arXiv 2609.03874v2；`ho2026-declarative-attention`，arXiv 2609.02737v2；`du2026-a-rag`，arXiv 2602.03442v1；`li2026-dci`，arXiv 2605.05242v1；`hu2026-sage`，arXiv 2602.05975v2）
+- 已精读论文：28 篇（`cardei2026-irah`、`hazoom2026-factual-nuggets`、`cadet2026-workflow-mining`、`li2026-thinkingbox`、`schneider2026-lakehouse-skills`、`wu2026-longmemeval-v2`、`pysklo2026-agent-diff`、`ma2026-imperfective-paradox`、`wei2026-hysparse2`、`xu2025-sra`、`fu2025-c2c`、`guo2026-t-mem`、`xia2026-rrsi`、`zhou2025-onerec`、`liu2025-onerec-think`、`onerec2026-onereason`、`jiang2026-jev-mem`、`he2026-memory-tax`、`bao2026-raw-rag`、`yeh2026-oat`、`wan2026-decision-rag`、`wang2026-rsi-hub`、`li2026-oo-harness`、`kumar2026-stair`、`ho2026-declarative-attention`、`du2026-a-rag`、`li2026-dci`、`hu2026-sage`）
 - 阅读模型：`WWH-v9`（`WWH.md`），新增不许偷懒省字规则（指代落地、比较写全两边、数字写清口径）；v8 的论证不跳步、v7 的术语与反直译规则继续有效；Why 只提问、What 不写机制、段落 3–6 句
 - 命名规则：`<第一作者姓><年份>-<短标题>`，arXiv 编号只写在 front matter 与 README 索引
 - Python 环境：uv + Python 3.12，已装 `pymupdf`（`pyproject.toml` / `uv.lock` 已提交）
 - 原文策略：PDF 仅本地保存，`papers/` 已被 `.gitignore` 排除，远程只保留笔记与索引
-- 进行中：无；五篇 agent 评测与方法论文已完成并提交（见下节）
+- 进行中：无；五篇 agent 评测论文与两篇检索优化论文已完成并提交（见下节）
 
 ## 最近会话
+
+### 2026-11-11 精读两篇检索侧论文（流水线配置搜索 / 事实碎片优化）
+
+- 归档与命名：`2610.30167` → `papers/cardei2026-irah/paper.pdf`（第一作者 Cardei，方法名 IRAH）；`2605.25641` → `papers/hazoom2026-factual-nuggets/paper.pdf`（第一作者 Hazoom，方法名 INO，短标题取"事实碎片"）。全文 23 / 11 页，已提取 `paper.txt`，按 WWH-v9 产出 `notes/cardei2026-irah.md`、`notes/hazoom2026-factual-nuggets.md`（均 status: done）。
+- 判型：IRAH 系统与算法类为主（分层树搜索、自适应 UCT、元学习热启动），附实证与基准类（四基准 × TPE/Grid × 三种子）；INO 系统与算法类为主（索引时优化循环、探针设计、反思器约束），附实证与基准类（100 条碎片、410 条留出查询、160 条工单、LLM 裁判校准、线上 DiD）。
+- 核心数字（IRAH）：四基准无加权平均留出 nDCG@10 为 IRAH（热）0.4816、TPE（热）0.4733、TPE（冷）0.4703、IRAH（冷）0.4683、Grid 0.4670。逐基准：SciFact 0.7368 对 0.7176（+0.0192）、FiQA 0.4959 对 0.4662（+0.0297）、CQADupStack 0.3601 对 0.3675（−0.0074）、CoSQA 0.3336 对 0.3420（−0.0084）。热启动对冷启动四基准全正（+0.0101 / +0.0124 / +0.0059 / +0.0248）。预算 50 次，$\gamma$ 为 0.24（热）/0.60（冷），$d_{\text{meta}}>1.5$ 退回冷启动分配。元学习器 XGBRanker：11 源基准、36 锚点、396 样本、13+14 维特征、top-3 种子。LLM 开销约 0.59M / 0.56M token 每次运行；运行时间 3.37–74.49 小时。
+- 核心数字（INO）：历史真实查询（110 条）检索率 52.3→77.3、引用 41.3→68.1；LLM 改写（300 条）64.1→93.7 / 57.3→86.1；样本内触发查询（100 条）67.6→97.0 / 60.2→89.1；工单（160 条）35.1→78.2 / 29.7→70.4。答案层：更正遵从 52.2%→73.4%（McNemar p≈0.003），未检索 40%→13%，条件忠实 54.1%→81%，重大回退 15.6%→11.6%，编造接地 19.1%→14.8%。负样本 1,400 条随机查询，1.4% 检索 / 0.8% 引用。线上 DiD：隐藏碎片使点赞下降 11.44%（p=0.055）。成本 0.31 美元 / 111.2 秒每条（A–D 为 0.012 美元 / 12.9 秒）。收敛 56%/32%/12%（三/二/一轮）。
+- 原文疑点（已写入各笔记 Ideas）：IRAH 的留出查询仅 60–130 条且无配对检验、附录自承优化集与留出集排名不一致、Grid 有 50/432 次 socket 超时被判不可行、$\gamma$ 与 $d_{\text{meta}}$ 阈值无敏感性分析、反思无消融、只有 `gpt-oss-120b` 一个 LLM、元训练集含 CQADupStack 六个子论坛而目标是 STATS（分布内偏乐观）。INO 缺长度/锚点匹配对照、探针固定 4–6 条导致样本内 97.0 对留出 77.3 的过拟合、"历史真实查询"是相似度 top-50 近邻筛出的（余下 >0.75、重排 >0.85）偏易、裁判看得到碎片且校准与报告共用同 100 条决策、负样本 1.4% 未按话题分层、线上 p=0.055 且对照为前移七天、四个 LLM 环节无消融、碎片过期与冲突未测。
+- 交叉引用：IRAH 与 `kumar2026-stair`（改索引表示 vs 改流水线组合）、`du2026-a-rag` / `li2026-dci`（改接口 vs 改配置）、`hu2026-sage`（比检索器 vs 搜配置）、`wan2026-decision-rag`（查询时选支 vs 离线下选型）、`wang2026-rsi-hub` / `li2026-oo-harness`（可变面不同）互引；INO 与 `guo2026-t-mem`（写入时组织）、`jiang2026-jev-mem`（写入侧 vs 读取侧付费）、`bao2026-raw-rag`（参照系）、`hu2026-sage`（词面匹配解释锚点为何有效）、`cardei2026-irah`（配置 vs 内容）、`du2026-a-rag` / `li2026-dci`（谁来找）互引。
+- 提交：`e8f56a0`（IRAH 笔记）、`377b883`（INO 笔记）、`25144c1`（索引）；本文件随 `docs(status)` 提交。
 
 ### 2026-11-10 精读五篇 agent 评测论文（工作流挖掘 / 状态评测 / 技能优化 / 记忆基准 / API 状态差分）
 
@@ -299,6 +309,8 @@
 
 ## 下一步
 
+- [ ] 向 IRAH 作者索取代码与检索后端信息（论文只说 "a managed enterprise retrieval engine"）、每基准 20% 留出切分的种子、候选生成提示词全文；若放出，回填 `cardei2026-irah` 的"可复现"与 Ideas 第一、三、四条。
+- [ ] 向 INO 作者确认留出 410 条查询的聚合口径（Table 1 分列 vs §E 的 84.8/75.1）、裁判校准是否用了留出决策集、线上实验的样本量与用户数；确认后修正 `hazoom2026-factual-nuggets` 的"可复现"与 Ideas 第二、四、六条。
 - [ ] 核对 <https://github.com/xcadet/apex> 是否放出 28,568 个工作流、逐轮分数、`train.py` 初始特征集与 $L_0$ 惩罚系数 $\lambda$；若放出，回填 `cadet2026-workflow-mining` 的"可复现"与 Ideas 第二、六条。
 - [ ] 向 ThinkingBox 作者确认三件事：RLFT 训练与 507 题评测是否有任务级切分；GRPO 超参与训练题数；30 道 rubric 题的裁判是否做过人工一致性。确认后修正 `li2026-thinkingbox` 的"可复现"与 Ideas 第一、六条。
 - [ ] 核对 <https://github.com/BauplanLabs/skill-issues> 是否给出每个技能的候选数、Fig. 4 原始数值、优化后技能字符数绝对值与人工审任务记录；若放出，回填 `schneider2026-lakehouse-skills` 的"可复现"与 Ideas 第一、四条。
@@ -332,6 +344,12 @@
 
 ## 阻塞 / 待确认
 
+- `cardei2026-irah` 的留出查询只有 60–130 条，报出的标准差只覆盖搜索随机性；引用 +0.0192（+2.7%）与 −0.0074（−2.0%）时须注明没有配对检验、与查询抽样噪声同量级。
+- `cardei2026-irah` 的 CQADupStack-STATS 虽标为"分布内"，元训练集却含同一数据源的六个子论坛（Physics、GIS、Programmers、Android、Mathematica、Webmasters），该目标偏乐观；真正的同分布外样本只有 CoSQA 一个。
+- `cardei2026-irah` 的 Grid Search 有 50/432 次评估因 socket 超时被判不可行，108 个配置并非全部成功评估；引用 Grid 分数时须注明。
+- `hazoom2026-factual-nuggets` 的样本内（100 条触发查询，97.0%）与留出（110 条历史查询，77.3%）相差约 20 点，是探针过拟合的直接读数；引用 77.3% / 68.1% 时须注明这是"相似度筛选过的历史查询"，属于上界。
+- `hazoom2026-factual-nuggets` 的线上 DiD 是 p=0.055（未达 0.05），对照组为前移七天窗口而非并行对照；"改善用户满意度"只能读成方向一致的弱证据。
+- `hazoom2026-factual-nuggets` 的 84.8 / 75.1（变体 D 留出加权）与按 Table 1 的 110/300 加权复算（85.0 / 75.4）差 0.2–0.3 个百分点，原文未说明聚合口径。
 - `cadet2026-workflow-mining` 的三条原则是策略条件估计量（附录 A 自认），只在"GPT-5.4 优化器 + 六个算子 + 26 个 Enigmata 谜题"的搜索总体内成立；引用 −0.045 / +0.135 / +0.118 时必须注明这个作用域。
 - `cadet2026-workflow-mining` 的留出集每臂聚类数只有 4–14（多数低于 15 的经验门槛），方向可由符号一致性支撑，幅度不可当点估计引用。
 - `li2026-thinkingbox` 的 pass$^20$ 是用有偏插值估计量 $\left(C/N\right)^k$ 算的，对 $k>1$ 上偏，因此 47.53% / 17.60% 是可靠率的上界；引用时须注明，且不能与用无偏估计量的结果混比。
